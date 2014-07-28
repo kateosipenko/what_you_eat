@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Devices;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media;
-using Microsoft.Devices;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
 namespace Core.Helpers.Messages
 {

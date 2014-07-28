@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Device.Location;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using Windows.Devices.Geolocation;
 
 namespace Core.Helpers.Location
 {
@@ -23,7 +21,7 @@ namespace Core.Helpers.Location
 
 		private static volatile DeviceLocation instance;
 
-		public Geoposition CurrentPosition { get; set; }
+		public GeoPosition<GeoCoordinate> CurrentPosition { get; set; }
 
 		public static DeviceLocation Instance
 		{
@@ -44,7 +42,7 @@ namespace Core.Helpers.Location
 			}
 		}
 
-		private static volatile Geolocator geolocator;
+		private static volatile GeoCoordinateWatcher geoWather;
 
 		/// <summary>
 		/// Starts location service
@@ -55,46 +53,44 @@ namespace Core.Helpers.Location
 		{
 			lock (lockObj)
 			{
-				if (geolocator == null)
+				if (geoWather == null)
 				{
-					geolocator = new Geolocator();
-					geolocator.DesiredAccuracy = PositionAccuracy.High;
-					geolocator.MovementThreshold = 0;
-					geolocator.ReportInterval = reportInterval;
-					geolocator.PositionChanged += this.GeolocatorPositionChanged;
-					geolocator.StatusChanged += this.GeolocatorStatusChanged;
+                    geoWather = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+					geoWather.MovementThreshold = 0;
+					geoWather.PositionChanged += this.GeolocatorPositionChanged;
+					geoWather.StatusChanged += this.GeolocatorStatusChanged;
 				}
 			}
 		}
 
-		public PositionStatus GetLocationStatus()
+		public GeoPositionStatus GetLocationStatus()
 		{
-			var result = PositionStatus.Disabled;
-			if (geolocator != null)
+            var result = GeoPositionStatus.Disabled;
+			if (geoWather != null)
 			{
-				result = geolocator.LocationStatus;
+				result = geoWather.Status;
 			}
 			else
 			{
 				this.Start();
-				result = geolocator.LocationStatus;
+				result = geoWather.Status;
 			}
 
 			return result;
 		}
 
-		private void GeolocatorStatusChanged(Geolocator sender, StatusChangedEventArgs args)
+        private void GeolocatorStatusChanged(object sender, GeoPositionStatusChangedEventArgs args)
 		{
-			EventHandler<StatusChangedEventArgs> gpsStatusChanged = GpsStatusChanged;
+			EventHandler<GeoPositionStatusChangedEventArgs> gpsStatusChanged = GpsStatusChanged;
 			if (gpsStatusChanged != null)
 			{
 				gpsStatusChanged(sender, args);
 			}
 		}
 
-		private void GeolocatorPositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        private void GeolocatorPositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> args)
 		{
-			EventHandler<DeviceLocationArgs> currentLocationChanged = CurrentLocationChanged;
+			var currentLocationChanged = CurrentLocationChanged;
 			if (currentLocationChanged != null)
 			{
 				var eargs = new DeviceLocationArgs();
@@ -112,11 +108,11 @@ namespace Core.Helpers.Location
 		{
 			lock (lockObj)
 			{
-				if (geolocator != null)
+				if (geoWather != null)
 				{
-					geolocator.PositionChanged -= GeolocatorPositionChanged;
-					geolocator.StatusChanged -= GeolocatorStatusChanged;
-					geolocator = null;
+					geoWather.PositionChanged -= GeolocatorPositionChanged;
+					geoWather.StatusChanged -= GeolocatorStatusChanged;
+					geoWather = null;
 					this.CurrentPosition = null;
 				}
 			}
@@ -130,11 +126,11 @@ namespace Core.Helpers.Location
 		/// <summary>
 		/// Status changed event
 		/// </summary>
-		public static event EventHandler<StatusChangedEventArgs> GpsStatusChanged;
+		public static event EventHandler<GeoPositionStatusChangedEventArgs> GpsStatusChanged;
 	}
 
-	public class DeviceLocationArgs
+	public class DeviceLocationArgs : EventArgs
 	{
-		public Geoposition Position { get; set; }
+		public GeoPosition<GeoCoordinate> Position { get; set; }
 	}
 }

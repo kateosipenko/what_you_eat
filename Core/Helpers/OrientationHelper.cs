@@ -1,9 +1,9 @@
 ﻿namespace Core.Helpers
 {
-	using Microsoft.Phone.Controls;
-	using System.ComponentModel;
-	using System.Threading.Tasks;
-	using System.Windows;
+    using Microsoft.Phone.Controls;
+    using System.ComponentModel;
+    using System.Threading;
+    using System.Windows;
 
 	public class OrientationHelper : INotifyPropertyChanged
 	{
@@ -29,11 +29,11 @@
 
 		#region METHODS
 
-		private async void Initialize()
+		private void Initialize()
 		{
 			while (Application.Current.RootVisual == null)
 			{
-				await Task.Delay(50);
+                Thread.Sleep(50);
 			}
 
 			var frame = Application.Current.RootVisual as PhoneApplicationFrame;

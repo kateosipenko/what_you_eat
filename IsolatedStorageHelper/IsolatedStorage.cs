@@ -2,16 +2,8 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Diagnostics;
-	using System.IO;
-	using System.IO.IsolatedStorage;
-	using System.Runtime.Serialization;
-	using System.Security.Cryptography;
-	using System.Text;
-	using System.Threading;
-	using Microsoft.Phone.Info;
-	using Microsoft.Phone.Shell;
-	using Microsoft.Xna.Framework;
+    using System.IO.IsolatedStorage;
+    using System.Threading;
 
 	/// <summary>
 	/// Class for working with isolated storage

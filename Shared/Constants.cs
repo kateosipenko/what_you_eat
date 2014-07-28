@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Shared
 {
-    public static readonly class Constants
+    public sealed class Constants
     {
     }
 }
