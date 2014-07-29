@@ -7,5 +7,6 @@ namespace Shared
 {
     public sealed class Constants
     {
+        
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using FatSecretApi.Providers;
 
 namespace WhatYouEatWP7
 {
@@ -19,6 +20,7 @@ namespace WhatYouEatWP7
         public MainPage()
         {
             InitializeComponent();
+            AuthProvider.Authorize("asdasd");
         }
     }
 }
