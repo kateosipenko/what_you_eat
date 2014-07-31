@@ -1,0 +1,43 @@
+﻿<views:BasePage x:Class="WhatYouEatWP7.Views.HomePage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:views="clr-namespace:WhatYouEatWP7.Views"
+                xmlns:homeViews="clr-namespace:WhatYouEatWP7.Views.Home"
+                xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
+                xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait" Orientation="Portrait"
+                mc:Ignorable="d">
+    
+    <i:Interaction.Behaviors>
+        <helpers:SystemTrayBehavior />
+    </i:Interaction.Behaviors>
+    
+    <Grid Margin="0, 24, 0, 0">
+        <controls:Panorama Title="{Binding Common.AppName, Source={StaticResource LocalizationManager}}">
+            <controls:PanoramaItem Header="{Binding Common.LastActivity, Source={StaticResource LocalizationManager}}">
+                <homeViews:LastActivity />
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding Common.AboutMe, Source={StaticResource LocalizationManager}}">
+                <homeViews:AboutMe />
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+
+    <binBar:Bindable.ApplicationBar>
+        <binBar:BindableApplicationBar>
+            <binBar:BindableApplicationBarButton IconUri="/Icons/plus.png" 
+                                                 Text="{Binding Buttons.AddActivity, Source={StaticResource LocalizationManager}}"/>
+        </binBar:BindableApplicationBar>
+    </binBar:Bindable.ApplicationBar>
+    
+</views:BasePage>

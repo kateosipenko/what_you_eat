@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{C7FC5A44-E594-4717-9583-5E1AF91471CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindableApplicationBar", "..\BindableApplicationBar\BindableApplicationBar.csproj", "{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Phone.Controls.Toolkit", "..\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.csproj", "{0754458A-7AFC-463A-B27D-2F6980522119}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0754458A-7AFC-463A-B27D-2F6980522119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0754458A-7AFC-463A-B27D-2F6980522119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0754458A-7AFC-463A-B27D-2F6980522119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0754458A-7AFC-463A-B27D-2F6980522119}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
