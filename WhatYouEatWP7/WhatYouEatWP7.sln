@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{C7FC5A44-E594-4717-9583-5E1AF91471CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatSecretApi", "..\FatSecretApi\FatSecretApi.csproj", "{DC663A7A-CC0F-4323-A9D3-BD1FBF69C4CE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,10 +53,6 @@ Global
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC663A7A-CC0F-4323-A9D3-BD1FBF69C4CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC663A7A-CC0F-4323-A9D3-BD1FBF69C4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC663A7A-CC0F-4323-A9D3-BD1FBF69C4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC663A7A-CC0F-4323-A9D3-BD1FBF69C4CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
