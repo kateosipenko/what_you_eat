@@ -9,5 +9,5 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
     
-    <ListBox />
+    <ListBox x:Name="activity" />
 </UserControl>

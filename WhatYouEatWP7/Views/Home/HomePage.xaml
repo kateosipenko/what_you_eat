@@ -11,11 +11,18 @@
                 xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
                 xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+                DataContext="{Binding Home, Source={StaticResource Locator}}"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
                 SupportedOrientations="Portrait" Orientation="Portrait"
                 mc:Ignorable="d">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <helpers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     
     <i:Interaction.Behaviors>
         <helpers:SystemTrayBehavior />
@@ -24,7 +31,18 @@
     <Grid Margin="0, 24, 0, 0">
         <controls:Panorama Title="{Binding Common.AppName, Source={StaticResource LocalizationManager}}">
             <controls:PanoramaItem Header="{Binding Common.LastActivity, Source={StaticResource LocalizationManager}}">
-                <homeViews:LastActivity />
+                <ListBox ItemsSource="{Binding Food}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding StringId, Converter={StaticResource TranslationConverter}}"
+                                           FontSize="24" />
+                                <TextBlock Text="{Binding Calories}"
+                                           FontSize="18" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="{Binding Common.AboutMe, Source={StaticResource LocalizationManager}}">

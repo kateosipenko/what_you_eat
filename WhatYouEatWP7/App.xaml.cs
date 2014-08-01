@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using WhatYouEatWP7.Translations;
 
 namespace WhatYouEatWP7
 {
@@ -121,6 +122,8 @@ namespace WhatYouEatWP7
 
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+
+            TranslationManager.SetCurrentCulture(new System.Globalization.CultureInfo("ru-RU"));
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;

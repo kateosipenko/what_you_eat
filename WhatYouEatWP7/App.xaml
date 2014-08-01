@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:resources="clr-namespace:WhatYouEatWP7.Resources"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     xmlns:viewModels="clr-namespace:ViewModels;assembly=ViewModels"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
@@ -11,6 +12,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <viewModels:Locator x:Key="Locator" />
+            <helpers:TranslationConverter x:Key="TranslationConverter" />
             <resources:LocalizationManager x:Key="LocalizationManager" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/GlobalStyles.xaml" />
