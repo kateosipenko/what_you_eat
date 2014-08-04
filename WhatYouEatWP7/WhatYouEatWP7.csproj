@@ -136,6 +136,7 @@
     <Content Include="Translations\ru-ru.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Translations\uk-ua.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BindableApplicationBar\BindableApplicationBar.csproj">

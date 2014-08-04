@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WhatYouEatWP7.Translations;
+using ViewModels.Helpers;
 
 namespace WhatYouEatWP7
 {
@@ -115,6 +116,9 @@ namespace WhatYouEatWP7
             if (phoneApplicationInitialized)
                 return;
 
+            TranslationManager.Instance.Initialize();
+            SettingsManager.Instance.Initialize();
+
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();
@@ -122,8 +126,6 @@ namespace WhatYouEatWP7
 
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
-
-            TranslationManager.SetCurrentCulture(new System.Globalization.CultureInfo("ru-RU"));
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;

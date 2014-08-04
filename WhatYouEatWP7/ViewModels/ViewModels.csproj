@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\NavigationProvider.cs" />
+    <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="Helpers\SynchronizationContextProvider.cs" />
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="Locator.cs" />
@@ -65,9 +66,17 @@
       <Project>{AF3AC42F-7010-42C5-860B-65AA207D2D7B}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IsolatedStorageHelper\IsolatedStorageHelper.csproj">
+      <Project>{3CB18569-C805-4580-9FAA-F285EEDE3F63}</Project>
+      <Name>IsolatedStorageHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Models\Models.csproj">
       <Project>{F913F49D-D8F7-4A82-B403-4695AB35CC48}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Shared.csproj">
+      <Project>{D9032FF7-3F94-44D6-88BC-EA6568DC290D}</Project>
+      <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

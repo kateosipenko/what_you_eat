@@ -1,24 +1,34 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Xml.Linq;
+using ViewModels.Helpers;
 
 namespace WhatYouEatWP7.Translations
 {
     public class TranslationManager
     {
+        #region Fields
+
         private const string TranslationsPath = "Translations/{0}.xml";
 
         private static TranslationManager instance= new TranslationManager();
         private CultureInfo currentCulture;
         private Dictionary<string, string> translations = new Dictionary<string, string>();
 
+        #endregion Fields
+
         private TranslationManager()
         {
+            
         }
+
+        #region Properties
 
         public static TranslationManager Instance
         {
@@ -43,32 +53,49 @@ namespace WhatYouEatWP7.Translations
             get { return translations; }
         }
 
-        public static void SetCurrentCulture(CultureInfo culture)
+        #endregion Properties
+
+        public void Initialize()
         {
-            if (instance.currentCulture != null)
+            SettingsManager.Instance.LanguageChanged += OnLanguageChanged;
+        }
+
+        private void SetCurrentCulture(CultureInfo culture)
+        {
+            if (currentCulture != null)
             {
-                instance.translations.Clear();
+                translations.Clear();
             }
 
-            instance.currentCulture = culture;
-            instance.LoadTranslations();
+            currentCulture = culture;
+            LoadTranslations();
         }
 
         private void LoadTranslations()
         {
-            try
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (sender, args) =>
             {
-                var root = XElement.Load(string.Format(TranslationsPath, currentCulture.Name.ToLower()));
-                var elements = root.Elements();
-                foreach (var element in elements)
+                try
                 {
-                    translations.Add(element.Name.LocalName, element.Value);
+                    var root = XElement.Load(string.Format(TranslationsPath, currentCulture.Name.ToLower()));
+                    var elements = root.Elements();
+                    foreach (var element in elements)
+                    {
+                        translations.Add(element.Name.LocalName, element.Value);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                // TODO: implement exception logging
-            }
+                catch (Exception ex)
+                {
+                    // TODO: implement exception logging
+                }
+            };
+            worker.RunWorkerAsync();
+        }
+
+        private void OnLanguageChanged(object sender, LanguageEventArgs args)
+        {
+            SetCurrentCulture(new CultureInfo(args.NewLanguage.CultureCode));
         }
     }
 }
