@@ -132,8 +132,23 @@
   <data name="InputYourData" xml:space="preserve">
     <value>Please, input your data.</value>
   </data>
+  <data name="KeepWeight" xml:space="preserve">
+    <value>keep my weight</value>
+  </data>
   <data name="LastActivity" xml:space="preserve">
     <value>last activity</value>
+  </data>
+  <data name="LoseWeight" xml:space="preserve">
+    <value>lose</value>
+  </data>
+  <data name="MyGoal" xml:space="preserve">
+    <value>my goal</value>
+  </data>
+  <data name="PutOnWeight" xml:space="preserve">
+    <value>put on</value>
+  </data>
+  <data name="WantTo" xml:space="preserve">
+    <value>I want to</value>
   </data>
   <data name="Weight" xml:space="preserve">
     <value>weight</value>

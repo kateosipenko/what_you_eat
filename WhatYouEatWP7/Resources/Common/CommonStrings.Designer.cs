@@ -106,11 +106,56 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to keep my weight.
+        /// </summary>
+        public static string KeepWeight {
+            get {
+                return ResourceManager.GetString("KeepWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to last activity.
         /// </summary>
         public static string LastActivity {
             get {
                 return ResourceManager.GetString("LastActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lose.
+        /// </summary>
+        public static string LoseWeight {
+            get {
+                return ResourceManager.GetString("LoseWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to my goal.
+        /// </summary>
+        public static string MyGoal {
+            get {
+                return ResourceManager.GetString("MyGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to put on.
+        /// </summary>
+        public static string PutOnWeight {
+            get {
+                return ResourceManager.GetString("PutOnWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I want to.
+        /// </summary>
+        public static string WantTo {
+            get {
+                return ResourceManager.GetString("WantTo", resourceCulture);
             }
         }
         

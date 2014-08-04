@@ -63,6 +63,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CourseToTextConverter.cs" />
     <Compile Include="Helpers\InvokeOnNewPageTrigger.cs" />
     <Compile Include="Helpers\SystemTrayBehavior.cs" />
     <Compile Include="Helpers\TextBoxTextChangedBehavior.cs" />

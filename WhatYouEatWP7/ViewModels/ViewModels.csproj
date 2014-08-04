@@ -53,6 +53,7 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoalViewModel.cs" />
     <Compile Include="Helpers\NavigationProvider.cs" />
     <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="Helpers\SynchronizationContextProvider.cs" />

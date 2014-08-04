@@ -77,7 +77,7 @@
         </Style>
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid Background="White" x:Name="MainGrid">
+    <Grid Background="{StaticResource PhoneBackgroundBrush}" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>

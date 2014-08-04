@@ -29,6 +29,7 @@ namespace Shared
         {
             public const string FristStartUserData = "/Views/FirstStart/UserDataPage.xaml";
             public const string FristStartGoal = "/Views/FirstStart/GoalPage.xaml";
+            public const string Home = "/Views/Home/HomePage.xaml";
         }
     }
 }

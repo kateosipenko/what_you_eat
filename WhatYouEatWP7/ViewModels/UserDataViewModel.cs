@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repositories;
 using DataAccess.Tables;
 using GalaSoft.MvvmLight.Command;
+using IsolatedStorageHelper;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,7 @@ namespace ViewModels
             BusyCount++;
             RunInBackground(() =>
             {
+                IsolatedStorage.WriteValue(Constants.CacheKeys.Birthday, birthday);
                 using (var repo = new BodyStateRepository())
                 {
                     var created = repo.Add(bodyState);
@@ -84,6 +86,8 @@ namespace ViewModels
                             NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.FristStartGoal);
                         });
                     }
+
+                    InvokeInUIThread(() => BusyCount--);
                 }
             });
         }

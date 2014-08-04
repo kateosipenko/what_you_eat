@@ -75,5 +75,38 @@ namespace ViewModels
         }
 
         #endregion UserData
+
+        #region Goal
+
+        private static GoalViewModel goal;
+
+        public static GoalViewModel GoalStatic
+        {
+            get
+            {
+                if (goal == null)
+                {
+                    goal = new GoalViewModel();
+                }
+
+                return goal;
+            }
+        }
+
+        public GoalViewModel Goal
+        {
+            get { return GoalStatic; }
+        }
+
+        public void CleanGoal()
+        {
+            if (goal != null)
+            {
+                goal.Dispose();
+                goal = null;
+            }
+        }
+
+        #endregion Goal
     }
 }

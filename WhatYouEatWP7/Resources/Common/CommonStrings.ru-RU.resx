@@ -132,8 +132,23 @@
   <data name="InputYourData" xml:space="preserve">
     <value>Пожалуйста, введите свои данные.</value>
   </data>
+  <data name="KeepWeight" xml:space="preserve">
+    <value>поддержать свой вес</value>
+  </data>
   <data name="LastActivity" xml:space="preserve">
     <value>последняя активность</value>
+  </data>
+  <data name="LoseWeight" xml:space="preserve">
+    <value>сбросить</value>
+  </data>
+  <data name="MyGoal" xml:space="preserve">
+    <value>моя цель</value>
+  </data>
+  <data name="PutOnWeight" xml:space="preserve">
+    <value>набрать</value>
+  </data>
+  <data name="WantTo" xml:space="preserve">
+    <value>Я хочу</value>
   </data>
   <data name="Weight" xml:space="preserve">
     <value>вес</value>
