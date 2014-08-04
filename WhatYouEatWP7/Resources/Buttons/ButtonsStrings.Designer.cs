@@ -68,5 +68,14 @@ namespace WhatYouEatWP7.Resources.Buttons {
                 return ResourceManager.GetString("AddActivity", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
     }
 }

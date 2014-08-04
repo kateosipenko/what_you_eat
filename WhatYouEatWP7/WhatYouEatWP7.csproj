@@ -16,8 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>en-US;ru-RU;uk-UA;</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>WhatYouEatWP7.xap</XapFilename>
@@ -66,6 +65,7 @@
     </Compile>
     <Compile Include="Helpers\InvokeOnNewPageTrigger.cs" />
     <Compile Include="Helpers\SystemTrayBehavior.cs" />
+    <Compile Include="Helpers\TextBoxTextChangedBehavior.cs" />
     <Compile Include="Helpers\TranslationConverter.cs" />
     <Compile Include="Helpers\VisualTreeHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +82,9 @@
     <Compile Include="Resources\LocalizationManager.cs" />
     <Compile Include="Translations\TranslationManager.cs" />
     <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\FirstStart\GoalPage.xaml.cs">
+      <DependentUpon>GoalPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home\AboutMe.xaml.cs">
       <DependentUpon>AboutMe.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,9 @@
     <Compile Include="Views\Home\LastActivity.xaml.cs">
       <DependentUpon>LastActivity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FirstStart\UserDataPage.xaml.cs">
+      <DependentUpon>UserDataPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -98,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Styles\GlobalStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstStart\GoalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Home\LastActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstStart\UserDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,8 +142,11 @@
     <Content Include="FoodDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\ok.png" />
     <Content Include="Icons\plus.png" />
     <Content Include="SplashScreenImage.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Translations\en-us.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -155,17 +172,23 @@
       <Project>{F913F49D-D8F7-4A82-B403-4695AB35CC48}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{D9032FF7-3F94-44D6-88BC-EA6568DC290D}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="ViewModels\ViewModels.csproj">
       <Project>{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}</Project>
       <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Buttons\ButtonsStrings.uk-UA.resx" />
     <EmbeddedResource Include="Resources\Buttons\ButtonsStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ButtonsStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Buttons\ButtonsStrings.ru-RU.resx" />
+    <EmbeddedResource Include="Resources\Common\CommonStrings.uk-UA.resx" />
     <EmbeddedResource Include="Resources\Common\CommonStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonStrings.Designer.cs</LastGenOutput>

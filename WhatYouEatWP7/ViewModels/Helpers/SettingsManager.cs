@@ -69,17 +69,25 @@ namespace ViewModels.Helpers
         {
             if (syncContext == null)
             {
-                SynchronizationContextProvider.Initialize();
                 syncContext = SynchronizationContextProvider.UIThreadSyncContext;
             }
 
+            var currentCultureCode = System.Globalization.CultureInfo.CurrentUICulture.Name;
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (sender, args) =>
             {
                 currentLanguage = IsolatedStorage.ReadValue<Language>(Constants.CacheKeys.CurrentLanguage);
                 if (currentLanguage == null)
                 {
-                    currentLanguage = allLanguages.First();
+                    var deviceLanguage = allLanguages.FirstOrDefault(item => item.CultureCode == currentCultureCode);
+                    if (deviceLanguage != null)
+                    {
+                        currentLanguage = deviceLanguage;
+                    }
+                    else
+                    {
+                        currentLanguage = allLanguages.First();
+                    }
                 }
 
                 syncContext.Post((item) =>

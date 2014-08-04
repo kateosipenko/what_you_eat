@@ -123,7 +123,19 @@
   <data name="AppName" xml:space="preserve">
     <value>What you eat?</value>
   </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>date of birthday</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>height</value>
+  </data>
+  <data name="InputYourData" xml:space="preserve">
+    <value>Please, input your data.</value>
+  </data>
   <data name="LastActivity" xml:space="preserve">
     <value>last activity</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>weight</value>
   </data>
 </root>

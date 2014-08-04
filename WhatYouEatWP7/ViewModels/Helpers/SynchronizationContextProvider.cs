@@ -21,8 +21,6 @@ namespace ViewModels.Helpers
         {
             get
             {
-                if (!SynchronizationContextProvider.isInitialized)
-                    SynchronizationContextProvider.Initialize();
                 return SynchronizationContextProvider.syncContext;
             }
             set

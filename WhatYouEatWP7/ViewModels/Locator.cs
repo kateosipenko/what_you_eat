@@ -7,13 +7,9 @@ namespace ViewModels
 {
     public class Locator
     {
-        #region Fields
+        #region Home
 
         private static HomeViewModel home;
-
-        #endregion Fields
-
-        #region StaticProperties
 
         public static HomeViewModel HomeStatic
         {
@@ -28,10 +24,6 @@ namespace ViewModels
             }
         }
 
-        #endregion StaticProperties
-
-        #region Properties
-
         public HomeViewModel Home
         {
             get
@@ -39,10 +31,6 @@ namespace ViewModels
                 return HomeStatic;
             }
         }
-
-        #endregion Properties
-
-        #region Cleaning
 
         public static void CleanHome()
         {
@@ -53,7 +41,39 @@ namespace ViewModels
             }
         }
 
-        #endregion Cleaning
+        #endregion Home
 
+        #region UserData
+
+        private static UserDataViewModel userData;
+
+        public static UserDataViewModel UserDataStatic
+        {
+            get
+            {
+                if (userData == null)
+                {
+                    userData = new UserDataViewModel();
+                }
+
+                return userData;
+            }
+        }
+
+        public UserDataViewModel UserData
+        {
+            get { return UserDataStatic; }
+        }
+
+        public void CleanUserData()
+        {
+            if (userData != null)
+            {
+                userData.Dispose();
+                userData = null;
+            }
+        }
+
+        #endregion UserData
     }
 }

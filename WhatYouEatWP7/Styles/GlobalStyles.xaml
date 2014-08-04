@@ -3,12 +3,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
 
+    <Style TargetType="FrameworkElement" x:Key="ContainerStyle">
+        <Setter Property="Margin" Value="24,10,24,0" />
+    </Style>
+    
     <Style TargetType="TextBlock" x:Key="PageTitleStyle">
-        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontSize" Value="42" />
         <Setter Property="Margin" Value="0, 10" />
+        <Setter Property="FontFamily" Value="Segoe WP Semilight" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="FieldStyle">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="FontFamily" Value="Segoe WP Semilight" />
+        <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
+    </Style>
+    
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="-10,0" />
+    </Style>
+    
+    <Style TargetType="toolkit:DatePicker">
+        <Setter Property="Margin" Value="-10,0" />
     </Style>
     
 </ResourceDictionary>

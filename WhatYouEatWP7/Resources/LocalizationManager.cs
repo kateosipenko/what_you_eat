@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using WhatYouEatWP7.Resources.Buttons;
 using WhatYouEatWP7.Resources.Common;
 
@@ -30,6 +32,14 @@ namespace WhatYouEatWP7.Resources
         }
 
         #endregion Properties
+
+        public void RefreshLanguage()
+        {
+            CommonStrings.Culture = Thread.CurrentThread.CurrentUICulture;
+            ButtonsStrings.Culture = Thread.CurrentThread.CurrentUICulture;
+
+            RaiseLocalizationChanged();
+        }
 
         #region INotifyPropertyChanged
 

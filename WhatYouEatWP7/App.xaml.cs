@@ -14,6 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WhatYouEatWP7.Translations;
 using ViewModels.Helpers;
+using Shared;
 
 namespace WhatYouEatWP7
 {
@@ -116,6 +117,7 @@ namespace WhatYouEatWP7
             if (phoneApplicationInitialized)
                 return;
 
+            SynchronizationContextProvider.Initialize();
             TranslationManager.Instance.Initialize();
             SettingsManager.Instance.Initialize();
 
@@ -126,6 +128,12 @@ namespace WhatYouEatWP7
 
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+            var mapper = this.Resources["Mapper"] as UriMapper;
+            RootFrame.UriMapper = mapper;
+            if (UserManager.Instance.IsFirstStart())
+            {
+                ((UriMapper)this.RootFrame.UriMapper).UriMappings[0].MappedUri = new Uri(Constants.Pages.FristStartUserData, UriKind.Relative);
+            }
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;

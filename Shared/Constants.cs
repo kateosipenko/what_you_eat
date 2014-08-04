@@ -22,6 +22,13 @@ namespace Shared
         public struct CacheKeys
         {
             public const string CurrentLanguage = "current_languge";
+            public const string Birthday = "birthday";
+        }
+
+        public struct Pages
+        {
+            public const string FristStartUserData = "/Views/FirstStart/UserDataPage.xaml";
+            public const string FristStartGoal = "/Views/FirstStart/GoalPage.xaml";
         }
     }
 }

@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Xml.Linq;
 using ViewModels.Helpers;
+using WhatYouEatWP7.Resources;
 
 namespace WhatYouEatWP7.Translations
 {
@@ -19,6 +21,7 @@ namespace WhatYouEatWP7.Translations
 
         private static TranslationManager instance= new TranslationManager();
         private CultureInfo currentCulture;
+        private SynchronizationContext syncContext;
         private Dictionary<string, string> translations = new Dictionary<string, string>();
 
         #endregion Fields
@@ -58,10 +61,15 @@ namespace WhatYouEatWP7.Translations
         public void Initialize()
         {
             SettingsManager.Instance.LanguageChanged += OnLanguageChanged;
+            syncContext = SynchronizationContextProvider.UIThreadSyncContext;
         }
 
         private void SetCurrentCulture(CultureInfo culture)
         {
+            Thread.CurrentThread.CurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            ((LocalizationManager)Application.Current.Resources["LocalizationManager"]).RefreshLanguage();
+
             if (currentCulture != null)
             {
                 translations.Clear();
@@ -95,7 +103,8 @@ namespace WhatYouEatWP7.Translations
 
         private void OnLanguageChanged(object sender, LanguageEventArgs args)
         {
-            SetCurrentCulture(new CultureInfo(args.NewLanguage.CultureCode));
+            var newCulture = new CultureInfo(args.NewLanguage.CultureCode);
+            SetCurrentCulture(newCulture);
         }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WhatYouEatWP7.Resources.Common {
+namespace ViewModels.Messages {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace WhatYouEatWP7.Resources.Common {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class CommonStrings {
+    public class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CommonStrings() {
+        internal Messages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace WhatYouEatWP7.Resources.Common {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WhatYouEatWP7.Resources.Common.CommonStrings", typeof(CommonStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ViewModels.Messages.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,11 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to about me.
+        ///   Looks up a localized string similar to There was an error during saving information..
         /// </summary>
-        public static string AboutMe {
+        public static string SaveInfoError {
             get {
-                return ResourceManager.GetString("AboutMe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What you eat?.
-        /// </summary>
-        public static string AppName {
-            get {
-                return ResourceManager.GetString("AppName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to date of birthday.
-        /// </summary>
-        public static string BirthDate {
-            get {
-                return ResourceManager.GetString("BirthDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to height.
-        /// </summary>
-        public static string Height {
-            get {
-                return ResourceManager.GetString("Height", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please, input your data..
-        /// </summary>
-        public static string InputYourData {
-            get {
-                return ResourceManager.GetString("InputYourData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to last activity.
-        /// </summary>
-        public static string LastActivity {
-            get {
-                return ResourceManager.GetString("LastActivity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to weight.
-        /// </summary>
-        public static string Weight {
-            get {
-                return ResourceManager.GetString("Weight", resourceCulture);
+                return ResourceManager.GetString("SaveInfoError", resourceCulture);
             }
         }
     }

@@ -56,9 +56,16 @@
     <Compile Include="Helpers\NavigationProvider.cs" />
     <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="Helpers\SynchronizationContextProvider.cs" />
+    <Compile Include="Helpers\UserManager.cs" />
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="Locator.cs" />
+    <Compile Include="Messages\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDataViewModel.cs" />
     <Compile Include="ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +85,14 @@
       <Project>{D9032FF7-3F94-44D6-88BC-EA6568DC290D}</Project>
       <Name>Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messages\Messages.ru-RU.resx" />
+    <EmbeddedResource Include="Messages\Messages.uk-UA.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

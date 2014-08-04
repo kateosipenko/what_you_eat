@@ -78,5 +78,16 @@ namespace DataAccess.Tables
         }
 
         #endregion Columns
+
+        public static BodyState CreateCopy(BodyState state)
+        {
+            return new BodyState
+            {
+                height = state.height,
+                hips = state.hips,
+                waist = state.waist,
+                weight = state.weight
+            };
+        }
     }
 }
