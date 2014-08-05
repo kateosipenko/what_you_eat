@@ -32,4 +32,9 @@
         <Setter Property="Margin" Value="-10,0" />
     </Style>
     
+    <Style TargetType="toolkit:ListPicker">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+    </Style>
+    
 </ResourceDictionary>

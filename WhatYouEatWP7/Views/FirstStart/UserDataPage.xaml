@@ -36,6 +36,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}" Margin="-24,0"
+                                        Grid.Row="0" />
+        
         <TextBlock Style="{StaticResource PageTitleStyle}" 
                    Grid.Row="0" TextWrapping="Wrap"
                    Text="{Binding Common.InputYourData, Source={StaticResource LocalizationManager}}"/>

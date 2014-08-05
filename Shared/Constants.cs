@@ -23,6 +23,7 @@ namespace Shared
         {
             public const string CurrentLanguage = "current_languge";
             public const string Birthday = "birthday";
+            public const string Goal = "goal";
         }
 
         public struct Pages

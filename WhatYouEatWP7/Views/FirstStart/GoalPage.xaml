@@ -1,8 +1,11 @@
-﻿<phone:PhoneApplicationPage
+﻿<views:BasePage
     x:Class="WhatYouEatWP7.Views.FirstStart.GoalPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:views="clr-namespace:WhatYouEatWP7.Views"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,6 +18,22 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+    
+    <views:BasePage.Resources>
+        <Style TargetType="toolkit:ListPicker">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="FullModeItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontSize="32"
+                               Margin="0,10"
+                               Text="{Binding Converter={StaticResource EnumToTextConverter}}" />
+                    </DataTemplate>
+                </Setter.Value>                    
+            </Setter>
+        </Style>
+    </views:BasePage.Resources>
 
     <Grid Style="{StaticResource ContainerStyle}">
         <Grid.RowDefinitions>
@@ -22,34 +41,71 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}" Margin="-24,0"
+                                        Grid.Row="0" />
+
         <TextBlock Text="{Binding Common.MyGoal, Source={StaticResource LocalizationManager}}"
                    Style="{StaticResource PageTitleStyle}"
                    Grid.Row="0" />
         
         <TextBlock Text="{Binding Common.WantTo, Source={StaticResource LocalizationManager}}"
-                   FontSize="32" Grid.Row="1" />
+                   Grid.Row="1" />
 
         <toolkit:ListPicker Grid.Row="2"
                             x:Name="coursePicker"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            Margin="0"
-                            ItemsSource="{Binding Courses}">
-            <toolkit:ListPicker.FullModeItemTemplate>
-                <DataTemplate>
-                    <TextBlock FontSize="32"
-                               Margin="0,10"
-                               Text="{Binding Converter={StaticResource CourseToTextConverter}}" />
-                </DataTemplate>
-            </toolkit:ListPicker.FullModeItemTemplate>
-        </toolkit:ListPicker>
+                            ItemsSource="{Binding Courses}" />
 
+        <!--GOAL DATA-->
         <Grid Grid.Row="3" x:Name="goalData"
+              Visibility="Collapsed"
               Margin="0, 10">
-            <TextBlock Text="goal data" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBox InputScope="Number" HorizontalAlignment="Left"
+                         Width="150"
+                         Text="{Binding Goal.DesiredWeightDif, Mode=TwoWay}">
+                    <i:Interaction.Behaviors>
+                        <helpers:TextBoxTextChangedBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>
+                
+                <TextBlock VerticalAlignment="Center" Margin="10,0,0,0"
+                           Text="{Binding Common.Kilo, Source={StaticResource LocalizationManager}}" />
+
+                <toolkit:ListPicker x:Name="periodPicker"
+                                    Width="100"
+                                    Margin="10,0,0,0" />
+
+            </StackPanel>
+            
         </Grid>
 
+        <!--PERIOD DATA-->
+        <StackPanel x:Name="inData"
+                    Visibility="Collapsed"
+                    Orientation="Horizontal"
+                    Grid.Row="4">
+            <TextBox InputScope="Number" Width="150"
+                     Text="{Binding Goal.DesiredWeeksCount, Mode=TwoWay}">
+                <i:Interaction.Behaviors>
+                    <helpers:TextBoxTextChangedBehavior />
+                </i:Interaction.Behaviors>
+            </TextBox>
+            
+            <TextBlock VerticalAlignment="Center" Margin="10,0,0,0"
+                       Text="{Binding Common.Weeks, Source={StaticResource LocalizationManager}}" />
+        </StackPanel>
+        
+        <toolkit:DatePicker Grid.Row="5"
+                            x:Name="untilData"
+                            Visibility="Collapsed"
+                            Value="{Binding Goal.DesiredDate, Mode=TwoWay}" />
     </Grid>
     
     <binBar:Bindable.ApplicationBar>
@@ -60,4 +116,4 @@
         </binBar:BindableApplicationBar>
     </binBar:Bindable.ApplicationBar>
 
-</phone:PhoneApplicationPage>
+</views:BasePage>

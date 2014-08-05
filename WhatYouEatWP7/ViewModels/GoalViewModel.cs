@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using IsolatedStorageHelper;
 using Models;
 using Shared;
 using System;
@@ -60,7 +61,15 @@ namespace ViewModels
         private void SaveAndGoNextExecute()
         {
             BusyCount++;
-            NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.Home);
+            RunInBackground(() =>
+            {
+                IsolatedStorage.WriteValue(Constants.CacheKeys.Goal, goal);
+                InvokeInUIThread(() =>
+                {
+                    BusyCount--;
+                    NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.Home);
+                });
+            });            
         }
 
         private bool SaveAndGoNextCanExecute()

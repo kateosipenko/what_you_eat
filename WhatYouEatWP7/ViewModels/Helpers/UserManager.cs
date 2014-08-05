@@ -49,15 +49,18 @@ namespace ViewModels.Helpers
 
         #endregion Properties
 
+        // TODO: remove fake
         public bool IsFirstStart()
         {
-            using (BodyStateRepository repo = new BodyStateRepository())
-            {
-                currentState = repo.GetLastState();
-            }
+            return true;
 
-            birthday = IsolatedStorage.ReadValue<DateTime>(Constants.CacheKeys.Birthday);
-            return currentState == null || birthday == default(DateTime);
+            //using (BodyStateRepository repo = new BodyStateRepository())
+            //{
+            //    currentState = repo.GetLastState();
+            //}
+
+            //birthday = IsolatedStorage.ReadValue<DateTime>(Constants.CacheKeys.Birthday);
+            //return currentState == null || birthday == default(DateTime);
         }
     }
 }

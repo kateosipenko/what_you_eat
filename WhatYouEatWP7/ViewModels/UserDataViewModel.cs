@@ -16,7 +16,7 @@ namespace ViewModels
         #region Fields
 
         private BodyState bodyState = new BodyState();
-        private DateTime birthday = DateTime.Now;
+        private DateTime? birthday;
 
         #endregion Fields
 
@@ -38,7 +38,7 @@ namespace ViewModels
             }
         }
 
-        public DateTime Birthday
+        public DateTime? Birthday
         {
             get { return birthday; }
             set

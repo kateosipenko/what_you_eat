@@ -19,7 +19,7 @@ namespace Models
         #region Fields
 
         private Course course;
-        private DateTime desiredDate;
+        private DateTime? desiredDate = null;
         private int desiredWeeksCount;
         private float desiredWeightDif;
         private float desiredWeightDigPerWeek;
@@ -40,7 +40,7 @@ namespace Models
         }
 
         [DataMember]
-        public DateTime DesiredDate
+        public DateTime? DesiredDate
         {
             get { return desiredDate; }
             set

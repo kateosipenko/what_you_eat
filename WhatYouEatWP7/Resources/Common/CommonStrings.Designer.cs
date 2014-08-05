@@ -97,6 +97,15 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to in.
+        /// </summary>
+        public static string In {
+            get {
+                return ResourceManager.GetString("In", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please, input your data..
         /// </summary>
         public static string InputYourData {
@@ -111,6 +120,15 @@ namespace WhatYouEatWP7.Resources.Common {
         public static string KeepWeight {
             get {
                 return ResourceManager.GetString("KeepWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to kg.
+        /// </summary>
+        public static string Kilo {
+            get {
+                return ResourceManager.GetString("Kilo", resourceCulture);
             }
         }
         
@@ -151,11 +169,29 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to until.
+        /// </summary>
+        public static string Until {
+            get {
+                return ResourceManager.GetString("Until", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I want to.
         /// </summary>
         public static string WantTo {
             get {
                 return ResourceManager.GetString("WantTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weeks.
+        /// </summary>
+        public static string Weeks {
+            get {
+                return ResourceManager.GetString("Weeks", resourceCulture);
             }
         }
         
