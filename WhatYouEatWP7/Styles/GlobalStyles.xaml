@@ -17,6 +17,11 @@
         <Setter Property="FontFamily" Value="Segoe WP Semilight" />
     </Style>
     
+    <Style TargetType="toolkit:PerformanceProgressBar">
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="-24, 2" />
+    </Style>
+    
     <Style TargetType="TextBlock" x:Key="FieldStyle">
         <Setter Property="FontSize" Value="22" />
         <Setter Property="Margin" Value="0,10,0,0" />
@@ -28,6 +33,15 @@
         <Setter Property="Margin" Value="-10,0" />
     </Style>
     
+    <Style TargetType="Button">
+        <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+        <Setter Property="Margin" Value="-10, 0" />
+    </Style>
+    
+    <Style TargetType="toolkit:HubTile">
+        <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+    </Style>
+    
     <Style TargetType="toolkit:DatePicker">
         <Setter Property="Margin" Value="-10,0" />
     </Style>
@@ -36,5 +50,34 @@
         <Setter Property="Margin" Value="0" />
         <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
     </Style>
-    
+
+    <Style x:Key="ScrolledItemsControl" TargetType="ItemsControl">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ItemsControl">
+                    <ScrollViewer x:Name="ScrollViewer" 
+                            Foreground="{TemplateBinding Foreground}" 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Padding="{TemplateBinding Padding}">
+                        <ItemsPresenter/>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

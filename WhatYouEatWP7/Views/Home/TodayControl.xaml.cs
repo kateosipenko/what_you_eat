@@ -10,9 +10,9 @@ using Microsoft.Phone.Shell;
 
 namespace WhatYouEatWP7.Views.Home
 {
-    public partial class AboutMe : UserControl
+    public partial class TodayControl : UserControl
     {
-        public AboutMe()
+        public TodayControl()
         {
             InitializeComponent();
         }

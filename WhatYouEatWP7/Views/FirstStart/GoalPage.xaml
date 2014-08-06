@@ -10,6 +10,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
     xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
     DataContext="{Binding Goal, Source={StaticResource Locator}}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -71,7 +72,7 @@
                          Width="150"
                          Text="{Binding Goal.DesiredWeightDif, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
-                        <helpers:TextBoxTextChangedBehavior />
+                        <behaviors:TextBoxTextChangedBehavior />
                     </i:Interaction.Behaviors>
                 </TextBox>
                 
@@ -94,7 +95,7 @@
             <TextBox InputScope="Number" Width="150"
                      Text="{Binding Goal.DesiredWeeksCount, Mode=TwoWay}">
                 <i:Interaction.Behaviors>
-                    <helpers:TextBoxTextChangedBehavior />
+                    <behaviors:TextBoxTextChangedBehavior />
                 </i:Interaction.Behaviors>
             </TextBox>
             

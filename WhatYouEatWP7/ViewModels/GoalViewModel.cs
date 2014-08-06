@@ -74,7 +74,7 @@ namespace ViewModels
 
         private bool SaveAndGoNextCanExecute()
         {
-            // TODO: implement correct check for brithday
+            // TODO: implement correct check for goal
 
             return true;
         }

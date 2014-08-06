@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace WhatYouEatWP7
+namespace Core
 {
     public static class VisualTreeHelperExtensions
     {

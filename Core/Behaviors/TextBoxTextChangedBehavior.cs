@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="TextBoxTextChangedBehavior.cs" company="QArea">
-//     Copyright statement. All right reserved
-// </copyright>
-//
-// ------------------------------------------------------------------------
-namespace WhatYouEatWP7.Helpers
+﻿namespace Core.Behaviors
 {
     using System;
     using System.Windows;

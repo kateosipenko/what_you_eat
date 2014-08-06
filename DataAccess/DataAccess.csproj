@@ -61,6 +61,10 @@
     <Compile Include="Tables\PhysicalActivity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{FA5D4569-7758-4739-8BA4-E24929B46F4F}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{F913F49D-D8F7-4A82-B403-4695AB35CC48}</Project>
       <Name>Models</Name>

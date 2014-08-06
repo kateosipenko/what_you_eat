@@ -12,7 +12,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using WhatYouEatWP7.Translations;
 using ViewModels.Helpers;
 using Shared;
 
@@ -117,6 +116,10 @@ namespace WhatYouEatWP7
             if (phoneApplicationInitialized)
                 return;
 
+            TiltEffect.TiltableItems.Add(typeof(Button));
+            TiltEffect.TiltableItems.Add(typeof(HubTile));
+            TiltEffect.TiltableItems.Add(typeof(Grid));
+
             SynchronizationContextProvider.Initialize();
             TranslationManager.Instance.Initialize();
             SettingsManager.Instance.Initialize();
@@ -130,7 +133,7 @@ namespace WhatYouEatWP7
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
             var mapper = this.Resources["Mapper"] as UriMapper;
             RootFrame.UriMapper = mapper;
-            if (UserManager.Instance.IsFirstStart())
+            if (CacheManager.Instance.IsFirstStart())
             {
                 ((UriMapper)this.RootFrame.UriMapper).UriMappings[0].MappedUri = new Uri(Constants.Pages.FristStartUserData, UriKind.Relative);
             }

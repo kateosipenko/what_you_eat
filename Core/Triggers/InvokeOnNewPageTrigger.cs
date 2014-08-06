@@ -12,7 +12,7 @@ using System.Windows.Interactivity;
 using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
 
-namespace WhatYouEatWP7.Helpers
+namespace Core.Triggers
 {
     public class InvokeOnNewPageTrigger : TriggerAction<UserControl>
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                // TODO: implement exception logging
+                ErrorLogger.LogException(ex);
             }
         }
 

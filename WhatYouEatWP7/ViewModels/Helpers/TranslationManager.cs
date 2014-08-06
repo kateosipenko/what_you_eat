@@ -1,4 +1,7 @@
-﻿using Models;
+﻿using Core.Helpers;
+using DataAccess.Repositories;
+using DataAccess.Tables;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,9 +12,8 @@ using System.Threading;
 using System.Windows;
 using System.Xml.Linq;
 using ViewModels.Helpers;
-using WhatYouEatWP7.Resources;
 
-namespace WhatYouEatWP7.Translations
+namespace ViewModels.Helpers
 {
     public class TranslationManager
     {
@@ -58,6 +60,8 @@ namespace WhatYouEatWP7.Translations
 
         #endregion Properties
 
+        #region Laguage Setup
+
         public void Initialize()
         {
             SettingsManager.Instance.LanguageChanged += OnLanguageChanged;
@@ -68,7 +72,7 @@ namespace WhatYouEatWP7.Translations
         {
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
-            ((LocalizationManager)Application.Current.Resources["LocalizationManager"]).RefreshLanguage();
+            ((ILocalized)Application.Current.Resources["LocalizationManager"]).RefreshLanguage();
 
             if (currentCulture != null)
             {
@@ -90,12 +94,15 @@ namespace WhatYouEatWP7.Translations
                     var elements = root.Elements();
                     foreach (var element in elements)
                     {
-                        translations.Add(element.Name.LocalName, element.Value);
+                        if (!translations.ContainsKey(element.Name.LocalName))
+                        {
+                            translations.Add(element.Name.LocalName, element.Value);
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    // TODO: implement exception logging
+                    ErrorLogger.LogException(ex);
                 }
             };
             worker.RunWorkerAsync();
@@ -106,5 +113,23 @@ namespace WhatYouEatWP7.Translations
             var newCulture = new CultureInfo(args.NewLanguage.CultureCode);
             SetCurrentCulture(newCulture);
         }
+
+        #endregion Laguage Setup
+
+        #region FoodSearch
+
+        public List<Food> SearchFood(string query)
+        {
+            var keys = this.translations.Where(item => item.Value.ToLower().StartsWith(query)).Select(item => item.Key);
+            List<Food> result = new List<Food>();
+            using (var repo = new FoodRepository())
+            {
+                result = repo.Search(keys);
+            }
+
+            return result;
+        }
+
+        #endregion FoodSearch
     }
 }

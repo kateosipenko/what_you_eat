@@ -10,6 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:triggers="clr-namespace:Core.Triggers;assembly=Core"
+    xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
     xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -21,7 +23,7 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <helpers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
@@ -49,7 +51,7 @@
                  InputScope="Number"
                  Text="{Binding BodyState.Height, Mode=TwoWay}">
             <i:Interaction.Behaviors>
-                <helpers:TextBoxTextChangedBehavior />
+                <behaviors:TextBoxTextChangedBehavior />
             </i:Interaction.Behaviors>
         </TextBox>
 
@@ -60,7 +62,7 @@
                  InputScope="Number"
                  Text="{Binding BodyState.Weight, Mode=TwoWay}">
             <i:Interaction.Behaviors>
-                <helpers:TextBoxTextChangedBehavior />
+                <behaviors:TextBoxTextChangedBehavior />
             </i:Interaction.Behaviors>
         </TextBox>
 

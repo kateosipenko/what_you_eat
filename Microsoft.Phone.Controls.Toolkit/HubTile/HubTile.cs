@@ -124,6 +124,22 @@ namespace Microsoft.Phone.Controls
 
         #endregion
 
+        #region BackBackground DependencyProperty
+
+        public static readonly DependencyProperty BackBackgroundProperty = DependencyProperty.Register(
+            "BackBackground",
+            typeof(Brush),
+            typeof(HubTile),
+            new PropertyMetadata(new SolidColorBrush(Colors.Blue)));
+
+        public Brush BackBackground
+        {
+            get { return (Brush)GetValue(BackBackgroundProperty); }
+            set { SetValue(BackBackgroundProperty, value); }
+        }
+
+        #endregion BackBackground DependencyProperty
+
         #region Title DependencyProperty
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using DataAccess.Tables;
+﻿using Core.Helpers;
+using DataAccess.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace DataAccess.Repositories
             catch (Exception ex)
             {
                 newState = null;
-                // TODO: implement exception logging
+                ErrorLogger.LogException(ex);
             }
 
             return newState;

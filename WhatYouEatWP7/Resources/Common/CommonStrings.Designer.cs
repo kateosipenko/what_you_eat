@@ -61,15 +61,6 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to about me.
-        /// </summary>
-        public static string AboutMe {
-            get {
-                return ResourceManager.GetString("AboutMe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to What you eat?.
         /// </summary>
         public static string AppName {
@@ -88,11 +79,65 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to eaten.
+        /// </summary>
+        public static string Eaten {
+            get {
+                return ResourceManager.GetString("Eaten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eanten for today.
+        /// </summary>
+        public static string EatenForToday {
+            get {
+                return ResourceManager.GetString("EatenForToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eat food.
+        /// </summary>
+        public static string EatFood {
+            get {
+                return ResourceManager.GetString("EatFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to glass.
+        /// </summary>
+        public static string Glass {
+            get {
+                return ResourceManager.GetString("Glass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gramm.
+        /// </summary>
+        public static string Gramm {
+            get {
+                return ResourceManager.GetString("Gramm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to height.
         /// </summary>
         public static string Height {
             get {
                 return ResourceManager.GetString("Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to how much were eaten.
+        /// </summary>
+        public static string HowMuchEaten {
+            get {
+                return ResourceManager.GetString("HowMuchEaten", resourceCulture);
             }
         }
         
@@ -133,15 +178,6 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to last activity.
-        /// </summary>
-        public static string LastActivity {
-            get {
-                return ResourceManager.GetString("LastActivity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to lose.
         /// </summary>
         public static string LoseWeight {
@@ -160,11 +196,65 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to plan.
+        /// </summary>
+        public static string Plan {
+            get {
+                return ResourceManager.GetString("Plan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to portion.
+        /// </summary>
+        public static string Portion {
+            get {
+                return ResourceManager.GetString("Portion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to put on.
         /// </summary>
         public static string PutOnWeight {
             get {
                 return ResourceManager.GetString("PutOnWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to spent.
+        /// </summary>
+        public static string Spent {
+            get {
+                return ResourceManager.GetString("Spent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to today.
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total eaten.
+        /// </summary>
+        public static string TotalEaten {
+            get {
+                return ResourceManager.GetString("TotalEaten", resourceCulture);
             }
         }
         
@@ -183,6 +273,15 @@ namespace WhatYouEatWP7.Resources.Common {
         public static string WantTo {
             get {
                 return ResourceManager.GetString("WantTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to water.
+        /// </summary>
+        public static string Water {
+            get {
+                return ResourceManager.GetString("Water", resourceCulture);
             }
         }
         

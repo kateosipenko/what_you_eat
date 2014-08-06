@@ -1,4 +1,4 @@
-﻿namespace WhatYouEatWP7.Helpers
+﻿namespace Core.Behaviors
 {
     using System;
     using System.Windows;

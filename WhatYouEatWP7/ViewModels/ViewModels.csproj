@@ -51,13 +51,20 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EatenViewModel.cs" />
+    <Compile Include="FoodDetailsViewModel.cs" />
+    <Compile Include="FoodSearchViewModel.cs" />
     <Compile Include="GoalViewModel.cs" />
+    <Compile Include="Helpers\CacheManager.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\ILocalized.cs" />
     <Compile Include="Helpers\NavigationProvider.cs" />
     <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="Helpers\SynchronizationContextProvider.cs" />
-    <Compile Include="Helpers\UserManager.cs" />
+    <Compile Include="Helpers\TranslationManager.cs" />
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="Locator.cs" />
     <Compile Include="Messages\Messages.Designer.cs">
@@ -70,6 +77,10 @@
     <Compile Include="ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{FA5D4569-7758-4739-8BA4-E24929B46F4F}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\DataAccess.csproj">
       <Project>{AF3AC42F-7010-42C5-860B-65AA207D2D7B}</Project>
       <Name>DataAccess</Name>

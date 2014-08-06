@@ -1,0 +1,74 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="WhatYouEatWP7.Views.FoodSearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    DataContext="{Binding FoodSearch, Source={StaticResource Locator}}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid Style="{StaticResource ContainerStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}"
+                                        Grid.Row="0" />
+
+        <TextBox Grid.Row="1" Text="{Binding Query, Mode=TwoWay}">
+            <i:Interaction.Behaviors>
+                <behaviors:TextBoxTextChangedBehavior />
+            </i:Interaction.Behaviors>
+        </TextBox>
+
+        <ItemsControl ItemsSource="{Binding SearchResults}"
+                      Grid.Row="2"
+                      Style="{StaticResource ScrolledItemsControl}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Margin="0, 10" 
+                          Background="Transparent"
+                          toolkit:TiltEffect.IsTiltEnabled="True">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TapListenerBehavior Command="{Binding FoodSearch.NavigateToFoodDetailsCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}" />
+                        </i:Interaction.Behaviors>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{Binding StringId, Converter={StaticResource TranslationConverter}}"
+                                   FontSize="24" />
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Calories}"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"
+                                       FontSize="18" />
+                            <TextBlock Text="kkal"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"
+                                       FontSize="18" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>

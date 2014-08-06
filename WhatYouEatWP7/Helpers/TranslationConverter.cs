@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
-using WhatYouEatWP7.Translations;
+using ViewModels.Helpers;
 
 namespace WhatYouEatWP7.Helpers
 {
@@ -16,7 +16,7 @@ namespace WhatYouEatWP7.Helpers
             {
                 string stringValue = (string)value;
                 if (!string.IsNullOrEmpty(stringValue)
-                && TranslationManager.Instance.Translations.ContainsKey(stringValue))
+                        && TranslationManager.Instance.Translations.ContainsKey(stringValue))
                 {
                     result = TranslationManager.Instance.Translations[stringValue];
                 }

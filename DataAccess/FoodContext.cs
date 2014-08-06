@@ -18,14 +18,14 @@ namespace DataAccess
 
         public FoodContext()
             : base("DataSource= 'isostore:/FoodDb.sdf';")
-        {
-            // If you want updated database schema you have to create database on windows phone application,
-            // copy it from emulator to desktop using iso tool and than add to project
-            // CreateDatabase();
-
+        {            
             if (!versionChecked)
             {
+                // If you want updated database schema you have to create database on windows phone application,
+                // copy it from emulator to desktop using iso tool and than add to project
+                //CreateDatabase();
                 CheckDbVersion();
+                versionChecked = true;
             }
         }
 

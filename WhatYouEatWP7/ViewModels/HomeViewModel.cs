@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repositories;
 using DataAccess.Tables;
 using GalaSoft.MvvmLight.Command;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,36 +12,22 @@ namespace ViewModels
 {
     public class HomeViewModel : ViewModel
     {
-        private ObservableCollection<Food> foods = new ObservableCollection<Food>();
-
         public HomeViewModel()
         {
             InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
+            NavigateToEatenCommand = new RelayCommand(NavigateToEatenExecute);
         }
 
-        public ObservableCollection<Food> Food
+        #region NavigateToEatenCommand
+
+        public RelayCommand NavigateToEatenCommand { get; private set; }
+
+        private void NavigateToEatenExecute()
         {
-            get { return foods; }
-            set
-            {
-                foods = value;
-                RaisePropertyChanged("Food");
-            }
+            NavigationProvider.Navigate(Constants.Pages.EatenPage);
         }
 
-        protected override void InitializeViewModelExecute()
-        {
-            base.InitializeViewModelExecute();
-            RunInBackground(() =>
-                {
-                    List<Food> loadedFood = new List<Food>();
-                    using (var foodRepo = new FoodRepository())
-                    {
-                        loadedFood = foodRepo.GetAllFoods();
-                    }
+        #endregion NavigateToEatenCommand
 
-                    InvokeInUIThread(() => Food = new ObservableCollection<Food>(loadedFood));
-                });
-        }
     }
 }

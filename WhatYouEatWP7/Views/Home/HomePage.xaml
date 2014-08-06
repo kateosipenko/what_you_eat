@@ -7,9 +7,12 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:views="clr-namespace:WhatYouEatWP7.Views"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:homeViews="clr-namespace:WhatYouEatWP7.Views.Home"
                 xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
                 xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                xmlns:triggers="clr-namespace:Core.Triggers;assembly=Core"
+                xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
                 xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
                 DataContext="{Binding Home, Source={StaticResource Locator}}"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -20,41 +23,38 @@
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <helpers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
     <i:Interaction.Behaviors>
-        <helpers:SystemTrayBehavior />
+        <behaviors:SystemTrayBehavior />
     </i:Interaction.Behaviors>
     
-    <Grid Margin="0, 24, 0, 0">
-        <controls:Panorama Title="{Binding Common.AppName, Source={StaticResource LocalizationManager}}">
-            <controls:PanoramaItem Header="{Binding Common.LastActivity, Source={StaticResource LocalizationManager}}">
-                <ListBox ItemsSource="{Binding Food}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding StringId, Converter={StaticResource TranslationConverter}}"
-                                           FontSize="24" />
-                                <TextBlock Text="{Binding Calories}"
-                                           FontSize="18" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </controls:PanoramaItem>
-
-            <controls:PanoramaItem Header="{Binding Common.AboutMe, Source={StaticResource LocalizationManager}}">
-                <homeViews:AboutMe />
-            </controls:PanoramaItem>
-        </controls:Panorama>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <toolkit:PerformanceProgressBar Grid.Row="0"
+                                        IsIndeterminate="{Binding IsBusy}"/>
+        
+        <Grid Grid.Row="1" Height="80">
+            <TextBlock Text="{Binding Common.AppName, Source={StaticResource LocalizationManager}}"
+                   Margin="24,0" Foreground="#FF333333"
+                   FontSize="54" />
+        </Grid>
+        
+        <homeViews:TodayControl Grid.Row="2" />
     </Grid>
 
     <binBar:Bindable.ApplicationBar>
-        <binBar:BindableApplicationBar>
-            <binBar:BindableApplicationBarButton IconUri="/Icons/plus.png" 
-                                                 Text="{Binding Buttons.AddActivity, Source={StaticResource LocalizationManager}}"/>
+        <binBar:BindableApplicationBar Mode="Minimized" BindableOpacity="0.6">
+            <binBar:BindableApplicationBar.MenuItems>
+                <binBar:BindableApplicationBarMenuItem Text="{Binding Common.Settings, Source={StaticResource LocalizationManager}}" />
+            </binBar:BindableApplicationBar.MenuItems>
         </binBar:BindableApplicationBar>
     </binBar:Bindable.ApplicationBar>
     

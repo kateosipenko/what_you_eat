@@ -108,5 +108,93 @@ namespace ViewModels
         }
 
         #endregion Goal
+
+        #region Eaten
+
+        private static EatenViewModel eaten;
+
+        public static EatenViewModel EatenStatic
+        {
+            get
+            {
+                if (eaten == null)
+                    eaten = new EatenViewModel();
+
+                return eaten;
+            }
+        }
+
+        public EatenViewModel Eaten
+        {
+            get { return EatenStatic; }
+        }
+
+        public void CleanEaten()
+        {
+            if (eaten != null)
+            {
+                eaten.Dispose();
+                eaten = null;
+            }
+        }
+
+        #endregion Eaten
+
+        #region FoodSearch
+
+        private static FoodSearchViewModel foodSearch;
+
+        public static FoodSearchViewModel FoodSearchStatic
+        {
+            get
+            {
+                if (foodSearch == null)
+                {
+                    foodSearch = new FoodSearchViewModel();
+                }
+
+                return foodSearch;
+            }
+        }
+
+        public FoodSearchViewModel FoodSearch
+        {
+            get { return FoodSearchStatic; }
+        }
+
+        #endregion FoodSearch
+
+        #region FoodDetails
+
+        private static FoodDetailsViewModel foodDetails;
+
+        public static FoodDetailsViewModel FoodDetailsStatic
+        {
+            get
+            {
+                if (foodDetails == null)
+                {
+                    foodDetails = new FoodDetailsViewModel();
+                }
+
+                return foodDetails;
+            }
+        }
+
+        public FoodDetailsViewModel FoodDetails
+        {
+            get { return FoodDetailsStatic; }
+        }
+
+        public static void CleanFoodDetails()
+        {
+            if (foodDetails != null)
+            {
+                foodDetails.Dispose();
+                foodDetails = null;
+            }
+        }
+
+        #endregion FoodDetails
     }
 }

@@ -7,15 +7,12 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using DataAccess.Repositories;
-using System.ComponentModel;
-using WhatYouEatWP7.Translations;
 
-namespace WhatYouEatWP7.Views.Home
+namespace WhatYouEatWP7.Views
 {
-    public partial class LastActivity : UserControl
+    public partial class EatenPage : BasePage
     {
-        public LastActivity()
+        public EatenPage()
         {
             InitializeComponent();
         }

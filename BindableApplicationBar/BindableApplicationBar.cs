@@ -17,11 +17,6 @@ namespace BindableApplicationBar
     /// Serves as a bindable control wrapping the native ApplicationBar
     /// for use in MVVM applications.
     /// </summary>
-    /// <remarks>
-    /// TODO: Find out if bindings can work through ElementName - check for namescope issues.
-    /// TODO: Find out if current/max number of buttons/menu items can be exposed as bindable properties.
-    /// TODO: Figure out the best handling of cases when a button or menu item is added beyond the maximum number allowable.
-    /// </remarks>
     [ContentProperty("Buttons")]
     public class BindableApplicationBar : Control
     {
