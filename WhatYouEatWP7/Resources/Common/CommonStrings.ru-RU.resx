@@ -198,4 +198,16 @@
   <data name="TotalEaten" xml:space="preserve">
     <value>всего съедено</value>
   </data>
+  <data name="SpentToday" xml:space="preserve">
+    <value>сегодня потрачно</value>
+  </data>
+  <data name="TotalSpent" xml:space="preserve">
+    <value>всего потрачено</value>
+  </data>
+  <data name="AddActivity" xml:space="preserve">
+    <value>добавить активность</value>
+  </data>
+  <data name="SpentTime" xml:space="preserve">
+    <value>затраченное время</value>
+  </data>
 </root>

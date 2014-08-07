@@ -1,0 +1,120 @@
+﻿<views:BasePage
+    x:Class="WhatYouEatWP7.Views.Food.EatenPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:views="clr-namespace:WhatYouEatWP7.Views"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:triggers="clr-namespace:Core.Triggers;assembly=Core"
+    xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
+    DataContext="{Binding EnergyToday, Source={StaticResource Locator}}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <i:Interaction.Behaviors>
+        <behaviors:NavigationBackBehavior BackNavigationCommand="{Binding NavigateBackCommand}" />
+    </i:Interaction.Behaviors>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Grid Style="{StaticResource ContainerStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar Grid.Row="0"
+                                        IsIndeterminate="{Binding IsBusy}"/>
+
+        <TextBlock Grid.Row="1"
+                   Style="{StaticResource PageTitleStyle}"
+                   Text="{Binding Common.EatenForToday, Source={StaticResource LocalizationManager}}" />
+        
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2">
+            
+            <TextBlock Text="{Binding Common.TotalEaten, Source={StaticResource LocalizationManager}}"
+                       Style="{StaticResource FieldStyle}" />
+            
+            <TextBlock Text="{Binding TotalEnergy}"
+                       Margin="10,0,0,0"
+                       FontSize="32" />
+
+            <TextBlock Text="kkal"
+                       Margin="3,0,0,0"
+                       FontSize="32" />
+        </StackPanel>
+        
+        <Button Grid.Row="3"
+                HorizontalAlignment="Left"
+                Content="{Binding Common.EatFood, Source={StaticResource LocalizationManager}}"
+                Command="{Binding NavigateToSearchCommand}" />
+        
+        <ItemsControl Grid.Row="5"
+                      Style="{StaticResource ScrolledItemsControl}"
+                      ItemsSource="{Binding TodayItems}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0, 10"
+                          toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="{Binding StringId, Converter={StaticResource TranslationConverter}}"
+                                   Grid.Row="0" Grid.Column="0"
+                                   FontSize="24" />
+                        
+                        <StackPanel Grid.Row="1"
+                                     Grid.Column="0"
+                                     Orientation="Horizontal">
+                            <TextBlock Text="{Binding AmountOfEaten}"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"
+                                       FontSize="20" />
+                            <TextBlock Text="{Binding FoodMeasure, Converter={StaticResource EnumToTextConverter}}"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"
+                                       Margin="5,0,0,0"
+                                       FontSize="20" />
+                        </StackPanel>
+
+                        <Button Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Command="{Binding EnergyToday.DeleteFromTodayCommand, Source={StaticResource Locator}}"
+                                CommandParameter="{Binding}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Image Source="/Toolkit.Content/ApplicationBar.Cancel.png"
+                                           Height="60" Width="60" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+    </Grid>
+    
+</views:BasePage>

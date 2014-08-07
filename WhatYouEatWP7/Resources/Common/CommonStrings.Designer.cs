@@ -61,6 +61,15 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add activity.
+        /// </summary>
+        public static string AddActivity {
+            get {
+                return ResourceManager.GetString("AddActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What you eat?.
         /// </summary>
         public static string AppName {
@@ -241,6 +250,24 @@ namespace WhatYouEatWP7.Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to spent time.
+        /// </summary>
+        public static string SpentTime {
+            get {
+                return ResourceManager.GetString("SpentTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to spent today.
+        /// </summary>
+        public static string SpentToday {
+            get {
+                return ResourceManager.GetString("SpentToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to today.
         /// </summary>
         public static string Today {
@@ -255,6 +282,15 @@ namespace WhatYouEatWP7.Resources.Common {
         public static string TotalEaten {
             get {
                 return ResourceManager.GetString("TotalEaten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total spent.
+        /// </summary>
+        public static string TotalSpent {
+            get {
+                return ResourceManager.GetString("TotalSpent", resourceCulture);
             }
         }
         

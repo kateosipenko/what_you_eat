@@ -50,6 +50,7 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnergyType.cs" />
     <Compile Include="FoodMeasure.cs" />
     <Compile Include="Goal.cs" />
     <Compile Include="Language.cs" />

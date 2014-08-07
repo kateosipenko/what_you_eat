@@ -15,10 +15,13 @@ namespace WhatYouEatWP7.Helpers
             if (value != null && value is string)
             {
                 string stringValue = (string)value;
-                if (!string.IsNullOrEmpty(stringValue)
-                        && TranslationManager.Instance.Translations.ContainsKey(stringValue))
+                if (!string.IsNullOrEmpty(stringValue))
                 {
-                    result = TranslationManager.Instance.Translations[stringValue];
+                    if (TranslationManager.Instance.FoodTranslations.ContainsKey(stringValue))
+                        result = TranslationManager.Instance.FoodTranslations[stringValue];
+
+                    if (TranslationManager.Instance.ActivityTranslations.ContainsKey(stringValue))
+                        result = TranslationManager.Instance.ActivityTranslations[stringValue];
                 }
             }
 

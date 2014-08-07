@@ -108,58 +108,27 @@ namespace ViewModels
         }
 
         #endregion Goal
-
-        #region Eaten
-
-        private static EatenViewModel eaten;
-
-        public static EatenViewModel EatenStatic
-        {
-            get
-            {
-                if (eaten == null)
-                    eaten = new EatenViewModel();
-
-                return eaten;
-            }
-        }
-
-        public EatenViewModel Eaten
-        {
-            get { return EatenStatic; }
-        }
-
-        public void CleanEaten()
-        {
-            if (eaten != null)
-            {
-                eaten.Dispose();
-                eaten = null;
-            }
-        }
-
-        #endregion Eaten
-
+        
         #region FoodSearch
 
-        private static FoodSearchViewModel foodSearch;
+        private static SearchViewModel search;
 
-        public static FoodSearchViewModel FoodSearchStatic
+        public static SearchViewModel SearchStatic
         {
             get
             {
-                if (foodSearch == null)
+                if (search == null)
                 {
-                    foodSearch = new FoodSearchViewModel();
+                    search = new SearchViewModel();
                 }
 
-                return foodSearch;
+                return search;
             }
         }
 
-        public FoodSearchViewModel FoodSearch
+        public SearchViewModel Search
         {
-            get { return FoodSearchStatic; }
+            get { return SearchStatic; }
         }
 
         #endregion FoodSearch
@@ -196,5 +165,71 @@ namespace ViewModels
         }
 
         #endregion FoodDetails
+
+        #region EnergyToday
+
+        private static EnergyTodayViewModel energyToday;
+
+        public static EnergyTodayViewModel EnergyTodayStatic
+        {
+            get
+            {
+                if (energyToday == null)
+                {
+                    energyToday = new EnergyTodayViewModel();
+                }
+
+                return energyToday;
+            }
+        }
+
+        public EnergyTodayViewModel EnergyToday
+        {
+            get { return EnergyTodayStatic; }
+        }
+
+        public static void CleanEnergyToday()
+        {
+            if (energyToday != null)
+            {
+                energyToday.Dispose();
+                energyToday = null;
+            }
+        }
+
+        #endregion EnergyToday
+
+        #region ActivityDetails
+
+        private static ActivityDetailsViewModel acitivityDetails = new ActivityDetailsViewModel();
+
+        public static ActivityDetailsViewModel ActivityDetailsStatic
+        {
+            get
+            {
+                if (acitivityDetails == null)
+                {
+                    acitivityDetails = new ActivityDetailsViewModel();
+                }
+
+                return acitivityDetails;
+            }
+        }
+
+        public ActivityDetailsViewModel ActivityDetails
+        {
+            get { return ActivityDetailsStatic; }
+        }
+
+        public static void CleanActivityDetails()
+        {
+            if (acitivityDetails != null)
+            {
+                acitivityDetails.Dispose();
+                acitivityDetails = null;
+            }
+        }
+
+        #endregion ActivityDetails
     }
 }

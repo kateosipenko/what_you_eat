@@ -11,7 +11,7 @@ using Models;
 using System.Collections;
 using WhatYouEatWP7.Resources.Common;
 
-namespace WhatYouEatWP7.Views
+namespace WhatYouEatWP7.Views.Food
 {
     public partial class FoodDetailsPage : PhoneApplicationPage
     {

@@ -10,15 +10,11 @@ namespace DataAccess.Tables
     [Table]
     public class PhysicalActivity : RaisableObject
     {
-        #region Fields
+        #region Columns
+
+        #region ID
 
         private int id;
-        private int calories;
-        private string stringId;
-
-        #endregion Fields
-
-        #region Columns
 
         [Column(Storage = "Id", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id
@@ -34,7 +30,13 @@ namespace DataAccess.Tables
             }
         }
 
-        [Column(Storage = "StringId", DbType = "NVarChar(100) NOT NULL")]
+        #endregion ID
+
+        #region StringId
+
+        private string stringId;
+
+        [Column(Storage = "StringId", DbType = "NVarChar(256) NOT NULL")]
         public string StringId
         {
             get { return stringId; }
@@ -45,8 +47,17 @@ namespace DataAccess.Tables
             }
         }
 
-        [Column(Storage = "Calories", DbType = "Int NOT NULL")]
-        public int Calories
+        #endregion StringId
+
+        #region Calories
+
+        private float calories;
+
+        /// <summary>
+        /// Amount of spent calories per one kilo during hour
+        /// </summary>
+        [Column(Storage = "Calories", DbType = "Float NOT NULL")]
+        public float Calories
         {
             get { return calories; }
             set
@@ -56,7 +67,57 @@ namespace DataAccess.Tables
             }
         }
 
+        #endregion Calories
+
         #endregion Columns
 
+        #region Duration
+
+        private DateTime? duration;
+
+        public DateTime? Duration
+        {
+            get { return duration; }
+            set
+            {
+                duration = value;
+                RaisePropertyChanged("Duration");
+            }
+        }
+
+        public float GetTotalHours()
+        {
+            return Duration == null ? 0 : (Duration.Value.Hour + (float)Duration.Value.Minute / 60);
+        }
+
+        #endregion Duration
+
+        #region SpentEnergy
+
+        private int spentEnery = 0;
+
+        public int SpentEnergy
+        {
+            get { return spentEnery; }
+            set
+            {
+                spentEnery = value;
+                RaisePropertyChanged("SpentEnergy");
+            }
+        }
+
+        #endregion SpentEnergy
+
+        public PhysicalActivity CreateCopy()
+        {
+            return new PhysicalActivity
+            {
+                StringId = this.StringId,
+                Id = this.Id,
+                Calories = this.Calories,
+                Duration = this.Duration,
+                SpentEnergy = this.SpentEnergy
+            };
+        }
     }
 }

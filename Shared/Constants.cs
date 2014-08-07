@@ -29,6 +29,7 @@ namespace Shared
             public const string Goal = "goal";
             public const string CurrentDate = "current_date";
             public const string EatenFood = "eaten_food";
+            public const string SpentToday = "spent_today";
         }
 
         public struct Pages
@@ -36,14 +37,18 @@ namespace Shared
             public const string FristStartUserData = "/Views/FirstStart/UserDataPage.xaml";
             public const string FristStartGoal = "/Views/FirstStart/GoalPage.xaml";
             public const string Home = "/Views/Home/HomePage.xaml";
-            public const string EatenPage = "/Views/EatenPage.xaml";
-            public const string FoodSearch = "/Views/FoodSearchPage.xaml";
-            public const string FoodDetails = "/Views/FoodDetailsPage.xaml";
+            public const string EatenPage = "/Views/Food/EatenPage.xaml";
+            public const string Search = "/Views/SearchPage.xaml";
+            public const string FoodDetails = "/Views/Food/FoodDetailsPage.xaml";
+            public const string TodayActivity = "/Views/Activity/TodayActivityPage.xaml";
+            public const string ActivityDetails = "/Views/Activity/ActivityDetailsPage.xaml";
         }
 
         public struct NavigationParameters
         {
             public const string FoodId = "food_id";
+            public const string ActivityId = "activity_id";
+            public const string EnergyType = "energy_type";
         }
     }
 }

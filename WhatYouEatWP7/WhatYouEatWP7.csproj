@@ -86,18 +86,24 @@
       <DependentUpon>CommonStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\LocalizationManager.cs" />
+    <Compile Include="Views\Activity\ActivityDetailsPage.xaml.cs">
+      <DependentUpon>ActivityDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activity\TodayActivityPage.xaml.cs">
+      <DependentUpon>TodayActivityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BasePage.cs" />
-    <Compile Include="Views\EatenPage.xaml.cs">
+    <Compile Include="Views\Food\EatenPage.xaml.cs">
       <DependentUpon>EatenPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstStart\GoalPage.xaml.cs">
       <DependentUpon>GoalPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FoodDetailsPage.xaml.cs">
+    <Compile Include="Views\Food\FoodDetailsPage.xaml.cs">
       <DependentUpon>FoodDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FoodSearchPage.xaml.cs">
-      <DependentUpon>FoodSearchPage.xaml</DependentUpon>
+    <Compile Include="Views\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -118,7 +124,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EatenPage.xaml">
+    <Page Include="Views\Activity\ActivityDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Activity\TodayActivityPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Food\EatenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,11 +140,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FoodDetailsPage.xaml">
+    <Page Include="Views\Food\FoodDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FoodSearchPage.xaml">
+    <Page Include="Views\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,6 +166,13 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActivityTranslations\en-us.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ActivityTranslations\ru-ru.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ActivityTranslations\uk-ua.xml" />
     <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -168,13 +189,13 @@
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
-    <Content Include="Translations\en-us.xml">
+    <Content Include="FoodTranslations\en-us.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Translations\ru-ru.xml">
+    <Content Include="FoodTranslations\ru-ru.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Translations\uk-ua.xml" />
+    <Content Include="FoodTranslations\uk-ua.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BindableApplicationBar\BindableApplicationBar.csproj">

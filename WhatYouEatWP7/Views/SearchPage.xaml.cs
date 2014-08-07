@@ -8,11 +8,11 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace WhatYouEatWP7.Views
+namespace WhatYouEatWP7.Views.Food
 {
-    public partial class EatenPage : BasePage
+    public partial class SearchPage : PhoneApplicationPage
     {
-        public EatenPage()
+        public SearchPage()
         {
             InitializeComponent();
         }

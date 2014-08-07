@@ -50,9 +50,7 @@
         <TextBox Grid.Row="2" 
                  InputScope="Number"
                  Text="{Binding BodyState.Height, Mode=TwoWay}">
-            <i:Interaction.Behaviors>
-                <behaviors:TextBoxTextChangedBehavior />
-            </i:Interaction.Behaviors>
+
         </TextBox>
 
         <TextBlock Style="{StaticResource FieldStyle}"
@@ -61,9 +59,7 @@
         <TextBox Grid.Row="4" 
                  InputScope="Number"
                  Text="{Binding BodyState.Weight, Mode=TwoWay}">
-            <i:Interaction.Behaviors>
-                <behaviors:TextBoxTextChangedBehavior />
-            </i:Interaction.Behaviors>
+
         </TextBox>
 
         <TextBlock Style="{StaticResource FieldStyle}"

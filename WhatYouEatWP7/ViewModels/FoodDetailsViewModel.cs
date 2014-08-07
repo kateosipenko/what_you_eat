@@ -27,13 +27,13 @@ namespace ViewModels
 
         #endregion CurrentFood
 
-        #region Initialization
-
         public FoodDetailsViewModel()
         {
             InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
             EatFoodCommand = new RelayCommand(EatFoodExecute);
         }
+
+        #region Initialization
 
         protected override void InitializeViewModelExecute()
         {
@@ -67,7 +67,7 @@ namespace ViewModels
 
         private void EatFoodExecute()
         {
-            Locator.EatenStatic.AddEatenFood(CurrentFood);
+            Locator.EnergyTodayStatic.AddEnergy(CurrentFood);
             if (NavigationProvider.CanGoBack())
                 NavigationProvider.GoBack();
         }

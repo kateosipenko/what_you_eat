@@ -42,6 +42,7 @@
         <toolkit:HubTile Grid.Row="0" 
                          Title="{Binding Common.Spent, Source={StaticResource LocalizationManager}}"
                          Foreground="#FF272323"
+                         Command="{Binding NavigateToSpentCommand}"
                          BackBackground="#FFFFD032"
                          Message="500kkal/ 700kkal"
                          Grid.Column="1">

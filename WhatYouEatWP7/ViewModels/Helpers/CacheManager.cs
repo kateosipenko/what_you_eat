@@ -14,6 +14,40 @@ namespace ViewModels.Helpers
 {
     public class CacheManager
     {
+        #region CurrentDay
+
+        private bool wasInitialized = false;
+        private DateTime? currentDate;
+
+        private void CheckCurrentDay()
+        {
+            if (!wasInitialized)
+            {
+                currentDate = IsolatedStorage.ReadValue<DateTime>(Constants.CacheKeys.CurrentDate);
+                eatenFood = IsolatedStorage.ReadValue<List<Food>>(Constants.CacheKeys.EatenFood);
+                spentToday = IsolatedStorage.ReadValue<List<PhysicalActivity>>(Constants.CacheKeys.SpentToday);
+                if (eatenFood == null)
+                    eatenFood = new List<Food>();
+
+                if (spentToday == null)
+                    spentToday = new List<PhysicalActivity>();
+
+                wasInitialized = true;
+            }
+
+            if (currentDate == null || currentDate.Value.Date != DateTime.Now.Date)
+            {
+                currentDate = DateTime.Now;
+                eatenFood.Clear();
+                spentToday.Clear();
+                IsolatedStorage.WriteValue(Constants.CacheKeys.CurrentDate, currentDate);
+                IsolatedStorage.WriteValue(Constants.CacheKeys.EatenFood, eatenFood);
+                IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
+            }
+        }
+
+        #endregion CurrentDay
+
         #region Singleton
 
         private static CacheManager instance = new CacheManager();
@@ -76,27 +110,11 @@ namespace ViewModels.Helpers
 
         #region Eaten
 
-        private DateTime? currentDate;
         private List<Food> eatenFood = new List<Food>();
 
         public List<Food> GetEatenToday()
         {
-            if (currentDate == null)
-            {
-                currentDate = IsolatedStorage.ReadValue<DateTime>(Constants.CacheKeys.CurrentDate);
-                if (currentDate == null || currentDate.Value.Date != DateTime.Now.Date)
-                {
-                    currentDate = DateTime.Now;
-                    eatenFood.Clear();
-                    IsolatedStorage.WriteValue(Constants.CacheKeys.CurrentDate, currentDate);
-                    IsolatedStorage.WriteValue(Constants.CacheKeys.EatenFood, eatenFood);
-                }
-                else
-                {
-                    eatenFood = IsolatedStorage.ReadValue<List<Food>>(Constants.CacheKeys.EatenFood);
-                }
-            }
-
+            CheckCurrentDay();
             return eatenFood;
         }
 
@@ -137,5 +155,37 @@ namespace ViewModels.Helpers
         }
 
         #endregion Eaten
+
+        #region Spent
+
+        private List<PhysicalActivity> spentToday = new List<PhysicalActivity>();
+
+        public List<PhysicalActivity> GetSpentToday()
+        {
+            CheckCurrentDay();
+            return spentToday;
+        }
+
+        public PhysicalActivity SpentEnergy(PhysicalActivity activity)
+        {
+            var newActivity = activity.CreateCopy();
+            // all calories specified for one kilo per hour - 60minutes
+            float caloriesPerBody = (float)bodyState.Weight * newActivity.Calories;
+            newActivity.SpentEnergy = (int) (newActivity.GetTotalHours() * caloriesPerBody);
+            spentToday.Add(newActivity);
+            IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
+            return newActivity;
+        }
+
+        public void DeleteActivity(PhysicalActivity activity)
+        {
+            if (spentToday.Contains(activity))
+            {
+                spentToday.Remove(activity);
+                IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
+            }
+        }
+
+        #endregion Spent
     }
 }

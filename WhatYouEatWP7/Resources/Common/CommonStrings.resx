@@ -198,4 +198,16 @@
   <data name="TotalEaten" xml:space="preserve">
     <value>total eaten</value>
   </data>
+  <data name="SpentToday" xml:space="preserve">
+    <value>spent today</value>
+  </data>
+  <data name="TotalSpent" xml:space="preserve">
+    <value>total spent</value>
+  </data>
+  <data name="AddActivity" xml:space="preserve">
+    <value>add activity</value>
+  </data>
+  <data name="SpentTime" xml:space="preserve">
+    <value>spent time</value>
+  </data>
 </root>

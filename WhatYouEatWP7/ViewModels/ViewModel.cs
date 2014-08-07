@@ -130,7 +130,6 @@ namespace ViewModels
         protected virtual void NavigateBackExecute()
         {
             this.Cleanup();
-            this.Dispose();
         }
 
         protected void HandleError(string error)

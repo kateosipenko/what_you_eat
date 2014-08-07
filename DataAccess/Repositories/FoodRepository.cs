@@ -44,5 +44,11 @@ namespace DataAccess.Repositories
                        where food.Id == id
                        select food).FirstOrDefault();
         }
+
+        public List<Food> GetTopTwenty()
+        {
+            return (from food in DbContext.Foods
+                    select food).Take(20).ToList();
+        }
     }
 }

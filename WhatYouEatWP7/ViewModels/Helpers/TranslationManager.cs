@@ -19,12 +19,14 @@ namespace ViewModels.Helpers
     {
         #region Fields
 
-        private const string TranslationsPath = "Translations/{0}.xml";
+        private const string FoodTranslationsPath = "FoodTranslations/{0}.xml";
+        private const string ActivityTranslationsPath = "ActivityTranslations/{0}.xml";
 
         private static TranslationManager instance= new TranslationManager();
         private CultureInfo currentCulture;
         private SynchronizationContext syncContext;
-        private Dictionary<string, string> translations = new Dictionary<string, string>();
+        private Dictionary<string, string> foodTranslations = new Dictionary<string, string>();
+        private Dictionary<string, string> activityTranslations = new Dictionary<string, string>();
 
         #endregion Fields
 
@@ -53,9 +55,14 @@ namespace ViewModels.Helpers
             get { return currentCulture; }
         }
 
-        public Dictionary<string, string> Translations
+        public Dictionary<string, string> FoodTranslations
         {
-            get { return translations; }
+            get { return foodTranslations; }
+        }
+
+        public Dictionary<string, string> ActivityTranslations
+        {
+            get { return activityTranslations; }
         }
 
         #endregion Properties
@@ -76,7 +83,8 @@ namespace ViewModels.Helpers
 
             if (currentCulture != null)
             {
-                translations.Clear();
+                activityTranslations.Clear();
+                foodTranslations.Clear();
             }
 
             currentCulture = culture;
@@ -88,24 +96,30 @@ namespace ViewModels.Helpers
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (sender, args) =>
             {
-                try
-                {
-                    var root = XElement.Load(string.Format(TranslationsPath, currentCulture.Name.ToLower()));
-                    var elements = root.Elements();
-                    foreach (var element in elements)
-                    {
-                        if (!translations.ContainsKey(element.Name.LocalName))
-                        {
-                            translations.Add(element.Name.LocalName, element.Value);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ErrorLogger.LogException(ex);
-                }
+                LoadStringsFromFile(FoodTranslationsPath, foodTranslations);
+                LoadStringsFromFile(ActivityTranslationsPath, activityTranslations);
             };
             worker.RunWorkerAsync();
+        }
+
+        private void LoadStringsFromFile(string path, Dictionary<string, string> target)
+        {
+            try
+            {
+                var root = XElement.Load(string.Format(path, currentCulture.Name.ToLower()));
+                var elements = root.Elements();
+                foreach (var element in elements)
+                {
+                    if (!target.ContainsKey(element.Name.LocalName))
+                    {
+                        target.Add(element.Name.LocalName, element.Value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.LogException(ex);
+            }
         }
 
         private void OnLanguageChanged(object sender, LanguageEventArgs args)
@@ -116,20 +130,34 @@ namespace ViewModels.Helpers
 
         #endregion Laguage Setup
 
-        #region FoodSearch
+        #region Search
 
-        public List<Food> SearchFood(string query)
+        public List<RaisableObject> Search(string query, EnergyType type)
         {
-            var keys = this.translations.Where(item => item.Value.ToLower().StartsWith(query)).Select(item => item.Key);
-            List<Food> result = new List<Food>();
-            using (var repo = new FoodRepository())
+            query = query.ToLower();
+            List<RaisableObject> result = new List<RaisableObject>();
+            switch (type)
             {
-                result = repo.Search(keys);
+                case EnergyType.Activity:
+                    var activityKeys = activityTranslations.Where(item => item.Value.ToLower().StartsWith(query)).Select(item => item.Key);
+                    using (var repo = new PhysicalActivityRepository())
+                    {
+                        result = repo.Search(activityKeys).Cast<RaisableObject>().ToList();
+                    }
+
+                    break;
+                case EnergyType.Food:
+                    var foodKeys = this.foodTranslations.Where(item => item.Value.ToLower().StartsWith(query)).Select(item => item.Key);
+                    using (var repo = new FoodRepository())
+                    {
+                        result = repo.Search(foodKeys).Cast<RaisableObject>().ToList();
+                    }
+                    break;
             }
 
             return result;
         }
 
-        #endregion FoodSearch
+        #endregion Search
     }
 }
