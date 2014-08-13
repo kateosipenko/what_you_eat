@@ -8,9 +8,9 @@ namespace Models
 {
     public enum Course
     {
+        KeepWeight,
         PutOnWeight,
-        LoseWeight,
-        KeepWeight
+        LoseWeight
     }
 
     [DataContract]
@@ -21,8 +21,11 @@ namespace Models
         private Course course;
         private DateTime? desiredDate = null;
         private int desiredWeeksCount;
-        private float desiredWeightDif;
-        private float desiredWeightDigPerWeek;
+        private float desiredWeight;
+        private int caloriesPerDay;
+        private float weightPerWeek;
+        private int forFood;
+        private int forExersizes;
 
         #endregion Fields
 
@@ -36,6 +39,28 @@ namespace Models
             {
                 course = value;
                 RaisePropertyChanged("Course");
+            }
+        }
+
+        [DataMember]
+        public int ForFood
+        {
+            get { return forFood; }
+            set
+            {
+                forFood = value;
+                RaisePropertyChanged("ForFood");
+            }
+        }
+
+        [DataMember]
+        public int ForExersizes
+        {
+            get { return forExersizes; }
+            set
+            {
+                forExersizes = value;
+                RaisePropertyChanged("ForExersizes");
             }
         }
 
@@ -62,24 +87,13 @@ namespace Models
         }
 
         [DataMember]
-        public float DesiredWeightDif
+        public float DesiredWeight
         {
-            get { return desiredWeightDif; }
+            get { return desiredWeight; }
             set
             {
-                desiredWeightDif = value;
-                RaisePropertyChanged("DesiredWeightDif");
-            }
-        }
-
-        [DataMember]
-        public float DesiredWeightDigPerWeek
-        {
-            get { return desiredWeightDigPerWeek; }
-            set
-            {
-                desiredWeightDigPerWeek = value;
-                RaisePropertyChanged("DesiredWeightDigPerWeek");
+                desiredWeight = value;
+                RaisePropertyChanged("DesiredWeight");
             }
         }
 

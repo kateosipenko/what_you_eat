@@ -9,8 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Collections;
 using Models;
-using WhatYouEatWP7.Resources.Common;
 using ViewModels;
+using Resources.Enums;
 
 namespace WhatYouEatWP7.Views.FirstStart
 {
@@ -34,8 +34,15 @@ namespace WhatYouEatWP7.Views.FirstStart
         {
             if (!wasLoaded)
             {
-                this.coursePicker.SummaryForSelectedItemsDelegate = new Func<IList, string>(OnCourseSummaryChanged);
-                this.periodPicker.SummaryForSelectedItemsDelegate = new Func<IList, string>(OnPeriodSummaryChanged);
+                this.coursePicker.SummaryForSelectedItemsDelegate = new Func<IList,string>(OnCourseSummaryChanged);
+                this.periodPicker.SummaryForSelectedItemsDelegate = new Func<IList,string>(OnPeriodSummaryChanged);
+
+                List<Course> courses = new List<Course>(3);
+                courses.Add(Course.KeepWeight);
+                courses.Add(Course.LoseWeight);
+                courses.Add(Course.PutOnWeight);
+                coursePicker.ItemsSource = courses;
+
                 List<Period> periods = new List<Period>(2);
                 periods.Add(Period.Until);
                 periods.Add(Period.In);
@@ -70,7 +77,7 @@ namespace WhatYouEatWP7.Views.FirstStart
                     break;
             }
 
-            return CommonStrings.ResourceManager.GetString(Enum.GetName(typeof(Period), period));
+            return EnumsStrings.ResourceManager.GetString(Enum.GetName(typeof(Period), period));
         }
 
         #endregion PeriodPicker
@@ -100,7 +107,7 @@ namespace WhatYouEatWP7.Views.FirstStart
                     break;
             }
 
-            return CommonStrings.ResourceManager.GetString(Enum.GetName(typeof(Course), course));
+            return EnumsStrings.ResourceManager.GetString(Enum.GetName(typeof(Course), course));
         }
 
         #endregion CoursePicker

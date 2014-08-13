@@ -14,6 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ViewModels.Helpers;
 using Shared;
+using Models;
 
 namespace WhatYouEatWP7
 {
@@ -123,6 +124,7 @@ namespace WhatYouEatWP7
             SynchronizationContextProvider.Initialize();
             TranslationManager.Instance.Initialize();
             SettingsManager.Instance.Initialize();
+            CacheManager.Instance.Initialize();
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.

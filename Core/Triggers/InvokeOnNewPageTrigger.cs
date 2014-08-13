@@ -58,7 +58,7 @@ namespace Core.Triggers
 
         protected override void Invoke(object parameter)
         {
-            if (this.canInvokeCommand && this.Command != null)
+            if (this.canInvokeCommand && this.Command != null && this.Command.CanExecute(parameter))
             {
                 this.Command.Execute(this.CommandParameter);
             }

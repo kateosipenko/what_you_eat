@@ -98,9 +98,8 @@
 					Storage[data.Key] = data.Value;
 					Storage.Save();
 				}
-				catch (Exception)
+				catch (Exception ex)
 				{
-
 				}
 			}
 		}

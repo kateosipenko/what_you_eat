@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="system.data.linq" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -59,6 +60,7 @@
     <Compile Include="Tables\BodyState.cs" />
     <Compile Include="Tables\Food.cs" />
     <Compile Include="Tables\PhysicalActivity.cs" />
+    <Compile Include="Tables\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

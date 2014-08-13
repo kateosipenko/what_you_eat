@@ -26,50 +26,69 @@
             <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
-    <Grid Style="{StaticResource ContainerStyle}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+
+    <views:BasePage.Resources>
+        <Style TargetType="toolkit:ListPicker">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="FullModeItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontSize="32"
+                               Margin="0,10"
+                               Text="{Binding Converter={StaticResource EnumToTextConverter}}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </views:BasePage.Resources>
+
+    <StackPanel Orientation="Vertical" Style="{StaticResource ContainerStyle}">
         
-        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}" Margin="-24,0"
-                                        Grid.Row="0" />
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}" Margin="-24,0" />
         
         <TextBlock Style="{StaticResource PageTitleStyle}" 
-                   Grid.Row="0" TextWrapping="Wrap"
+                   TextWrapping="Wrap"
                    Text="{Binding Common.InputYourData, Source={StaticResource LocalizationManager}}"/>
+        
+        <!--SEX-->
         <TextBlock Style="{StaticResource FieldStyle}"
-                   Grid.Row="1"
+                   Text="{Binding Common.Sex, Source={StaticResource LocalizationManager}}" />
+
+        <toolkit:ListPicker x:Name="sexPicker" Grid.Row="2"
+                            SelectedItem="{Binding User.Sex, Mode=TwoWay}"/>
+        
+        <!--HEIGHT-->
+        <TextBlock Style="{StaticResource FieldStyle}"
                    Text="{Binding Common.Height, Source={StaticResource LocalizationManager}}" />
-        <TextBox Grid.Row="2" 
-                 InputScope="Number"
-                 Text="{Binding BodyState.Height, Mode=TwoWay}">
+        <TextBox InputScope="Number"
+                 Text="{Binding User.BodyState.Height, Mode=TwoWay}">
 
         </TextBox>
 
+        <!--WEIGHT-->
         <TextBlock Style="{StaticResource FieldStyle}"
-                   Grid.Row="3"
                    Text="{Binding Common.Weight, Source={StaticResource LocalizationManager}}" />
-        <TextBox Grid.Row="4" 
-                 InputScope="Number"
-                 Text="{Binding BodyState.Weight, Mode=TwoWay}">
+        <TextBox InputScope="Number"
+                 Text="{Binding User.BodyState.Weight, Mode=TwoWay}">
 
         </TextBox>
 
+        <!--BIRTHDAY-->
         <TextBlock Style="{StaticResource FieldStyle}"
-                   Grid.Row="5"
                    Text="{Binding Common.BirthDate, Source={StaticResource LocalizationManager}}" />
 
-        <toolkit:DatePicker Grid.Row="6" 
-                            Value="{Binding Birthday, Mode=TwoWay}"/>
-        
-    </Grid>
+        <toolkit:DatePicker Margin="0"
+                            Value="{Binding User.Birthday, Mode=TwoWay}"/>
+
+        <!--ACTIVITY_TYPE-->
+        <TextBlock Style="{StaticResource FieldStyle}"
+                   Text="{Binding Common.ActivityType, Source={StaticResource LocalizationManager}}" />
+
+        <toolkit:ListPicker x:Name="activityPicker" 
+                            SelectedItem="{Binding User.ActivityType, Mode=TwoWay}"/>
+
+    </StackPanel>
 
     <binBar:Bindable.ApplicationBar>
         <binBar:BindableApplicationBar>

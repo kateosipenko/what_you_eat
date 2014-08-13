@@ -91,6 +91,7 @@
     <Compile Include="MetroInMotion\MetroInMotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\JsonSerializer.cs" />
+    <Compile Include="Triggers\CommandTrigger.cs" />
     <Compile Include="Triggers\InvokeOnNewPageTrigger.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
     x:Class="WhatYouEatWP7.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:resources="clr-namespace:WhatYouEatWP7.Resources"
+    xmlns:resources="clr-namespace:Resources;assembly=Resources"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     xmlns:navigation="clr-namespace:System.Windows.Navigation;assembly=Microsoft.Phone"
@@ -15,6 +15,8 @@
             <viewModels:Locator x:Key="Locator" />
             <helpers:TranslationConverter x:Key="TranslationConverter" />
             <helpers:EnumToTextConverter x:Key ="EnumToTextConverter" />
+            <helpers:CourseToTextConverter x:Key="CourseToTextConverter" />
+            <helpers:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
             <resources:LocalizationManager x:Key="LocalizationManager" />
 
             <navigation:UriMapper x:Key="Mapper">

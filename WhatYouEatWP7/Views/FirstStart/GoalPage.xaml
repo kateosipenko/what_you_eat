@@ -58,7 +58,7 @@
 
         <toolkit:ListPicker Grid.Row="2"
                             x:Name="coursePicker"
-                            ItemsSource="{Binding Courses}" />
+                            SelectedItem="{Binding Goal.Course, Mode=TwoWay}" />
 
         <!--GOAL DATA-->
         <Grid Grid.Row="3" x:Name="goalData"
@@ -70,7 +70,7 @@
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <TextBox InputScope="Number" HorizontalAlignment="Left"
                          Width="150"
-                         Text="{Binding Goal.DesiredWeightDif, Mode=TwoWay}">
+                         Text="{Binding WeightDif, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
                         <behaviors:TextBoxTextChangedBehavior />
                     </i:Interaction.Behaviors>

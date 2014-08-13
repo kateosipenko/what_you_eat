@@ -25,11 +25,11 @@ namespace Shared
         public struct CacheKeys
         {
             public const string CurrentLanguage = "current_languge";
-            public const string Birthday = "birthday";
             public const string Goal = "goal";
             public const string CurrentDate = "current_date";
             public const string EatenFood = "eaten_food";
             public const string SpentToday = "spent_today";
+            public const string User = "user";
         }
 
         public struct Pages
@@ -42,6 +42,7 @@ namespace Shared
             public const string FoodDetails = "/Views/Food/FoodDetailsPage.xaml";
             public const string TodayActivity = "/Views/Activity/TodayActivityPage.xaml";
             public const string ActivityDetails = "/Views/Activity/ActivityDetailsPage.xaml";
+            public const string DistributeCalories = "/Views/DietPlan/DistributeCalories.xaml";
         }
 
         public struct NavigationParameters
@@ -49,6 +50,8 @@ namespace Shared
             public const string FoodId = "food_id";
             public const string ActivityId = "activity_id";
             public const string EnergyType = "energy_type";
+            public const string FromGoal = "from_goal";
+            public const string FromHome = "from_home";
         }
     }
 }

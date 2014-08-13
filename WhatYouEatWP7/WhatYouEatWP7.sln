@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packages", "packages", "{83
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "..\Shared\Shared.csproj", "{D9032FF7-3F94-44D6-88BC-EA6568DC290D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{C7FC5A44-E594-4717-9583-5E1AF91471CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindableApplicationBar", "..\BindableApplicationBar\BindableApplicationBar.csproj", "{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}"
@@ -22,6 +20,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Phone.Controls.Toolkit", "..\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.csproj", "{0754458A-7AFC-463A-B27D-2F6980522119}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "..\DataAccess\DataAccess.csproj", "{AF3AC42F-7010-42C5-860B-65AA207D2D7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0759C6DA-80B5-4D53-9199-7573F496A5BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "..\Resources\Resources.csproj", "{0120B7D6-7E75-4FF0-82B6-5BB200DB0B7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls", "..\Controls\Controls.csproj", "{5FA3A250-F247-4EA1-A76C-ACB853C30A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "..\ViewModels\ViewModels.csproj", "{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +57,6 @@ Global
 		{D9032FF7-3F94-44D6-88BC-EA6568DC290D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9032FF7-3F94-44D6-88BC-EA6568DC290D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9032FF7-3F94-44D6-88BC-EA6568DC290D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7FC5A44-E594-4717-9583-5E1AF91471CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,8 +73,23 @@ Global
 		{AF3AC42F-7010-42C5-860B-65AA207D2D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF3AC42F-7010-42C5-860B-65AA207D2D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF3AC42F-7010-42C5-860B-65AA207D2D7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0120B7D6-7E75-4FF0-82B6-5BB200DB0B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0120B7D6-7E75-4FF0-82B6-5BB200DB0B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0120B7D6-7E75-4FF0-82B6-5BB200DB0B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0120B7D6-7E75-4FF0-82B6-5BB200DB0B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA3A250-F247-4EA1-A76C-ACB853C30A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA3A250-F247-4EA1-A76C-ACB853C30A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA3A250-F247-4EA1-A76C-ACB853C30A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA3A250-F247-4EA1-A76C-ACB853C30A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FA3A250-F247-4EA1-A76C-ACB853C30A62} = {0759C6DA-80B5-4D53-9199-7573F496A5BD}
 	EndGlobalSection
 EndGlobal

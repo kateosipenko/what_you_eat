@@ -1175,7 +1175,7 @@ namespace Microsoft.Phone.Controls
         /// </summary>
         /// <param name="newValue">The list selected items</param>
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "System.Windows.Controls.TextBlock.set_Text(System.String)", Justification = "By design.")]
-        private void UpdateSummary(IList newValue)
+        public void UpdateSummary(IList newValue)
         {
             const string space = " ";
             string summary = null;
@@ -1206,7 +1206,7 @@ namespace Microsoft.Phone.Controls
                 summary = space;
             }
 
-            if (summary == space && SelectedItem != null)
+            if (summary == space && SelectedItem != null && SummaryForSelectedItemsDelegate == null)
             {
                 summary = SelectedItem.ToString();
             }

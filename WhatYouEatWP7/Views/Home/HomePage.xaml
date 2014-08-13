@@ -23,7 +23,7 @@
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+            <triggers:CommandTrigger Command="{Binding InitializeViewModelCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     

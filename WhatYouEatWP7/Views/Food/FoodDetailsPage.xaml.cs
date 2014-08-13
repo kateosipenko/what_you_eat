@@ -9,7 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Models;
 using System.Collections;
-using WhatYouEatWP7.Resources.Common;
+using Resources.Enums;
 
 namespace WhatYouEatWP7.Views.Food
 {
@@ -36,7 +36,7 @@ namespace WhatYouEatWP7.Views.Food
             if (items == null || items.Count == 0)
                 return string.Empty;
 
-            return CommonStrings.ResourceManager.GetString(Enum.GetName(items[0].GetType(), items[0]));
+            return EnumsStrings.ResourceManager.GetString(Enum.GetName(items[0].GetType(), items[0]));
         }
     }
 }

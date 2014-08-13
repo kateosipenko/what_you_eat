@@ -67,25 +67,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CourseToTextConverter.cs" />
     <Compile Include="Helpers\EnumToTextConverter.cs" />
+    <Compile Include="Helpers\HubTileBehavior.cs" />
+    <Compile Include="Helpers\NullableToVisibilityConverter.cs" />
     <Compile Include="Helpers\TranslationConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Buttons\ButtonsStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ButtonsStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Citation\CitationStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CitationStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Common\CommonStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\LocalizationManager.cs" />
     <Compile Include="Views\Activity\ActivityDetailsPage.xaml.cs">
       <DependentUpon>ActivityDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -93,6 +80,9 @@
       <DependentUpon>TodayActivityPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\DietPlan\DistributeCalories.xaml.cs">
+      <DependentUpon>DistributeCalories.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Food\EatenPage.xaml.cs">
       <DependentUpon>EatenPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DietPlan\DistributeCalories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Food\EatenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +156,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -182,6 +177,7 @@
     <Content Include="FoodDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\food.png" />
     <Content Include="Icons\ok.png" />
     <Content Include="Icons\plan.png" />
     <Content Include="Icons\plus.png" />
@@ -202,6 +198,10 @@
       <Project>{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}</Project>
       <Name>BindableApplicationBar</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Controls\Controls.csproj">
+      <Project>{5FA3A250-F247-4EA1-A76C-ACB853C30A62}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{FA5D4569-7758-4739-8BA4-E24929B46F4F}</Project>
       <Name>Core</Name>
@@ -218,35 +218,20 @@
       <Project>{F913F49D-D8F7-4A82-B403-4695AB35CC48}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{0120B7D6-7E75-4FF0-82B6-5BB200DB0B7E}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{D9032FF7-3F94-44D6-88BC-EA6568DC290D}</Project>
       <Name>Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="ViewModels\ViewModels.csproj">
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
       <Project>{E362F1CF-222B-4453-AEB1-EAB7D7F527C4}</Project>
       <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Buttons\ButtonsStrings.uk-UA.resx" />
-    <EmbeddedResource Include="Resources\Buttons\ButtonsStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ButtonsStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Buttons\ButtonsStrings.ru-RU.resx" />
-    <EmbeddedResource Include="Resources\Citation\CitationStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>CitationStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Citation\CitationStrings.ru-RU.resx" />
-    <EmbeddedResource Include="Resources\Citation\CitationStrings.uk-UA.resx" />
-    <EmbeddedResource Include="Resources\Common\CommonStrings.uk-UA.resx" />
-    <EmbeddedResource Include="Resources\Common\CommonStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>CommonStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Common\CommonStrings.ru-RU.resx" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

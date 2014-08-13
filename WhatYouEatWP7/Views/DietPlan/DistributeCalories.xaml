@@ -1,0 +1,114 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="WhatYouEatWP7.Views.DietPlan.DistributeCalories"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:triggers="clr-namespace:Core.Triggers;assembly=Core"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:customControls="clr-namespace:Controls;assembly=Controls"
+    DataContext="{Binding DistributeCalories, Source={StaticResource Locator}}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Style="{StaticResource ContainerStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Style="{StaticResource PageTitleStyle}"
+                   Grid.ColumnSpan="2"
+                   Text="{Binding Common.MyPlan, Source={StaticResource LocalizationManager}}"
+                   Grid.Row="0" />
+        <TextBlock Text="{Binding DietPlan, Converter={StaticResource CourseToTextConverter}}" 
+                   Grid.ColumnSpan="2"
+                   Grid.Row="1"
+                   FontSize="28"/>
+
+        <TextBlock Text="{Binding Common.FoodPerDay, Source={StaticResource LocalizationManager}}"
+                   Margin="0,30,0,0"
+                   FontSize="22" Grid.Column="0"
+                   Grid.Row="2" />
+
+        <TextBlock Text="{Binding DietPlan.CaloriesPerDay}"
+                   Margin="0,30,0,0"
+                   FontSize="22" Grid.Column="1" HorizontalAlignment="Right"
+                   Grid.Row="2" />
+
+        <TextBlock Text="{Binding Common.ExersizesPerDay, Source={StaticResource LocalizationManager}}"
+                   FontSize="22" Grid.Column="0"
+                   Visibility="{Binding Maximum, Converter={StaticResource NullableToVisibilityConverter}}"
+                   Grid.Row="3" />
+
+        <TextBlock Text="{Binding DietPlan.ExersizesPerDay}"
+                   Visibility="{Binding Maximum, Converter={StaticResource NullableToVisibilityConverter}}"
+                   FontSize="22" Grid.Column="1" HorizontalAlignment="Right"
+                   Grid.Row="3" />
+
+        <Grid Grid.Row="4" 
+              Grid.ColumnSpan="2"
+              Visibility="{Binding Maximum, Converter={StaticResource NullableToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <customControls:ExtendedSlider Grid.Row="0"
+                                       Background="{StaticResource PhoneDisabledBrush}"
+                                       Margin="0,30,0,0"
+                                       FontSize="18" Foreground="{StaticResource PhoneAccentBrush}"
+                                       Dimension="kkal"
+                                       Value="{Binding ForFood, Mode=TwoWay}"
+                                       Header="{Binding Converter={StaticResource CourseToTextConverter}, ConverterParameter='food'}"
+                                       Maximum="{Binding Maximum}" />
+
+            <customControls:ExtendedSlider Grid.Row="1"
+                                       Background="{StaticResource PhoneDisabledBrush}"
+                                       Margin="0,30,0,0"
+                                       Value="{Binding ForExersizes, Mode=TwoWay}"
+                                       FontSize="18" Foreground="{StaticResource PhoneAccentBrush}"
+                                       Dimension="kkal"
+                                       Header="{Binding Common.Exersizes, Source={StaticResource LocalizationManager}}"
+                                       Maximum="{Binding Maximum}" />
+
+        </Grid>
+        
+        <Button Grid.Row="6"
+                Grid.ColumnSpan="2"
+                Command="{Binding NavigateToHomeCommand}"
+                HorizontalAlignment="Stretch"
+                Content="{Binding Buttons.Save,Source={StaticResource LocalizationManager}}" />
+
+        <Button Grid.Row="7"
+                Grid.ColumnSpan="2"
+                Visibility="{Binding UpdatePlanVisibility}"
+                Command="{Binding NavigateToPlanCommand}"
+                HorizontalAlignment="Stretch"
+                Content="{Binding Buttons.UpdatePlan,Source={StaticResource LocalizationManager}}" />
+
+    </Grid>
+
+</phone:PhoneApplicationPage>
