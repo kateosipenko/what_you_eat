@@ -17,17 +17,17 @@ namespace ViewModels
 
         public EnergyTodayViewModel()
         {
-            this.InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
+            this.InitializeCommand = new RelayCommand(InitializeExecute);
             DeleteFromTodayCommand = new RelayCommand<RaisableObject>(DeleteFromTodayExecute);
-            NavigateBackCommand = new RelayCommand(NavigateBackExecute);
+            CleanupCommand = new RelayCommand(CleanupExecute);
             NavigateToSearchCommand = new RelayCommand(NavigateToSearchExecute);
         }
 
         #region Initialization
 
-        protected override void InitializeViewModelExecute()
+        protected override void InitializeExecute()
         {
-            base.InitializeViewModelExecute();
+            base.InitializeExecute();
             BusyCount++;
             var parameters = NavigationProvider.GetNavigationParameters();
             if (parameters.ContainsKey(Constants.NavigationParameters.EnergyType))
@@ -169,10 +169,10 @@ namespace ViewModels
 
         #region Clear
 
-        protected override void NavigateBackExecute()
+        protected override void CleanupExecute()
         {
             Clear();
-            base.NavigateBackExecute();
+            base.CleanupExecute();
         }
 
         private void Clear()

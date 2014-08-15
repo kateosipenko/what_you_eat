@@ -16,15 +16,16 @@ namespace ViewModels
     {
         public HomeViewModel()
         {
-            InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
+            InitializeCommand = new RelayCommand(InitializeExecute);
             NavigateToEatenCommand = new RelayCommand(NavigateToEatenExecute);
             NavigateToSpentCommand = new RelayCommand(NavigateToSpentExecute);
             NavigateToPlanCommand = new RelayCommand(NavigateToPlanExecute);
+            NavigateToSettingsCommand = new RelayCommand(NavigateToSettingsExecute);
         }
 
-        protected override void InitializeViewModelExecute()
+        protected override void InitializeExecute()
         {
-            base.InitializeViewModelExecute();
+            base.InitializeExecute();
             TotalEaten = CacheManager.Instance.GetEatenToday().Sum(item => item.AmountOfCalories);
             TotalActivity = CacheManager.Instance.GetSpentToday().Sum(item => item.SpentEnergy);
             MustEat = CacheManager.Instance.Plan.CaloriesPerDay;
@@ -117,5 +118,16 @@ namespace ViewModels
         }
 
         #endregion NavigateToPlanCommand
+
+        #region NavigateToSettingsCommand
+
+        public RelayCommand NavigateToSettingsCommand { get; private set; }
+
+        private void NavigateToSettingsExecute()
+        {
+            NavigationProvider.Navigate(Constants.Pages.Settings);
+        }
+
+        #endregion NavigateToSettingsCommand
     }
 }

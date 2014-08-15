@@ -29,16 +29,16 @@ namespace ViewModels
 
         public FoodDetailsViewModel()
         {
-            InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
+            InitializeCommand = new RelayCommand(InitializeExecute);
             EatFoodCommand = new RelayCommand(EatFoodExecute);
         }
 
         #region Initialization
 
-        protected override void InitializeViewModelExecute()
+        protected override void InitializeExecute()
         {
             BusyCount++;
-            base.InitializeViewModelExecute();
+            base.InitializeExecute();
             var parameters = NavigationProvider.GetNavigationParameters();
             if (parameters.ContainsKey(Constants.NavigationParameters.FoodId))
             {
@@ -73,5 +73,15 @@ namespace ViewModels
         }
 
         #endregion EatFoodCommand
+
+        #region Cleanup
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            this.CurrentFood = null;
+        }
+
+        #endregion Cleanup
     }
 }

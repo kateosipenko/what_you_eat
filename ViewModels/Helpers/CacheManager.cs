@@ -294,5 +294,19 @@ namespace ViewModels.Helpers
         }
 
         #endregion GoalandDiet
+
+        #region Language
+
+        public void SaveCurrentLanguage(Language language)
+        {
+            IsolatedStorage.WriteValue(Constants.CacheKeys.Language, language);
+        }
+
+        public Language GetCurrentLanguage()
+        {
+            return IsolatedStorage.ReadValue<Language>(Constants.CacheKeys.Language);
+        }
+
+        #endregion Language
     }
 }

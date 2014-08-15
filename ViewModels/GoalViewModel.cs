@@ -59,5 +59,16 @@ namespace ViewModels
         }
 
         #endregion SaveAndGoNextCommand
+
+        #region Cleanup
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            this.Goal = null;
+            this.WeightDif = 0;
+        }
+
+        #endregion Cleanup
     }
 }

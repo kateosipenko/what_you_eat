@@ -13,7 +13,7 @@ using Resources.Enums;
 
 namespace WhatYouEatWP7.Views.Food
 {
-    public partial class FoodDetailsPage : PhoneApplicationPage
+    public partial class FoodDetailsPage : BasePage
     {
         public FoodDetailsPage()
         {

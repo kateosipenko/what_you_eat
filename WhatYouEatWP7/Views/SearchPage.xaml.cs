@@ -10,7 +10,7 @@ using Microsoft.Phone.Shell;
 
 namespace WhatYouEatWP7.Views.Food
 {
-    public partial class SearchPage : PhoneApplicationPage
+    public partial class SearchPage : BasePage
     {
         public SearchPage()
         {

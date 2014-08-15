@@ -28,7 +28,8 @@ namespace ViewModels
                 synContext = SynchronizationContextProvider.UIThreadSyncContext;
             }
 
-            this.NavigateBackCommand = new RelayCommand(this.NavigateBackExecute);
+            this.InitializeCommand = new RelayCommand(this.InitializeExecute);
+            this.CleanupCommand = new RelayCommand(this.CleanupExecute);
         }
 
         #region Properties
@@ -87,8 +88,8 @@ namespace ViewModels
 
         #region Commands
 
-        public RelayCommand InitializeViewModelCommand { get; protected set; }
-        public RelayCommand NavigateBackCommand { get; protected set; }
+        public RelayCommand InitializeCommand { get; protected set; }
+        public RelayCommand CleanupCommand { get; protected set; }
 
         #endregion Commands
 
@@ -118,7 +119,7 @@ namespace ViewModels
             SyncContext.Post((o) => callback.Invoke(parameter), null);
         }
 
-        protected virtual void InitializeViewModelExecute()
+        protected virtual void InitializeExecute()
         {
             if (!isNavigationProviderChecked)
             {
@@ -127,7 +128,7 @@ namespace ViewModels
             }
         }
 
-        protected virtual void NavigateBackExecute()
+        protected virtual void CleanupExecute()
         {
             this.Cleanup();
         }

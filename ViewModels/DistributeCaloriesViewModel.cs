@@ -14,7 +14,7 @@ namespace ViewModels
     {
         public DistributeCaloriesViewModel()
         {
-            InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
+            InitializeCommand = new RelayCommand(InitializeExecute);
             NavigateToHomeCommand = new RelayCommand(NavigateToHomeExecute);
             NavigateToPlanCommand = new RelayCommand(NavigateToPlanExecute);
         }
@@ -130,9 +130,23 @@ namespace ViewModels
 
         #endregion NavigateToPlanCommand
 
-        protected override void InitializeViewModelExecute()
+        #region Cleanup
+
+        public override void Cleanup()
         {
-            base.InitializeViewModelExecute();
+            base.Cleanup();
+            this.DietPlan = null;
+            this.Maximum = 0;
+            this.forFood = 0;
+            this.forExersizes = 0;
+            this.BusyCount = 0;
+        }
+
+        #endregion Cleanup
+
+        protected override void InitializeExecute()
+        {
+            base.InitializeExecute();
             DietPlan = CacheManager.Instance.Plan;
             switch (CacheManager.Instance.Goal.Course)
             {
@@ -149,12 +163,14 @@ namespace ViewModels
             if (parameters.ContainsKey(Constants.NavigationParameters.FromGoal))
             {
                 UpdatePlanVisibility = Visibility.Collapsed;
-                ForExersizes = Maximum / 2;
+                if (CacheManager.Instance.Goal.Course == Course.LoseWeight)
+                    ForExersizes = Maximum / 2;
             }
             else
             {
                 UpdatePlanVisibility = Visibility.Visible;
-                ForFood = CacheManager.Instance.Goal.ForFood;
+                if (CacheManager.Instance.Goal.Course == Course.LoseWeight)
+                    ForFood = CacheManager.Instance.Goal.ForFood;
             }
         }
     }

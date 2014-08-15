@@ -30,8 +30,6 @@ namespace ViewModels.Helpers
             allLanguages.Add(new Language { CultureCode = Constants.Languages.RussianCode, Text = Constants.Languages.Russian });
         }
 
-        #region Properties
-
         public static SettingsManager Instance
         {
             get
@@ -45,6 +43,8 @@ namespace ViewModels.Helpers
             }
         }
 
+        #region Language
+
         public List<Language> AllLanguages
         {
             get { return allLanguages; }
@@ -53,15 +53,40 @@ namespace ViewModels.Helpers
         public Language CurrentLanguage
         {
             get { return currentLanguage; }
-            set
+        }
+
+        public void SetCurrentLanguage(Language language)
+        {
+            if (currentLanguage != language)
             {
-                RaiseLanguageChanged(currentLanguage, value);
-                currentLanguage = value;
-                RaisePropertyChanged("CurrentLanguage");                
+                RaiseLanguageChanged(currentLanguage, language);
+                currentLanguage = language;
+                RaisePropertyChanged("CurrentLanguage");
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (sender, args) =>
+                {
+                    CacheManager.Instance.SaveCurrentLanguage(currentLanguage);
+                };
+                worker.RunWorkerAsync();
+            }
+
+        }
+
+        #region LanguageChanged
+
+        public event EventHandler<LanguageEventArgs> LanguageChanged;
+
+        private void RaiseLanguageChanged(Language old, Language newLang)
+        {
+            if (LanguageChanged != null)
+            {
+                LanguageChanged(this, new LanguageEventArgs(old, newLang));
             }
         }
 
-        #endregion Properties
+        #endregion LanguageChanged
+
+        #endregion Language
 
         #region Initialization
 
@@ -76,7 +101,7 @@ namespace ViewModels.Helpers
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (sender, args) =>
             {
-                currentLanguage = IsolatedStorage.ReadValue<Language>(Constants.CacheKeys.CurrentLanguage);
+                currentLanguage = CacheManager.Instance.GetCurrentLanguage();
                 if (currentLanguage == null)
                 {
                     var deviceLanguage = allLanguages.FirstOrDefault(item => item.CultureCode == currentCultureCode);
@@ -93,27 +118,13 @@ namespace ViewModels.Helpers
 
                 syncContext.Post((item) =>
                 {
-                    CurrentLanguage = currentLanguage;
+                    SetCurrentLanguage(currentLanguage);
                 }, null);
             };
             worker.RunWorkerAsync();
         }
 
         #endregion Initialization
-
-        #region LanguageChanged
-
-        public event EventHandler<LanguageEventArgs> LanguageChanged;
-
-        private void RaiseLanguageChanged(Language old, Language newLang)
-        {
-            if (LanguageChanged != null)
-            {
-                LanguageChanged(this, new LanguageEventArgs(old, newLang));
-            }
-        }
-
-        #endregion LanguageChanged
     }
 
     public class LanguageEventArgs : EventArgs

@@ -219,4 +219,7 @@
   <data name="FoodPerDay" xml:space="preserve">
     <value>необходимо съедать в день</value>
   </data>
+  <data name="CurrentLanguage" xml:space="preserve">
+    <value>текущий язык</value>
+  </data>
 </root>

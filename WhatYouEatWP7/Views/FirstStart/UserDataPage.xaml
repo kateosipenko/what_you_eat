@@ -10,7 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:triggers="clr-namespace:Core.Triggers;assembly=Core"
     xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
     xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -21,12 +20,11 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
+    <i:Interaction.Behaviors>
+        <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
+                                              CleanupCommand="{Binding CleanupCommand}"/>
+    </i:Interaction.Behaviors>
+    
     <views:BasePage.Resources>
         <Style TargetType="toolkit:ListPicker">
             <Setter Property="Margin" Value="0" />

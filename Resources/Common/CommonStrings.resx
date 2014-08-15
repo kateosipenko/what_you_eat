@@ -219,4 +219,7 @@
   <data name="FoodPerDay" xml:space="preserve">
     <value>have to eat per day</value>
   </data>
+  <data name="CurrentLanguage" xml:space="preserve">
+    <value>current language</value>
+  </data>
 </root>

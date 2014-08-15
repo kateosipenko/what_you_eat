@@ -19,7 +19,12 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-    
+
+    <i:Interaction.Behaviors>
+        <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
+                                              CleanupCommand="{Binding CleanupCommand}"/>
+    </i:Interaction.Behaviors>
+
     <views:BasePage.Resources>
         <Style TargetType="toolkit:ListPicker">
             <Setter Property="Margin" Value="0" />

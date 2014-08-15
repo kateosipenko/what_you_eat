@@ -22,7 +22,7 @@ namespace ViewModels
 
         public UserDataViewModel()
         {
-            this.InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
+            this.InitializeCommand = new RelayCommand(InitializeExecute);
             SaveAndGoNextCommand = new RelayCommand(this.SaveAndGoNextExecute, this.SaveAndGoNextCanExecute);
         }
 
@@ -40,9 +40,9 @@ namespace ViewModels
 
         #endregion Properties
 
-        protected override void InitializeViewModelExecute()
+        protected override void InitializeExecute()
         {
-            base.InitializeViewModelExecute();
+            base.InitializeExecute();
             this.User.PropertyChanged += OnUserDataChanged;
         }
 
@@ -94,5 +94,15 @@ namespace ViewModels
         }
 
         #endregion SaveAndGoNextCommand
+
+        #region Cleanup
+
+        protected override void CleanupExecute()
+        {
+            this.User = null;
+            base.CleanupExecute();
+        }
+
+        #endregion Cleanup
     }
 }

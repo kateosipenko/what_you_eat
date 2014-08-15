@@ -24,12 +24,12 @@ namespace Shared
 
         public struct CacheKeys
         {
-            public const string CurrentLanguage = "current_languge";
             public const string Goal = "goal";
             public const string CurrentDate = "current_date";
             public const string EatenFood = "eaten_food";
             public const string SpentToday = "spent_today";
             public const string User = "user";
+            public const string Language = "language";
         }
 
         public struct Pages
@@ -43,6 +43,7 @@ namespace Shared
             public const string TodayActivity = "/Views/Activity/TodayActivityPage.xaml";
             public const string ActivityDetails = "/Views/Activity/ActivityDetailsPage.xaml";
             public const string DistributeCalories = "/Views/DietPlan/DistributeCalories.xaml";
+            public const string Settings = "/Views/SettingsPage.xaml";
         }
 
         public struct NavigationParameters

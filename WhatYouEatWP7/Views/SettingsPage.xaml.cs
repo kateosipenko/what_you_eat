@@ -8,11 +8,11 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace WhatYouEatWP7.Views.DietPlan
+namespace WhatYouEatWP7.Views
 {
-    public partial class DistributeCalories : BasePage
+    public partial class SettingsPage : BasePage
     {
-        public DistributeCalories()
+        public SettingsPage()
         {
             InitializeComponent();
         }

@@ -33,5 +33,10 @@ namespace Models
                 RaisePropertyChanged("Text");
             }
         }
+
+        public override string ToString()
+        {
+            return Text != null && Text != string.Empty ? Text : base.ToString();
+        }
     }
 }

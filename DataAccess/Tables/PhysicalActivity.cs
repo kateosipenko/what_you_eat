@@ -73,7 +73,7 @@ namespace DataAccess.Tables
 
         #region Duration
 
-        private DateTime? duration;
+        private DateTime? duration = new DateTime();
 
         public DateTime? Duration
         {

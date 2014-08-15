@@ -69,6 +69,7 @@
     <Compile Include="Locator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnergyTodayViewModel.cs" />
+    <Compile Include="SettingsViewModel.cs" />
     <Compile Include="UserDataViewModel.cs" />
     <Compile Include="ViewModel.cs" />
   </ItemGroup>

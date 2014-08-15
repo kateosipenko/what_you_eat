@@ -97,6 +97,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to current language.
+        /// </summary>
+        public static string CurrentLanguage {
+            get {
+                return ResourceManager.GetString("CurrentLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eaten.
         /// </summary>
         public static string Eaten {

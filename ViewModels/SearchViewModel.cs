@@ -24,16 +24,16 @@ namespace ViewModels
 
         public SearchViewModel()
         {
-            this.InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
-            this.NavigateBackCommand = new RelayCommand(NavigateBackExecute);
+            this.InitializeCommand = new RelayCommand(InitializeExecute);
+            this.CleanupCommand = new RelayCommand(CleanupExecute);
             this.NavigateToDetailsCommand = new RelayCommand<RaisableObject>(NavigateToDetailsExecute);
         }
 
         #region Initialization
 
-        protected override void InitializeViewModelExecute()
+        protected override void InitializeExecute()
         {
-            base.InitializeViewModelExecute();
+            base.InitializeExecute();
             var parameters = NavigationProvider.GetNavigationParameters();
             if (parameters.ContainsKey(Constants.NavigationParameters.EnergyType))
             {
@@ -108,10 +108,10 @@ namespace ViewModels
 
         #region Clear
 
-        protected override void NavigateBackExecute()
+        protected override void CleanupExecute()
         {
             Clear();
-            base.NavigateBackExecute();
+            base.CleanupExecute();
         }
 
         private void Clear()

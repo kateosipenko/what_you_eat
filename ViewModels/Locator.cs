@@ -255,5 +255,35 @@ namespace ViewModels
         }
 
         #endregion DistributeCalories
+
+        #region Settings
+
+        private static SettingsViewModel settings;
+
+        public static SettingsViewModel SettingsStatic
+        {
+            get
+            {
+                if (settings == null)
+                    settings = new SettingsViewModel();
+                return settings;
+            }
+        }
+
+        public SettingsViewModel Settings
+        {
+            get { return SettingsStatic; }
+        }
+
+        public static void CleanSettings()
+        {
+            if (settings != null)
+            {
+                settings.Dispose();
+                settings = null;
+            }
+        }
+
+        #endregion Settings
     }
 }

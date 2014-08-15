@@ -29,15 +29,15 @@ namespace ViewModels
 
         public ActivityDetailsViewModel()
         {
-            this.InitializeViewModelCommand = new RelayCommand(InitializeViewModelExecute);
+            this.InitializeCommand = new RelayCommand(InitializeExecute);
             SpentEnergyCommend = new RelayCommand(SpentEnergyExecute);
         }
 
         #region Initialization
 
-        protected override void InitializeViewModelExecute()
+        protected override void InitializeExecute()
         {
-            base.InitializeViewModelExecute();
+            base.InitializeExecute();
             BusyCount++;
             var parameters = NavigationProvider.GetNavigationParameters();
             if (parameters.ContainsKey(Constants.NavigationParameters.ActivityId))
@@ -73,5 +73,15 @@ namespace ViewModels
         }
 
         #endregion SpentEnergy
+
+        #region Cleanup
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            this.CurrentActivity = null;
+        }
+
+        #endregion Cleanup
     }
 }
