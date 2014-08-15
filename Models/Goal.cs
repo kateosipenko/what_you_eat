@@ -22,10 +22,6 @@ namespace Models
         private DateTime? desiredDate = null;
         private int desiredWeeksCount;
         private float desiredWeight;
-        private int caloriesPerDay;
-        private float weightPerWeek;
-        private int forFood;
-        private int forExersizes;
 
         #endregion Fields
 
@@ -39,28 +35,6 @@ namespace Models
             {
                 course = value;
                 RaisePropertyChanged("Course");
-            }
-        }
-
-        [DataMember]
-        public int ForFood
-        {
-            get { return forFood; }
-            set
-            {
-                forFood = value;
-                RaisePropertyChanged("ForFood");
-            }
-        }
-
-        [DataMember]
-        public int ForExersizes
-        {
-            get { return forExersizes; }
-            set
-            {
-                forExersizes = value;
-                RaisePropertyChanged("ForExersizes");
             }
         }
 

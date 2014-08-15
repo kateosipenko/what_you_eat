@@ -30,6 +30,7 @@ namespace Shared
             public const string SpentToday = "spent_today";
             public const string User = "user";
             public const string Language = "language";
+            public const string DietPlan = "diet_plan";
         }
 
         public struct Pages

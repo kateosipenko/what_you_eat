@@ -46,7 +46,7 @@ namespace WhatYouEatWP7.Helpers
                 case Course.LoseWeight:
                     try
                     {
-                        result = string.Format(CommonStrings.RedOf, plan.UselessCalories);
+                        result = string.Format(CommonStrings.RedOf, plan.ThrowOffPerDay);
                     }
                     catch (Exception ex)
                     {
@@ -55,7 +55,7 @@ namespace WhatYouEatWP7.Helpers
                 case Course.PutOnWeight:
                     try
                     {
-                        result = string.Format(CommonStrings.PutOn, plan.RequiredCalories);
+                        result = string.Format(CommonStrings.PutOn, plan.PutOnPerDay);
                     }
                     catch (Exception ex)
                     {

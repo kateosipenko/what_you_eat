@@ -80,7 +80,13 @@ namespace DataAccess.Tables
         {
             get
             {
-                return Birthday != null ? DateTime.Now.Year - Birthday.Value.Year : 0;
+                if (birthday == null || birthday.Value == null)
+                    return 0;
+
+                DateTime today = DateTime.Today;
+                int age = today.Year - birthday.Value.Year;
+                if (birthday.Value > today.AddYears(-age)) age--;
+                return age;
             }
         }
 

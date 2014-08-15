@@ -62,8 +62,8 @@ namespace ViewModels
             {
                 forFood = value;
                 forExersizes = maximum - forFood;
-                dietPlan.CaloriesPerDay = dietPlan.NormalCaloriesPerDay - (int)forFood;
-                dietPlan.ExersizesPerDay = (int) forExersizes;
+                dietPlan.DailyCalories = dietPlan.NormalPerDay - (int)forFood;
+                dietPlan.PlanForExersizes = (int) forExersizes;
                 RaisePropertyChanged("ForFood");
                 RaisePropertyChanged("ForExersizes");
             }
@@ -82,8 +82,8 @@ namespace ViewModels
             {
                 forExersizes = value;
                 forFood = maximum - forExersizes;
-                dietPlan.CaloriesPerDay = dietPlan.NormalCaloriesPerDay - (int)forFood;
-                dietPlan.ExersizesPerDay = (int) forExersizes;
+                dietPlan.DailyCalories = dietPlan.NormalPerDay - (int)forFood;
+                dietPlan.PlanForExersizes = (int) forExersizes;
                 RaisePropertyChanged("ForFood");
                 RaisePropertyChanged("ForExersizes");
             }
@@ -98,7 +98,7 @@ namespace ViewModels
         private void NavigateToHomeExecute()
         {
             CacheManager.Instance.UpdateDietPlan(dietPlan);
-            NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.Home);
+            NavigationProvider.NavigateAndRemoveBackEntries(Constants.Pages.Home);
         }
 
         #endregion NavigateToHomeCommand
@@ -155,7 +155,7 @@ namespace ViewModels
                     Maximum = 0;
                     break;
                 case Course.LoseWeight:
-                    Maximum = DietPlan.UselessCalories;
+                    Maximum = DietPlan.ThrowOffPerDay;
                     break;
             }
 
@@ -170,7 +170,7 @@ namespace ViewModels
             {
                 UpdatePlanVisibility = Visibility.Visible;
                 if (CacheManager.Instance.Goal.Course == Course.LoseWeight)
-                    ForFood = CacheManager.Instance.Goal.ForFood;
+                    ForFood = CacheManager.Instance.Plan.PlanForFood;
             }
         }
     }

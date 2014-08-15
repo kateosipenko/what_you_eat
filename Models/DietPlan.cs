@@ -9,123 +9,155 @@ namespace Models
     [DataContract]
     public class DietPlan : RaisableObject
     {
-        #region MetabolismCalories
+        #region Metabolism
 
-        private int metabolismCalories;
+        private int metabolism;
 
+        /// <summary>
+        /// Calories that required for metabolism per day.
+        /// </summary>
         [DataMember]
-        public int MetabolismCalories
+        public int Metabolism
         {
-            get { return metabolismCalories; }
+            get { return metabolism; }
             set
             {
-                metabolismCalories = value;
-                RaisePropertyChanged("MetabolismCalories");
+                metabolism = value;
+                RaisePropertyChanged("Metabolism");
             }
         }
 
-        #endregion MetabolismCalories
+        #endregion Metabolism
 
-        #region NormalCaloriesPerDay
+        #region NormalPerDay
 
-        private int normalCaloriesPerDay;
+        private int normalPerDay;
 
+        /// <summary>
+        /// Amount of calories per day for keeping current weight
+        /// </summary>
         [DataMember]
-        public int NormalCaloriesPerDay
+        public int NormalPerDay
         {
-            get { return normalCaloriesPerDay; }
+            get { return normalPerDay; }
             set
             {
-                normalCaloriesPerDay = value;
-                RaisePropertyChanged("NormalCaloriesPerDay");
+                normalPerDay = value;
+                RaisePropertyChanged("NormalPerDay");
             }
         }
 
-        #endregion NormalCaloriesPerDay
+        #endregion NormalPerDay
 
-        #region CriticalCaloriesMin
+        #region CriticalMinimum
 
-        private int criticalCaloriesMin;
+        private int criticalMinimum;
 
+        /// <summary>
+        /// Critical minimum of calories per day which is safe for health
+        /// </summary>
         [DataMember]
-        public int CriticalCaloriesMin
+        public int CriticalMinimum
         {
-            get { return criticalCaloriesMin; }
+            get { return criticalMinimum; }
             set
             {
-                criticalCaloriesMin = value;
-                RaisePropertyChanged("CriticalCaloriesMin");
+                criticalMinimum = value;
+                RaisePropertyChanged("CriticalMinimum");
             }
         }
 
-        #endregion CriticalCaloriesMin
+        #endregion CriticalMinimum
 
-        #region UselessCalories
+        #region ThrowOffPerDay
 
-        private int uselessCalories;
+        private int throwOffPerDay;
 
+        /// <summary>
+        /// Amount of calories that user has to throw off per day for losing weight by the plan
+        /// </summary>
         [DataMember]
-        public int UselessCalories
+        public int ThrowOffPerDay
         {
-            get { return uselessCalories; }
+            get { return throwOffPerDay; }
             set
             {
-                uselessCalories = value;
-                RaisePropertyChanged("UselessCalories");
+                throwOffPerDay = value;
+                RaisePropertyChanged("ThrowOffPerDay");
             }
         }
 
-        #endregion UselessCalories
+        #endregion ThrowOffPerDay
 
-        #region RequiredCalories
+        #region PutOnPerDay
 
-        private int requiredCalories;
+        private int putOnPerDay;
 
+        /// <summary>
+        /// Amount of calories that user has to eat per day for put on weight by the plan
+        /// </summary>
         [DataMember]
-        public int RequiredCalories
+        public int PutOnPerDay
         {
-            get { return requiredCalories; }
+            get { return putOnPerDay; }
             set
             {
-                requiredCalories = value;
-                RaisePropertyChanged("RequiredCalories");
+                putOnPerDay = value;
+                RaisePropertyChanged("PutOnPerDay");
             }
         }
 
-        #endregion RequiredCalories
+        #endregion PutOnPerDay
 
-        #region CaloriesPerDay
+        #region DailyCalories
 
-        private int caloriesPerDay;
+        private int dailyCalories;
 
         [DataMember]
-        public int CaloriesPerDay
+        public int DailyCalories
         {
-            get { return caloriesPerDay; }
+            get { return dailyCalories; }
             set
             {
-                caloriesPerDay = value;
-                RaisePropertyChanged("CaloriesPerDay");
+                dailyCalories = value;
+                RaisePropertyChanged("DailyCalories");
             }
         }
 
-        #endregion CaloriesPerDay
+        #endregion DailyCalories
 
-        #region ExersizesPerDay
+        #region PlanForFood
 
-        private int exersizesPerDay;
+        private int planForFood;
 
         [DataMember]
-        public int ExersizesPerDay
+        public int PlanForFood
         {
-            get { return exersizesPerDay; }
+            get { return planForFood; }
             set
             {
-                exersizesPerDay = value;
-                RaisePropertyChanged("ExersizesPerDay");
+                planForFood = value;
+                RaisePropertyChanged("PlanForFood");
             }
         }
 
-        #endregion ExersizesPerDay
+        #endregion PlanForFood
+
+        #region PlanForExersizes
+
+        private int planForExersizes;
+
+        [DataMember]
+        public int PlanForExersizes
+        {
+            get { return planForExersizes; }
+            set
+            {
+                planForExersizes = value;
+                RaisePropertyChanged("PlanForExersizes");
+            }
+        }
+
+        #endregion PlanForExersizes
     }
 }

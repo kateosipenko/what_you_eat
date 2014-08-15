@@ -67,13 +67,12 @@ namespace ViewModels.Helpers
                     eatenFood = IsolatedStorage.ReadValue<List<Food>>(Constants.CacheKeys.EatenFood);
                     spentToday = IsolatedStorage.ReadValue<List<PhysicalActivity>>(Constants.CacheKeys.SpentToday);
                     goal = IsolatedStorage.ReadValue<Goal>(Constants.CacheKeys.Goal);
+                    plan = IsolatedStorage.ReadValue<DietPlan>(Constants.CacheKeys.DietPlan);
                     if (eatenFood == null)
                         eatenFood = new List<Food>();
 
                     if (spentToday == null)
                         spentToday = new List<PhysicalActivity>();
-
-                    UpdateDietPlan();
                 };
 
                 worker.RunWorkerAsync();
@@ -175,7 +174,7 @@ namespace ViewModels.Helpers
             if (goal.Course != Course.LoseWeight)
             {
                 int totalSpent = spentToday.Sum(item => item.SpentEnergy);
-                plan.CaloriesPerDay = plan.NormalCaloriesPerDay + plan.RequiredCalories + totalSpent;
+                plan.DailyCalories = plan.NormalPerDay + plan.PutOnPerDay + totalSpent;
             }
 
             return newActivity;
@@ -240,18 +239,18 @@ namespace ViewModels.Helpers
             if (user != null && user.BodyState != null && goal != null)
             {
                 // weight(gramm) / 450 * 8
-                plan.CriticalCaloriesMin = (int)((user.BodyState.Weight * 1000) / 450) * 8;
-                if (plan.CriticalCaloriesMin < 1200)
-                    plan.CriticalCaloriesMin = 1200;
+                plan.CriticalMinimum = (int)((user.BodyState.Weight * 1000) / 450) * 8;
+                if (plan.CriticalMinimum < 1200)
+                    plan.CriticalMinimum = 1200;
 
                 int ratio = 5;
                 if (user.Sex == Sex.Male)
                     ratio = -161;
                 // 999 * weight(kg) + 6.25 * height(sm) - 4/92 * age (-161 for men) (+5 for women)
-                plan.MetabolismCalories = (int)(9.99 * user.BodyState.Weight + 6.25 * user.BodyState.Height - 4.92 * user.Age + ratio);
-                plan.NormalCaloriesPerDay = (int)(plan.MetabolismCalories * user.ActivityType.Value);
+                plan.Metabolism = (int)(9.99 * user.BodyState.Weight + 6.25 * user.BodyState.Height - 4.92 * user.Age + ratio);
+                plan.NormalPerDay = (int)(plan.Metabolism * user.ActivityType.Value);
                 int totalSpent = spentToday.Sum(item => item.SpentEnergy);
-                plan.CaloriesPerDay = plan.NormalCaloriesPerDay;
+                plan.DailyCalories = plan.NormalPerDay;
                 if (goal.Course != Course.KeepWeight)
                 {
                     // weight difference in gramms
@@ -260,35 +259,33 @@ namespace ViewModels.Helpers
                     if (goal.Course == Course.LoseWeight)
                     {
                         // 1gramm = 7.7 calories (for loosing weight)
-                        plan.UselessCalories = (int)(weightPerDay * 7.7);
-                        plan.CaloriesPerDay = plan.NormalCaloriesPerDay - goal.ForFood;
+                        plan.ThrowOffPerDay = (int)(weightPerDay * 7.7);
+                        plan.DailyCalories = plan.NormalPerDay - plan.PlanForFood;
                     }
                     else
                     {
                         // 1gramm = 11 calories (for put on weight)
-                        plan.RequiredCalories = (int)weightPerDay * 11;
-                        plan.CaloriesPerDay = plan.NormalCaloriesPerDay + plan.RequiredCalories + totalSpent;
+                        plan.PutOnPerDay = (int)weightPerDay * 11;
+                        plan.DailyCalories = plan.NormalPerDay + plan.PutOnPerDay + totalSpent;
                     }
                 }
                 else
                 {
-                    plan.CaloriesPerDay += plan.RequiredCalories + totalSpent;
+                    plan.DailyCalories += plan.PutOnPerDay + totalSpent;
                 }
-
-
-                plan.ExersizesPerDay = goal.ForExersizes;
             }
+
+            IsolatedStorage.WriteValue(Constants.CacheKeys.DietPlan, plan);
         }
 
         public void UpdateDietPlan(DietPlan plan)
         {
             this.plan = plan;
-            goal.ForExersizes = plan.ExersizesPerDay;
-            goal.ForFood = plan.NormalCaloriesPerDay - plan.CaloriesPerDay;
+            plan.PlanForFood = plan.NormalPerDay - plan.DailyCalories;
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (sender, args) =>
             {
-                IsolatedStorage.WriteValue(Constants.CacheKeys.Goal, goal);
+                IsolatedStorage.WriteValue(Constants.CacheKeys.DietPlan, plan);
             };
             worker.RunWorkerAsync();
         }

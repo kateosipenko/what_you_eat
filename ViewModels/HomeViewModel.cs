@@ -28,8 +28,8 @@ namespace ViewModels
             base.InitializeExecute();
             TotalEaten = CacheManager.Instance.GetEatenToday().Sum(item => item.AmountOfCalories);
             TotalActivity = CacheManager.Instance.GetSpentToday().Sum(item => item.SpentEnergy);
-            MustEat = CacheManager.Instance.Plan.CaloriesPerDay;
-            MustSpent = CacheManager.Instance.Plan.ExersizesPerDay;
+            MustEat = CacheManager.Instance.Plan.DailyCalories;
+            MustSpent = CacheManager.Instance.Plan.PlanForExersizes;
         }
 
         #region Food
