@@ -57,30 +57,8 @@ namespace ViewModels
 
         private void SaveAndGoNextExecute()
         {
-            BusyCount++;
-            RunInBackground(() =>
-            {
-                
-                using (var repo = new BodyStateRepository())
-                {
-                    var created = repo.Add(user.BodyState);
-                    if (created == null)
-                    {
-                        HandleError(ErrorsStrings.SaveInfoError);                        
-                    }
-                    else
-                    {                        
-                        InvokeInUIThread(() =>
-                        {
-                            user.BodyState = created;
-                            CacheManager.Instance.SaveUser(user);
-                            NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.FristStartGoal);
-                        });
-                    }
-                    
-                    InvokeInUIThread(() => BusyCount--);
-                }
-            });
+            CacheManager.Instance.SaveUser(user);
+            NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.FristStartGoal);
         }
 
         private bool SaveAndGoNextCanExecute()

@@ -99,8 +99,25 @@ namespace ViewModels.Helpers
         public void SaveUser(User user)
         {
             this.user = user;
-            IsolatedStorage.WriteValue(Constants.CacheKeys.User, user);
             UpdateDietPlan();
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (sender, args) =>
+            {
+                using (var repo = new BodyStateRepository())
+                {
+                    user.UpdateBodyState(repo.Add(user.BodyState));
+                }
+
+                IsolatedStorage.WriteValue(Constants.CacheKeys.User, user);
+            };
+            worker.RunWorkerAsync();
+        }
+
+        public void UpdateBodyState(BodyState state, ActivityType type)
+        {
+            user.ActivityType = type;
+            user.BodyState = state;
+            SaveUser(user);
         }
 
         #endregion User
@@ -259,13 +276,13 @@ namespace ViewModels.Helpers
                     if (goal.Course == Course.LoseWeight)
                     {
                         // 1gramm = 7.7 calories (for loosing weight)
-                        plan.ThrowOffPerDay = (int)(weightPerDay * 7.7);
-                        plan.DailyCalories = plan.NormalPerDay - plan.PlanForFood;
+                        plan.ThrowOffPerDay = weightPerDay != 0 ? (int)(weightPerDay * 7.7) : 0;
+                        plan.DailyCalories = plan.NormalPerDay - (int) plan.PlanForFood * plan.ThrowOffPerDay;
                     }
                     else
                     {
                         // 1gramm = 11 calories (for put on weight)
-                        plan.PutOnPerDay = (int)weightPerDay * 11;
+                        plan.PutOnPerDay = weightDif != 0 ? (int)weightPerDay * 11 : 0;
                         plan.DailyCalories = plan.NormalPerDay + plan.PutOnPerDay + totalSpent;
                     }
                 }
@@ -281,7 +298,6 @@ namespace ViewModels.Helpers
         public void UpdateDietPlan(DietPlan plan)
         {
             this.plan = plan;
-            plan.PlanForFood = plan.NormalPerDay - plan.DailyCalories;
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (sender, args) =>
             {

@@ -22,7 +22,26 @@ namespace ViewModels
         public GoalViewModel()
         {
             SaveAndGoNextCommand = new RelayCommand(SaveAndGoNextExecute);
+            Courses.Add(Course.KeepWeight);
+            Courses.Add(Course.LoseWeight);
+            Courses.Add(Course.PutOnWeight);
         }
+
+        #region AllCourses
+
+        private List<Course> courses = new List<Course>(3);
+
+        public List<Course> Courses
+        {
+            get { return courses; }
+            set
+            {
+                courses = value;
+                RaisePropertyChanged("Courses");
+            }
+        }
+
+        #endregion AllCourses
 
         #region Properties
 

@@ -59,6 +59,11 @@ namespace DataAccess.Tables
             }
         }
 
+        public void UpdateBodyState(BodyState state)
+        {
+            bodyState = state;
+        }
+
         #endregion BodyState
 
         #region ActivityType

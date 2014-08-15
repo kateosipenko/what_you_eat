@@ -29,7 +29,6 @@ namespace ViewModels
 
         public ActivityDetailsViewModel()
         {
-            this.InitializeCommand = new RelayCommand(InitializeExecute);
             SpentEnergyCommend = new RelayCommand(SpentEnergyExecute);
         }
 

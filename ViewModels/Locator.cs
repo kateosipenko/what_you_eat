@@ -285,5 +285,26 @@ namespace ViewModels
         }
 
         #endregion Settings
+
+        #region Profile
+
+        private static ProfileViewModel profile;
+
+        public static ProfileViewModel ProfileStatic
+        {
+            get
+            {
+                if (profile == null)
+                    profile = new ProfileViewModel();
+                return profile;
+            }
+        }
+
+        public ProfileViewModel Profile
+        {
+            get { return ProfileStatic; }
+        }
+
+        #endregion Profile
     }
 }

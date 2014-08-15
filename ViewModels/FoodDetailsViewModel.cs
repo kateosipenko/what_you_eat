@@ -29,7 +29,6 @@ namespace ViewModels
 
         public FoodDetailsViewModel()
         {
-            InitializeCommand = new RelayCommand(InitializeExecute);
             EatFoodCommand = new RelayCommand(EatFoodExecute);
         }
 

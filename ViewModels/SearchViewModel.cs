@@ -24,8 +24,6 @@ namespace ViewModels
 
         public SearchViewModel()
         {
-            this.InitializeCommand = new RelayCommand(InitializeExecute);
-            this.CleanupCommand = new RelayCommand(CleanupExecute);
             this.NavigateToDetailsCommand = new RelayCommand<RaisableObject>(NavigateToDetailsExecute);
         }
 

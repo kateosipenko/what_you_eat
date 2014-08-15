@@ -57,6 +57,7 @@
     <Compile Include="ActivityDetailsViewModel.cs" />
     <Compile Include="DistributeCaloriesViewModel.cs" />
     <Compile Include="FoodDetailsViewModel.cs" />
+    <Compile Include="ProfileViewModel.cs" />
     <Compile Include="SearchViewModel.cs" />
     <Compile Include="GoalViewModel.cs" />
     <Compile Include="Helpers\CacheManager.cs" />

@@ -45,6 +45,7 @@ namespace Shared
             public const string ActivityDetails = "/Views/Activity/ActivityDetailsPage.xaml";
             public const string DistributeCalories = "/Views/DietPlan/DistributeCalories.xaml";
             public const string Settings = "/Views/SettingsPage.xaml";
+            public const string Profile = "/Views/Profile/ProfilePage.xaml";
         }
 
         public struct NavigationParameters

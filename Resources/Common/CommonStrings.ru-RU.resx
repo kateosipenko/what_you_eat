@@ -222,4 +222,7 @@
   <data name="CurrentLanguage" xml:space="preserve">
     <value>текущий язык</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>профиль</value>
+  </data>
 </root>

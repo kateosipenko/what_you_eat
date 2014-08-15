@@ -12,7 +12,6 @@ namespace ViewModels
     {
         public SettingsViewModel()
         {
-            this.InitializeCommand = new RelayCommand(this.InitializeExecute);
             SaveCommand = new RelayCommand(SaveExecute);
         }
 

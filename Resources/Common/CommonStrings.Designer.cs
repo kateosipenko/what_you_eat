@@ -250,6 +250,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to profile.
+        /// </summary>
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to put on {0} kkal per day.
         /// </summary>
         public static string PutOn {

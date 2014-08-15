@@ -63,6 +63,7 @@
 
         <toolkit:ListPicker Grid.Row="2"
                             x:Name="coursePicker"
+                            ItemsSource="{Binding Courses}"
                             SelectedItem="{Binding Goal.Course, Mode=TwoWay}" />
 
         <!--GOAL DATA-->

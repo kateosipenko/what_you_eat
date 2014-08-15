@@ -17,9 +17,7 @@ namespace ViewModels
 
         public EnergyTodayViewModel()
         {
-            this.InitializeCommand = new RelayCommand(InitializeExecute);
             DeleteFromTodayCommand = new RelayCommand<RaisableObject>(DeleteFromTodayExecute);
-            CleanupCommand = new RelayCommand(CleanupExecute);
             NavigateToSearchCommand = new RelayCommand(NavigateToSearchExecute);
         }
 

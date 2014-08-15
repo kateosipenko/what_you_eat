@@ -34,14 +34,8 @@ namespace WhatYouEatWP7.Views.FirstStart
         {
             if (!wasLoaded)
             {
-                this.coursePicker.SummaryForSelectedItemsDelegate = new Func<IList,string>(OnCourseSummaryChanged);
+                this.coursePicker.SummaryForSelectedItemsDelegate = new Func<IList, string>(OnCourseSummaryChanged);
                 this.periodPicker.SummaryForSelectedItemsDelegate = new Func<IList,string>(OnPeriodSummaryChanged);
-
-                List<Course> courses = new List<Course>(3);
-                courses.Add(Course.KeepWeight);
-                courses.Add(Course.LoseWeight);
-                courses.Add(Course.PutOnWeight);
-                coursePicker.ItemsSource = courses;
 
                 List<Period> periods = new List<Period>(2);
                 periods.Add(Period.Until);

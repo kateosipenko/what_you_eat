@@ -128,10 +128,13 @@ namespace Models
 
         #region PlanForFood
 
-        private int planForFood;
+        private float planForFood;
 
+        /// <summary>
+        /// Procent from daily ThrowOffPerDay value.
+        /// </summary>
         [DataMember]
-        public int PlanForFood
+        public float PlanForFood
         {
             get { return planForFood; }
             set
@@ -145,10 +148,13 @@ namespace Models
 
         #region PlanForExersizes
 
-        private int planForExersizes;
+        private float planForExersizes;
 
+        /// <summary>
+        /// Procent from ThrowOffPerDay value for exersizes
+        /// </summary>
         [DataMember]
-        public int PlanForExersizes
+        public float PlanForExersizes
         {
             get { return planForExersizes; }
             set

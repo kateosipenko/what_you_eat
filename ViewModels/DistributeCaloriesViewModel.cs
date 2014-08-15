@@ -14,7 +14,6 @@ namespace ViewModels
     {
         public DistributeCaloriesViewModel()
         {
-            InitializeCommand = new RelayCommand(InitializeExecute);
             NavigateToHomeCommand = new RelayCommand(NavigateToHomeExecute);
             NavigateToPlanCommand = new RelayCommand(NavigateToPlanExecute);
         }
@@ -44,12 +43,44 @@ namespace ViewModels
             get { return maximum; }
             set
             {
-                maximum = value;
+                maximum = value;                
                 RaisePropertyChanged("Maximum");
             }
         }
 
         #endregion Maximum
+
+        #region ExersizesMin
+
+        private int exersizesMin = 0;
+
+        public int ExersizesMin
+        {
+            get { return exersizesMin; }
+            set
+            {
+                exersizesMin = value;
+                RaisePropertyChanged("ExersizesMin");
+            }
+        }
+
+        #endregion ExersizesMin
+
+        #region FoodMaximum
+
+        private int foodMaximum;
+
+        public int FoodMaximum
+        {
+            get { return foodMaximum; }
+            set
+            {
+                foodMaximum = value;
+                RaisePropertyChanged("FoodMaximum");
+            }
+        }
+
+        #endregion FoodMaximum
 
         #region ForFood
 
@@ -63,7 +94,7 @@ namespace ViewModels
                 forFood = value;
                 forExersizes = maximum - forFood;
                 dietPlan.DailyCalories = dietPlan.NormalPerDay - (int)forFood;
-                dietPlan.PlanForExersizes = (int) forExersizes;
+                dietPlan.PlanForExersizes = (float) forExersizes / CacheManager.Instance.Plan.ThrowOffPerDay;
                 RaisePropertyChanged("ForFood");
                 RaisePropertyChanged("ForExersizes");
             }
@@ -75,15 +106,15 @@ namespace ViewModels
 
         private double forExersizes;
 
-        public double ForExersizes
+        public int ForExersizes
         {
-            get { return forExersizes; }
+            get { return (int)forExersizes; }
             set
             {
                 forExersizes = value;
                 forFood = maximum - forExersizes;
                 dietPlan.DailyCalories = dietPlan.NormalPerDay - (int)forFood;
-                dietPlan.PlanForExersizes = (int) forExersizes;
+                dietPlan.PlanForExersizes = (float) forExersizes / CacheManager.Instance.Plan.ThrowOffPerDay;
                 RaisePropertyChanged("ForFood");
                 RaisePropertyChanged("ForExersizes");
             }
@@ -97,6 +128,7 @@ namespace ViewModels
 
         private void NavigateToHomeExecute()
         {
+            dietPlan.PlanForFood = 1 - dietPlan.PlanForExersizes;
             CacheManager.Instance.UpdateDietPlan(dietPlan);
             NavigationProvider.NavigateAndRemoveBackEntries(Constants.Pages.Home);
         }
@@ -136,7 +168,7 @@ namespace ViewModels
         {
             base.Cleanup();
             this.DietPlan = null;
-            this.Maximum = 0;
+            this.maximum = 0;
             this.forFood = 0;
             this.forExersizes = 0;
             this.BusyCount = 0;
@@ -154,23 +186,26 @@ namespace ViewModels
                 case Course.PutOnWeight:
                     Maximum = 0;
                     break;
-                case Course.LoseWeight:
+                case Course.LoseWeight:                    
                     Maximum = DietPlan.ThrowOffPerDay;
                     break;
             }
+
+            FoodMaximum = DietPlan.NormalPerDay - DietPlan.CriticalMinimum;
+            ExersizesMin = Maximum - FoodMaximum;
 
             var parameters = NavigationProvider.GetNavigationParameters();
             if (parameters.ContainsKey(Constants.NavigationParameters.FromGoal))
             {
                 UpdatePlanVisibility = Visibility.Collapsed;
                 if (CacheManager.Instance.Goal.Course == Course.LoseWeight)
-                    ForExersizes = Maximum / 2;
+                    ForExersizes = Maximum;
             }
             else
             {
                 UpdatePlanVisibility = Visibility.Visible;
                 if (CacheManager.Instance.Goal.Course == Course.LoseWeight)
-                    ForFood = CacheManager.Instance.Plan.PlanForFood;
+                    ForFood = CacheManager.Instance.Plan.PlanForFood * CacheManager.Instance.Plan.ThrowOffPerDay;
             }
         }
     }

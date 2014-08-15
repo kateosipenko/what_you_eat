@@ -63,7 +63,7 @@
                    Visibility="{Binding Maximum, Converter={StaticResource NullableToVisibilityConverter}}"
                    Grid.Row="3" />
 
-        <TextBlock Text="{Binding DietPlan.PlanForExersizes}"
+        <TextBlock Text="{Binding ForExersizes}"
                    Visibility="{Binding Maximum, Converter={StaticResource NullableToVisibilityConverter}}"
                    FontSize="22" Grid.Column="1" HorizontalAlignment="Right"
                    Grid.Row="3" />
@@ -83,7 +83,7 @@
                                        Dimension="kkal"
                                        Value="{Binding ForFood, Mode=TwoWay}"
                                        Header="{Binding Converter={StaticResource CourseToTextConverter}, ConverterParameter='food'}"
-                                       Maximum="{Binding Maximum}" />
+                                       Maximum="{Binding FoodMaximum}" />
 
             <customControls:ExtendedSlider Grid.Row="1"
                                        Background="{StaticResource PhoneDisabledBrush}"
@@ -91,6 +91,7 @@
                                        Value="{Binding ForExersizes, Mode=TwoWay}"
                                        FontSize="18" Foreground="{StaticResource PhoneAccentBrush}"
                                        Dimension="kkal"
+                                       Minimum="{Binding ExersizesMin}"
                                        Header="{Binding Common.Exersizes, Source={StaticResource LocalizationManager}}"
                                        Maximum="{Binding Maximum}" />
 

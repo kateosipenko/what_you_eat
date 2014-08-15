@@ -47,7 +47,10 @@
     </Grid>
 
     <binBar:Bindable.ApplicationBar>
-        <binBar:BindableApplicationBar Mode="Minimized" BindableOpacity="0.6">
+        <binBar:BindableApplicationBar BindableOpacity="0.6">
+            <binBar:BindableApplicationBarButton IconUri="/Icons/user.png"
+                                                 Command="{Binding NavigateToProfileCommand}"
+                                                 Text="{Binding Common.Profile, Source={StaticResource LocalizationManager}}" />
             <binBar:BindableApplicationBar.MenuItems>
                 <binBar:BindableApplicationBarMenuItem Command="{Binding NavigateToSettingsCommand}"
                                                        Text="{Binding Common.Settings, Source={StaticResource LocalizationManager}}" />
