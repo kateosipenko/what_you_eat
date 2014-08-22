@@ -28,6 +28,7 @@ namespace Shared
             public const string CurrentDate = "current_date";
             public const string EatenFood = "eaten_food";
             public const string SpentToday = "spent_today";
+            public const string WaterToday = "water_today";
             public const string User = "user";
             public const string Language = "language";
             public const string DietPlan = "diet_plan";
@@ -46,6 +47,7 @@ namespace Shared
             public const string DistributeCalories = "/Views/DietPlan/DistributeCalories.xaml";
             public const string Settings = "/Views/SettingsPage.xaml";
             public const string Profile = "/Views/Profile/ProfilePage.xaml";
+            public const string Water = "/Views/Water/WaterPage.xaml";
         }
 
         public struct NavigationParameters

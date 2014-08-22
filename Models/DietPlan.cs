@@ -165,5 +165,25 @@ namespace Models
         }
 
         #endregion PlanForExersizes
+
+        #region Water
+
+        private int water = 0;
+
+        /// <summary>
+        /// Amount of water in milliliters that user has to drink per day.
+        /// </summary>
+        [DataMember]
+        public int Water
+        {
+            get { return water; }
+            set
+            {
+                water = value;
+                RaisePropertyChanged("Water");
+            }
+        }
+
+        #endregion Water
     }
 }

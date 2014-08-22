@@ -70,6 +70,15 @@ namespace Resources.Buttons {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to drink water.
+        /// </summary>
+        public static string DrinkWater {
+            get {
+                return ResourceManager.GetString("DrinkWater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to save.
         /// </summary>
         public static string Save {

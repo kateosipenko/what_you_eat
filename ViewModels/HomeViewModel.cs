@@ -21,6 +21,7 @@ namespace ViewModels
             NavigateToPlanCommand = new RelayCommand(NavigateToPlanExecute);
             NavigateToSettingsCommand = new RelayCommand(NavigateToSettingsExecute);
             NavigateToProfileCommand = new RelayCommand(NavigateToProfileExecute);
+            NavigateToWaterCommand = new RelayCommand(NavigateToWater);
         }
 
         protected override void InitializeExecute()
@@ -30,6 +31,8 @@ namespace ViewModels
             TotalActivity = CacheManager.Instance.GetSpentToday().Sum(item => item.SpentEnergy);
             MustEat = CacheManager.Instance.Plan.DailyCalories;
             MustSpent = (int) (CacheManager.Instance.Plan.PlanForExersizes * CacheManager.Instance.Plan.ThrowOffPerDay);
+            MustDrink = CacheManager.Instance.Plan.Water;
+            WaterToday = CacheManager.Instance.WaterToday;
         }
 
         #region Food
@@ -86,6 +89,33 @@ namespace ViewModels
 
         #endregion Activity
 
+        #region Water
+
+        private int mustDrink = 0;
+        private int waterToday = 0;
+
+        public int MustDrink
+        {
+            get { return mustDrink; }
+            set
+            {
+                mustDrink = value;
+                RaisePropertyChanged("MustDrink");
+            }
+        }
+
+        public int WaterToday
+        {
+            get { return waterToday; }
+            set
+            {
+                waterToday = value;
+                RaisePropertyChanged("WaterToday");
+            }
+        }
+
+        #endregion Water
+
         #region NavigateToEatenCommand
 
         public RelayCommand NavigateToEatenCommand { get; private set; }
@@ -140,5 +170,16 @@ namespace ViewModels
         }
 
         #endregion NavigateToProfileCommand
+
+        #region NavigateToWaterCommand
+
+        public RelayCommand NavigateToWaterCommand { get; private set; }
+
+        private void NavigateToWater()
+        {
+            NavigationProvider.Navigate(Constants.Pages.Water);
+        }
+
+        #endregion NavigateToWaterCommand
     }
 }

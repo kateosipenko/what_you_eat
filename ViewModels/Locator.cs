@@ -306,5 +306,38 @@ namespace ViewModels
         }
 
         #endregion Profile
+
+        #region Water
+
+        private static WaterViewModel water;
+
+        public static WaterViewModel WaterStatic
+        {
+            get
+            {
+                if (water == null)
+                {
+                    water = new WaterViewModel();
+                }
+
+                return water;
+            }
+        }
+
+        public WaterViewModel Water
+        {
+            get { return WaterStatic; }
+        }
+
+        public void CleanWater()
+        {
+            if (water != null)
+            {
+                water.Dispose();
+                water = null;
+            }
+        }
+
+        #endregion Water
     }
 }

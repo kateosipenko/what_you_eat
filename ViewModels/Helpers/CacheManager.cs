@@ -26,9 +26,11 @@ namespace ViewModels.Helpers
                 currentDate = DateTime.Now;
                 eatenFood.Clear();
                 spentToday.Clear();
+                waterToday = 0;
                 IsolatedStorage.WriteValue(Constants.CacheKeys.CurrentDate, currentDate);
                 IsolatedStorage.WriteValue(Constants.CacheKeys.EatenFood, eatenFood);
                 IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
+                IsolatedStorage.WriteValue(Constants.CacheKeys.WaterToday, waterToday);
             }
         }
 
@@ -66,6 +68,7 @@ namespace ViewModels.Helpers
                 {
                     eatenFood = IsolatedStorage.ReadValue<List<Food>>(Constants.CacheKeys.EatenFood);
                     spentToday = IsolatedStorage.ReadValue<List<PhysicalActivity>>(Constants.CacheKeys.SpentToday);
+                    waterToday = IsolatedStorage.ReadValue<int>(Constants.CacheKeys.WaterToday);
                     goal = IsolatedStorage.ReadValue<Goal>(Constants.CacheKeys.Goal);
                     plan = IsolatedStorage.ReadValue<DietPlan>(Constants.CacheKeys.DietPlan);
                     if (eatenFood == null)
@@ -208,6 +211,45 @@ namespace ViewModels.Helpers
 
         #endregion Spent
 
+        #region Water
+
+        private int waterToday = 0;
+
+        public int WaterToday
+        {
+            get
+            {
+                CheckCurrentDay();
+                return waterToday;
+            }
+        }
+
+        public void DrinkWater(int amount)
+        {
+            waterToday += amount;
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (sender, args) =>
+            {
+                IsolatedStorage.WriteValue(Constants.CacheKeys.WaterToday, waterToday);
+            };
+
+            worker.RunWorkerAsync();
+        }
+
+        public void RemoveFromWater(int amount)
+        {
+            waterToday -= amount;
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (sender, args) =>
+            {
+                IsolatedStorage.WriteValue(Constants.CacheKeys.WaterToday, waterToday);
+            };
+
+            worker.RunWorkerAsync();
+        }
+
+        #endregion Water
+
         #region GoalandDiet
 
         private Goal goal;
@@ -277,7 +319,7 @@ namespace ViewModels.Helpers
                     {
                         // 1gramm = 7.7 calories (for loosing weight)
                         plan.ThrowOffPerDay = weightPerDay != 0 ? (int)(weightPerDay * 7.7) : 0;
-                        plan.DailyCalories = plan.NormalPerDay - (int) plan.PlanForFood * plan.ThrowOffPerDay;
+                        plan.DailyCalories = plan.NormalPerDay - (int)plan.PlanForFood * plan.ThrowOffPerDay;
                     }
                     else
                     {
@@ -290,6 +332,9 @@ namespace ViewModels.Helpers
                 {
                     plan.DailyCalories += plan.PutOnPerDay + totalSpent;
                 }
+
+                // water in milliliters
+                plan.Water = (int) ((user.BodyState.Weight * 0.03) * 1000);
             }
 
             IsolatedStorage.WriteValue(Constants.CacheKeys.DietPlan, plan);

@@ -6,6 +6,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:controls="clr-namespace:Controls;assembly=Controls"
     mc:Ignorable="d"
     DataContext="{Binding Home, Source={StaticResource Locator}}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -47,7 +48,11 @@
             </toolkit:HubTile.Background>-->
         </toolkit:HubTile>
 
-        <toolkit:HubTile Grid.Row="0" 
+        <controls:ProgressRound Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="10"/>
+        
+        <!--<toolkit:HubTile Grid.Row="0" 
                          Title="{Binding Common.Spent, Source={StaticResource LocalizationManager}}"
                          Foreground="#FF272323"
                          Command="{Binding NavigateToSpentCommand}"
@@ -61,28 +66,24 @@
                                          MaxValue="{Binding MustSpent}"
                                          Measure="kkal" />
             </i:Interaction.Behaviors>
-
-            <!--<toolkit:HubTile.Background>
-                <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5,1">
-                    <GradientStop Color="#FFFFD032" Offset="0.4"/>
-                    <GradientStop Color="#FFFFFBCE" Offset="0.2"/>
-                </LinearGradientBrush>
-            </toolkit:HubTile.Background>-->
-        </toolkit:HubTile>
+        </toolkit:HubTile>-->
+        
+        
 
         <toolkit:HubTile Grid.Row="1" 
                          Title="{Binding Common.Water, Source={StaticResource LocalizationManager}}"
                          Foreground="#FF272323"
                          BackBackground="#FF2290C3"
+                         Command="{Binding NavigateToWaterCommand}"
                          Source="/Icons/water.png"
-                         Message="0,5l/1l"
                          Grid.Column="0">
-            <toolkit:HubTile.Background>
-                <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5,1">
-                    <GradientStop Color="#FF2290C3" Offset="0.7"/>
-                    <GradientStop Color="#FFE0F1F9" Offset="0.5"/>
-                </LinearGradientBrush>
-            </toolkit:HubTile.Background>
+            <i:Interaction.Behaviors>
+                <helpers:HubTileBehavior StartBrush="#FF2290C3"
+                                         EndBrush="#FFE0F1F9"
+                                         Value="{Binding WaterToday}"
+                                         MaxValue="{Binding MustDrink}"
+                                         Measure="ml" />
+            </i:Interaction.Behaviors>
         </toolkit:HubTile>
 
         <toolkit:HubTile Grid.Row="1" 

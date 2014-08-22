@@ -225,4 +225,10 @@
   <data name="Profile" xml:space="preserve">
     <value>профиль</value>
   </data>
+  <data name="AmountOfWater" xml:space="preserve">
+    <value>Пожалуйста, введите количество воды, которое вы выпили (миллилитры)</value>
+  </data>
+  <data name="DrunkToday" xml:space="preserve">
+    <value>выпито сегодня</value>
+  </data>
 </root>

@@ -5,7 +5,21 @@
     xmlns:controls="clr-namespace:Controls">
 
     <Style TargetType="controls:ProgressRound">
-        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ProgressRound">
+                    <Grid>
+                        <Canvas x:Name="MainCanvas"
+                                RenderTransformOrigin="0.5, 0.5">
+                            <Canvas.RenderTransform>
+                                <RotateTransform Angle="-90"/>
+                            </Canvas.RenderTransform>
+                        </Canvas>
+                        <Ellipse Margin="10" Fill="White"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <ControlTemplate x:Key="PhoneSimpleRepeatButton" TargetType="RepeatButton">

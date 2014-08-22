@@ -120,6 +120,9 @@
   <data name="AddActivity" xml:space="preserve">
     <value>добавить активность</value>
   </data>
+  <data name="DrinkWater" xml:space="preserve">
+    <value>выпить воду</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>сохранить</value>
   </data>

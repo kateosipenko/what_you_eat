@@ -79,6 +79,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, input amount of water that you had drunk (milliliters).
+        /// </summary>
+        public static string AmountOfWater {
+            get {
+                return ResourceManager.GetString("AmountOfWater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What you eat?.
         /// </summary>
         public static string AppName {
@@ -102,6 +111,15 @@ namespace Resources.Common {
         public static string CurrentLanguage {
             get {
                 return ResourceManager.GetString("CurrentLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to drunk today.
+        /// </summary>
+        public static string DrunkToday {
+            get {
+                return ResourceManager.GetString("DrunkToday", resourceCulture);
             }
         }
         
