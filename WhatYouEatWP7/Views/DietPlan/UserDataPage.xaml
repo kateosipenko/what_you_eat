@@ -24,7 +24,7 @@
         <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
                                               CleanupCommand="{Binding CleanupCommand}"/>
     </i:Interaction.Behaviors>
-    
+
     <views:BasePage.Resources>
         <Style TargetType="toolkit:ListPicker">
             <Setter Property="Margin" Value="0" />
@@ -41,52 +41,77 @@
         </Style>
     </views:BasePage.Resources>
 
-    <StackPanel Orientation="Vertical" Style="{StaticResource ContainerStyle}">
-        
-        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}" Margin="-24,0" />
-        
+    <Grid Style="{StaticResource ContainerStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}"
+                                        Grid.Row="0" Grid.ColumnSpan="2"
+                                        Margin="-24,0" />
+
         <TextBlock Style="{StaticResource PageTitleStyle}" 
-                   TextWrapping="Wrap"
+                   TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2"
                    Text="{Binding Common.InputYourData, Source={StaticResource LocalizationManager}}"/>
-        
+
         <!--SEX-->
         <TextBlock Style="{StaticResource FieldStyle}"
+                   Grid.Row="2" Grid.Column="0"
                    Text="{Binding Common.Sex, Source={StaticResource LocalizationManager}}" />
 
-        <toolkit:ListPicker x:Name="sexPicker" Grid.Row="2"
-                            SelectedItem="{Binding User.Sex, Mode=TwoWay}"/>
-        
+        <toolkit:ListPicker Grid.Row="2" Grid.Column="1">
+            <i:Interaction.Behaviors>
+                <helpers:EnumPickerBehavior EnumType="{Binding SexType}"
+                                            SelectedItem="{Binding User.Sex, Mode=TwoWay}"/>
+            </i:Interaction.Behaviors>
+        </toolkit:ListPicker>
+
         <!--HEIGHT-->
-        <TextBlock Style="{StaticResource FieldStyle}"
+        <TextBlock Style="{StaticResource FieldStyle}"  Grid.Row="3" Grid.Column="0"
                    Text="{Binding Common.Height, Source={StaticResource LocalizationManager}}" />
-        <TextBox InputScope="Number"
+        <TextBox InputScope="Number" Grid.Row="3" Grid.Column="1"
                  Text="{Binding User.BodyState.Height, Mode=TwoWay}">
 
         </TextBox>
 
         <!--WEIGHT-->
-        <TextBlock Style="{StaticResource FieldStyle}"
+        <TextBlock Style="{StaticResource FieldStyle}" Grid.Row="4" Grid.Column="0"
                    Text="{Binding Common.Weight, Source={StaticResource LocalizationManager}}" />
-        <TextBox InputScope="Number"
+        <TextBox InputScope="Number" Grid.Row="4" Grid.Column="1"
                  Text="{Binding User.BodyState.Weight, Mode=TwoWay}">
 
         </TextBox>
 
         <!--BIRTHDAY-->
-        <TextBlock Style="{StaticResource FieldStyle}"
+        <TextBlock Style="{StaticResource FieldStyle}" Grid.Row="5" Grid.Column="0"
                    Text="{Binding Common.BirthDate, Source={StaticResource LocalizationManager}}" />
 
-        <toolkit:DatePicker Margin="0"
+        <toolkit:DatePicker Margin="0" Grid.Row="5" Grid.Column="1"
                             Value="{Binding User.Birthday, Mode=TwoWay}"/>
 
         <!--ACTIVITY_TYPE-->
-        <TextBlock Style="{StaticResource FieldStyle}"
+        <TextBlock Style="{StaticResource FieldStyle}" Grid.Row="6" Grid.Column="0"
                    Text="{Binding Common.ActivityType, Source={StaticResource LocalizationManager}}" />
 
-        <toolkit:ListPicker x:Name="activityPicker" 
-                            SelectedItem="{Binding User.ActivityType, Mode=TwoWay}"/>
+        <toolkit:ListPicker Grid.Row="7" Grid.ColumnSpan="2">
+            <i:Interaction.Behaviors>
+                <helpers:EnumPickerBehavior EnumType="{Binding ActivityType}" 
+                                            SelectedItem="{Binding User.ActivityType, Mode=TwoWay}"/>
+            </i:Interaction.Behaviors>
+        </toolkit:ListPicker>
 
-    </StackPanel>
+    </Grid>
 
     <binBar:Bindable.ApplicationBar>
         <binBar:BindableApplicationBar>
@@ -95,5 +120,5 @@
                                                  Text="{Binding Buttons.Save, Source={StaticResource LocalizationManager}}" />
         </binBar:BindableApplicationBar>
     </binBar:Bindable.ApplicationBar>
-    
+
 </views:BasePage>

@@ -1,6 +1,10 @@
-﻿using DataAccess.Repositories;
+﻿using Controls;
+using DataAccess.Repositories;
 using DataAccess.Tables;
 using GalaSoft.MvvmLight.Command;
+using Models;
+using Resources.Buttons;
+using Resources.Common;
 using Resources.Errors;
 using Shared;
 using System;
@@ -27,6 +31,16 @@ namespace ViewModels
         }
 
         #region Properties
+
+        public Type ActivityType
+        {
+            get { return typeof(ActivityType); }
+        }
+
+        public Type SexType
+        {
+            get { return typeof(Sex); }
+        }
 
         public User User
         {
@@ -57,8 +71,22 @@ namespace ViewModels
 
         private void SaveAndGoNextExecute()
         {
-            CacheManager.Instance.SaveUser(user);
-            NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.FristStartGoal);
+            Diet.SaveUser(user);
+            ConfirmationBox popup = new ConfirmationBox();
+            popup.Message = CommonStrings.SetupPlanNow;
+            popup.FirstButtonText = ButtonsStrings.SetupNow;
+            popup.SecondButtonText = ButtonsStrings.SetupLater;
+            popup.FirstButtonCommand = new RelayCommand(() =>
+            {
+                InvokeInUIThread(() => NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.FristStartGoal));
+            });
+
+            popup.SecondButtonCommand = new RelayCommand(() =>
+            {
+                InvokeInUIThread(() => NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.Home));
+            });
+
+            popup.Show();
         }
 
         private bool SaveAndGoNextCanExecute()

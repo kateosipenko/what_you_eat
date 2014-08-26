@@ -142,7 +142,7 @@
     <value>легкая (тренировки 1-2 раза в неделю)</value>
   </data>
   <data name="LoseWeight" xml:space="preserve">
-    <value>скинуть</value>
+    <value>сбросить вес</value>
   </data>
   <data name="Male" xml:space="preserve">
     <value>мужской </value>
@@ -154,12 +154,15 @@
     <value>порция</value>
   </data>
   <data name="PutOnWeight" xml:space="preserve">
-    <value>набрать</value>
+    <value>набрать вес</value>
   </data>
   <data name="Sitting" xml:space="preserve">
     <value>сидячая (без тренировок)</value>
   </data>
   <data name="Until" xml:space="preserve">
     <value>до</value>
+  </data>
+  <data name="UserPlan" xml:space="preserve">
+    <value>следовать собственному плану</value>
   </data>
 </root>

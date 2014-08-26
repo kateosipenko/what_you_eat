@@ -70,6 +70,15 @@ namespace Resources.Buttons {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to drink water.
         /// </summary>
         public static string DrinkWater {
@@ -79,11 +88,38 @@ namespace Resources.Buttons {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to save.
         /// </summary>
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to setup later.
+        /// </summary>
+        public static string SetupLater {
+            get {
+                return ResourceManager.GetString("SetupLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to setup now.
+        /// </summary>
+        public static string SetupNow {
+            get {
+                return ResourceManager.GetString("SetupNow", resourceCulture);
             }
         }
         

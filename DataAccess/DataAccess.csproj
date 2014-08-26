@@ -51,6 +51,7 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DietManager.cs" />
     <Compile Include="FoodContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BodyStateRepository.cs" />
@@ -67,9 +68,17 @@
       <Project>{FA5D4569-7758-4739-8BA4-E24929B46F4F}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IsolatedStorageHelper\IsolatedStorageHelper.csproj">
+      <Project>{3CB18569-C805-4580-9FAA-F285EEDE3F63}</Project>
+      <Name>IsolatedStorageHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{F913F49D-D8F7-4A82-B403-4695AB35CC48}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{D9032FF7-3F94-44D6-88BC-EA6568DC290D}</Project>
+      <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

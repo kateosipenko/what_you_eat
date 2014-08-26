@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using DataAccess;
+using Models;
 using Resources.Common;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace WhatYouEatWP7.Helpers
             }
             else if (parameter is string && ((string) parameter) == "food")
             {
-                switch (CacheManager.Instance.Goal.Course)
+                switch (DietManager.Instance.Goal.Course)
                 {
                     case Course.PutOnWeight:
                         result = CommonStrings.ExtraEat;
@@ -41,12 +42,12 @@ namespace WhatYouEatWP7.Helpers
         private string GetStringByPlan(DietPlan plan)
         {
             string result = string.Empty;
-            switch (CacheManager.Instance.Goal.Course)
+            switch (DietManager.Instance.Goal.Course)
             {
                 case Course.LoseWeight:
                     try
                     {
-                        result = string.Format(CommonStrings.RedOf, plan.ThrowOffPerDay);
+                        result = string.Format(CommonStrings.RedOf, plan.ThrowOffPerWeek);
                     }
                     catch (Exception ex)
                     {
@@ -55,7 +56,7 @@ namespace WhatYouEatWP7.Helpers
                 case Course.PutOnWeight:
                     try
                     {
-                        result = string.Format(CommonStrings.PutOn, plan.PutOnPerDay);
+                        result = string.Format(CommonStrings.PutOn, plan.PutOnPerWeek);
                     }
                     catch (Exception ex)
                     {

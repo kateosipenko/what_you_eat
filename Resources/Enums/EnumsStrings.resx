@@ -136,13 +136,13 @@
     <value>in</value>
   </data>
   <data name="KeepWeight" xml:space="preserve">
-    <value>keep my weight</value>
+    <value>to keep my weight</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>light (training 1-2 times per week)</value>
   </data>
   <data name="LoseWeight" xml:space="preserve">
-    <value>lose</value>
+    <value>to lose weight</value>
   </data>
   <data name="Male" xml:space="preserve">
     <value>male</value>
@@ -154,12 +154,15 @@
     <value>portion</value>
   </data>
   <data name="PutOnWeight" xml:space="preserve">
-    <value>put on</value>
+    <value>to put on weight</value>
   </data>
   <data name="Sitting" xml:space="preserve">
     <value>sitting (without training)</value>
   </data>
   <data name="Until" xml:space="preserve">
     <value>until</value>
+  </data>
+  <data name="UserPlan" xml:space="preserve">
+    <value>to follow my own plan</value>
   </data>
 </root>

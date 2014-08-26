@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CourseToTextConverter.cs" />
+    <Compile Include="Helpers\EnumPickerBehavior.cs" />
     <Compile Include="Helpers\EnumToTextConverter.cs" />
     <Compile Include="Helpers\HubTileBehavior.cs" />
     <Compile Include="Helpers\NullableToVisibilityConverter.cs" />
@@ -87,14 +88,32 @@
     <Compile Include="Views\DietPlan\DistributeCalories.xaml.cs">
       <DependentUpon>DistributeCalories.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DietPlan\FoodPlan.xaml.cs">
+      <DependentUpon>FoodPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DietPlan\LoseWeightPlan.xaml.cs">
+      <DependentUpon>LoseWeightPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DietPlan\TrainingsPlan.xaml.cs">
+      <DependentUpon>TrainingsPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DietPlan\DesiredWeight.xaml.cs">
+      <DependentUpon>DesiredWeight.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Food\EatenPage.xaml.cs">
       <DependentUpon>EatenPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FirstStart\GoalPage.xaml.cs">
+    <Compile Include="Views\DietPlan\GoalPage.xaml.cs">
       <DependentUpon>GoalPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Food\FoodDetailsPage.xaml.cs">
       <DependentUpon>FoodDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\HomePanoramaPage.xaml.cs">
+      <DependentUpon>HomePanoramaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\TodayFoodControl.xaml.cs">
+      <DependentUpon>TodayFoodControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -105,7 +124,7 @@
     <Compile Include="Views\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FirstStart\UserDataPage.xaml.cs">
+    <Compile Include="Views\DietPlan\UserDataPage.xaml.cs">
       <DependentUpon>UserDataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\TodayControl.xaml.cs">
@@ -127,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\OverriddenPhoneStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Activity\ActivityDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,15 +162,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DietPlan\FoodPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DietPlan\LoseWeightPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DietPlan\TrainingsPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DietPlan\DesiredWeight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Food\EatenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FirstStart\GoalPage.xaml">
+    <Page Include="Views\DietPlan\GoalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Food\FoodDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\HomePanoramaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\TodayFoodControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,7 +210,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FirstStart\UserDataPage.xaml">
+    <Page Include="Views\DietPlan\UserDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +249,9 @@
     <Content Include="FoodDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\back.png" />
+    <Content Include="Icons\next.png" />
+    <Content Include="Icons\BackgroundImage.jpg" />
     <Content Include="Icons\food.png" />
     <Content Include="Icons\ok.png" />
     <Content Include="Icons\plan.png" />

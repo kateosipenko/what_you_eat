@@ -12,36 +12,19 @@ namespace ViewModels
 {
     public class GoalViewModel : ViewModel
     {
-        #region Fields
-
         private Goal goal = new Goal();
-        private float weightDif;
-
-        #endregion Fields
+        private int forFood = 0;
+        private int forExercises = 0;
+        private int maxForFood = 0;
+        private int minForExerises = 0;
 
         public GoalViewModel()
         {
-            SaveAndGoNextCommand = new RelayCommand(SaveAndGoNextExecute);
-            Courses.Add(Course.KeepWeight);
-            Courses.Add(Course.LoseWeight);
-            Courses.Add(Course.PutOnWeight);
+            SetCourseCommand = new RelayCommand<string>(SetCourseExecute);
+            SetPeriodCommand = new RelayCommand<string>(SetPeriodExecute);
+            GoBackCommand = new RelayCommand(GoBackExecute);
+            SetProcentCommand = new RelayCommand(SetProcentExecute);
         }
-
-        #region AllCourses
-
-        private List<Course> courses = new List<Course>(3);
-
-        public List<Course> Courses
-        {
-            get { return courses; }
-            set
-            {
-                courses = value;
-                RaisePropertyChanged("Courses");
-            }
-        }
-
-        #endregion AllCourses
 
         #region Properties
 
@@ -55,29 +38,138 @@ namespace ViewModels
             }
         }
 
-        public float WeightDif
+        public int MaxForFood
         {
-            get { return weightDif; }
+            get { return maxForFood; }
             set
             {
-                weightDif = value;
-                RaisePropertyChanged("WeightDif");
+                maxForFood = value;
+                RaisePropertyChanged("MaxForFood");
+            }
+        }
+
+        public int MinForExercises
+        {
+            get { return minForExerises; }
+            set
+            {
+                minForExerises = value;
+                RaisePropertyChanged("MinForExercises");
+            }
+        }
+
+        public int ForFood
+        {
+            get { return forFood; }
+            set
+            {
+                forFood = value;
+                forExercises = 100 - forFood;
+                RaisePropertyChanged("ForFood");
+                RaisePropertyChanged("ForExrcises");
+            }
+        }
+
+        public int ForExrcises
+        {
+            get { return forExercises; }
+            set
+            {
+                forExercises = value;
+                forFood = 100 - forExercises;
+                RaisePropertyChanged("ForFood");
+                RaisePropertyChanged("ForExrcises");
             }
         }
 
         #endregion Properties
 
-        #region SaveAndGoNextCommand
+        #region SetCourseCommand
 
-        public RelayCommand SaveAndGoNextCommand { get; private set; }
+        public RelayCommand<String> SetCourseCommand { get; private set; }
 
-        private void SaveAndGoNextExecute()
+        private void SetCourseExecute(string course)
         {
-            CacheManager.Instance.SaveGoal(goal, weightDif);
-            NavigationProvider.NavigateAndRemoveBackEntry(Constants.Pages.DistributeCalories.AddPageParameter(Constants.NavigationParameters.FromGoal, true));
+            if (course == "next")
+            {
+                if (goal.Course == Course.LoseWeight || goal.Course == Course.PutOnWeight)
+                    NavigationProvider.Navigate(Constants.Pages.DesiredWeight);
+                else
+                    NavigationProvider.Navigate(Constants.Pages.FoodPlan);
+            }
+            else if (!string.IsNullOrEmpty(course))
+            {
+                Goal.Course = (Course)Enum.Parse(typeof(Course), course, true);
+            }
         }
 
-        #endregion SaveAndGoNextCommand
+        #endregion SetCourseCommand
+
+        #region SetPeriodCommand
+
+        public RelayCommand<string> SetPeriodCommand { get; private set; }
+
+        private void SetPeriodExecute(string parameter)
+        {
+            switch (parameter)
+            {
+                case "0":
+                    // to lose/ to put on 500 gramm per week
+                    goal.DesiredWeeksCount = (int)(Math.Abs(goal.DesiredWeight - Diet.User.BodyState.Weight) / 0.5) + 1;
+                    goal.DesiredDate = null;
+                    break;
+                case "1":
+                    goal.DesiredWeeksCount = 0;
+                    break;
+                case "2":
+                    goal.DesiredDate = null;
+                    break;
+                case "-1":
+                    Diet.SaveGoal(goal);
+                    if (goal.Course == Course.LoseWeight)
+                    {
+                        int minCaloriesDif = Diet.Plan.FoodPerDay.NormalPerDay - Diet.Plan.FoodPerDay.CriticalMinimum;
+                        float maxForFoodInGramms = (minCaloriesDif / Constants.CaloriesInGrammLose) * 7;
+                        MaxForFood = (int) ((maxForFoodInGramms / Diet.Plan.ThrowOffPerWeek) * 100);
+                        if (MaxForFood > 100)
+                            MaxForFood = 100;
+                        MinForExercises = 100 - MaxForFood;
+                        ForFood = MaxForFood / 2;
+                        NavigationProvider.Navigate(Constants.Pages.LoseWeightPlan);
+                    }
+                    else
+                        NavigationProvider.Navigate(Constants.Pages.FoodPlan);
+                    break;
+            }
+        }
+
+        #endregion SetPeriodCommand
+
+        #region SetProcentCommand
+
+        public RelayCommand SetProcentCommand { get; private set; }
+
+        private void SetProcentExecute()
+        {
+            Diet.Plan.ProcentForFood = ForFood;
+            Diet.Plan.ProcentForTrainings = ForExrcises;
+            Diet.UpdateDietPlan(Diet.Plan);
+            NavigationProvider.Navigate(Constants.Pages.FoodPlan);
+        }
+         
+        #endregion SetProcentCommand
+
+        #region GoBackCommand
+
+        public RelayCommand GoBackCommand { get; private set; }
+
+        private void GoBackExecute()
+        {
+            if (NavigationProvider.CanGoBack())
+                NavigationProvider.GoBack();
+        }
+
+        #endregion GoBackCommand
 
         #region Cleanup
 
@@ -85,7 +177,6 @@ namespace ViewModels
         {
             base.Cleanup();
             this.Goal = null;
-            this.WeightDif = 0;
         }
 
         #endregion Cleanup

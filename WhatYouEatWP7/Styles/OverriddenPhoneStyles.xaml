@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+    <Color x:Key="PhoneAccentColor">#FF486B92</Color>
+    <SolidColorBrush x:Key="PhoneAccentBrush" Color="{StaticResource PhoneAccentColor}" />
+
+    <SolidColorBrush x:Key="PhoneForegroundBrush" Color="Black" />
+
+    <Color x:Key="PhoneDisabledColor">#FF82807E</Color>
+    <SolidColorBrush x:Key="PhoneDisabledBrush" Color="{StaticResource PhoneDisabledColor}" />
+
+    <Color x:Key="PhoneTextBoxColor">#FFCCCBCA</Color>
+    <SolidColorBrush x:Key="PhoneTextBoxBrush" Color="{StaticResource PhoneTextBoxColor}" />
+
+    <Color x:Key="PhoneTextBoxEditBorderColor">#FFCCCBCA</Color>
+    <SolidColorBrush x:Key="PhoneTextBoxEditBorderBrush" Color="{StaticResource PhoneTextBoxEditBorderColor}" />
+
+    <Color x:Key="PhoneBackgroundColor">White</Color>
+    <SolidColorBrush x:Key="PhoneBackgroundBrush" Color="{StaticResource PhoneBackgroundColor}" />
+
+    <Color x:Key="PhoneChromeColor">#FFDEE2E5</Color>
+    <SolidColorBrush x:Key="PhoneChromeBrush" Color="{StaticResource PhoneChromeColor}" />
+
+    <Color x:Key="PhoneRadioCheckBoxColor">#FFC7D8E9</Color>
+    <SolidColorBrush x:Key="PhoneRadioCheckBoxBrush" Color="{StaticResource PhoneRadioCheckBoxColor}" />
+
+    <Color x:Key="PhoneRadioCheckBoxPressedColor">#FFC1C8D0</Color>
+    <SolidColorBrush x:Key="PhoneRadioCheckBoxPressedBrush" Color="{StaticResource PhoneRadioCheckBoxPressedColor}" />
+
+    <Color x:Key="PhoneRadioCheckBoxPressedBorderColor">#FFDEE2E5</Color>
+    <SolidColorBrush x:Key="PhoneRadioCheckBoxPressedBorderBrush" Color="{StaticResource PhoneRadioCheckBoxPressedBorderColor}" />
+
+</ResourceDictionary>

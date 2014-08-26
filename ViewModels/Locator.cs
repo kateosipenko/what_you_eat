@@ -232,30 +232,6 @@ namespace ViewModels
 
         #endregion ActivityDetails
 
-        #region DistributeCalories
-
-        private static DistributeCaloriesViewModel distributeCalories;
-
-        public static DistributeCaloriesViewModel DistributeCaloriesStatic
-        {
-            get
-            {
-                if (distributeCalories == null)
-                {
-                    distributeCalories = new DistributeCaloriesViewModel();
-                }
-
-                return distributeCalories;
-            }
-        }
-
-        public DistributeCaloriesViewModel DistributeCalories
-        {
-            get { return DistributeCaloriesStatic; }
-        }
-
-        #endregion DistributeCalories
-
         #region Settings
 
         private static SettingsViewModel settings;

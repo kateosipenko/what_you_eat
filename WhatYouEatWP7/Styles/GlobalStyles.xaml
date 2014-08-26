@@ -38,7 +38,12 @@
         <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
         <Setter Property="Margin" Value="-10, 0" />
     </Style>
-    
+
+    <Style TargetType="RadioButton">
+        <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+        <Setter Property="Margin" Value="-10, 0" />
+    </Style>
+
     <Style TargetType="toolkit:HubTile">
         <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
     </Style>
@@ -123,5 +128,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <ImageBrush x:Key="MainBackground" ImageSource="/Icons/BackgroundImage.jpg" />
 
 </ResourceDictionary>

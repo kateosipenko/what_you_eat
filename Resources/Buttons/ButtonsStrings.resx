@@ -120,11 +120,23 @@
   <data name="AddActivity" xml:space="preserve">
     <value>add activity</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>back</value>
+  </data>
   <data name="DrinkWater" xml:space="preserve">
     <value>drink water</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>next</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>save</value>
+  </data>
+  <data name="SetupLater" xml:space="preserve">
+    <value>setup later</value>
+  </data>
+  <data name="SetupNow" xml:space="preserve">
+    <value>setup now</value>
   </data>
   <data name="UpdatePlan" xml:space="preserve">
     <value>update plan</value>

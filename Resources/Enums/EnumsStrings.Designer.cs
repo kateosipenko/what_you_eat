@@ -115,7 +115,7 @@ namespace Resources.Enums {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to keep my weight.
+        ///   Looks up a localized string similar to to keep my weight.
         /// </summary>
         public static string KeepWeight {
             get {
@@ -133,7 +133,7 @@ namespace Resources.Enums {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to lose.
+        ///   Looks up a localized string similar to to lose weight.
         /// </summary>
         public static string LoseWeight {
             get {
@@ -169,7 +169,7 @@ namespace Resources.Enums {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to put on.
+        ///   Looks up a localized string similar to to put on weight.
         /// </summary>
         public static string PutOnWeight {
             get {
@@ -192,6 +192,15 @@ namespace Resources.Enums {
         public static string Until {
             get {
                 return ResourceManager.GetString("Until", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to follow my own plan.
+        /// </summary>
+        public static string UserPlan {
+            get {
+                return ResourceManager.GetString("UserPlan", resourceCulture);
             }
         }
     }

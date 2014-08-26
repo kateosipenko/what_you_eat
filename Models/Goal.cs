@@ -6,13 +6,6 @@ using System.Text;
 
 namespace Models
 {
-    public enum Course
-    {
-        KeepWeight,
-        PutOnWeight,
-        LoseWeight
-    }
-
     [DataContract]
     public class Goal : RaisableObject
     {

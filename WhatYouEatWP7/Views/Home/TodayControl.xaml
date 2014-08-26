@@ -28,7 +28,6 @@
 
         <toolkit:HubTile Grid.Row="0" 
                          Title="{Binding Common.Eaten, Source={StaticResource LocalizationManager}}"
-                         Foreground="#FF272323"
                          BackBackground="#FF71A407"
                          Command="{Binding NavigateToEatenCommand}"
                          Source="/Icons/food.png"
@@ -49,8 +48,9 @@
         </toolkit:HubTile>
 
         <controls:ProgressRound Grid.Row="0"
-                                Grid.Column="1"
-                                Margin="10"/>
+                                    Grid.Column="1"
+                                    Margin="10"
+                                    />
         
         <!--<toolkit:HubTile Grid.Row="0" 
                          Title="{Binding Common.Spent, Source={StaticResource LocalizationManager}}"
@@ -72,7 +72,6 @@
 
         <toolkit:HubTile Grid.Row="1" 
                          Title="{Binding Common.Water, Source={StaticResource LocalizationManager}}"
-                         Foreground="#FF272323"
                          BackBackground="#FF2290C3"
                          Command="{Binding NavigateToWaterCommand}"
                          Source="/Icons/water.png"
@@ -88,7 +87,6 @@
 
         <toolkit:HubTile Grid.Row="1" 
                          Title="{Binding Common.Plan, Source={StaticResource LocalizationManager}}"
-                         Foreground="#FF272323"
                          Command="{Binding NavigateToPlanCommand}"
                          Background="#FFFF2C2C"
                          Source="/Icons/plan.png"
@@ -99,7 +97,7 @@
         <TextBlock Text="{Binding Citations.One, Source={StaticResource LocalizationManager}}"
                    FontSize="24" VerticalAlignment="Center"
                    Margin="24,0"
-                   Grid.Row="2" Grid.ColumnSpan="2" Foreground="#FFB8B8B8" 
+                   Grid.Row="2" Grid.ColumnSpan="2"
                    TextWrapping="Wrap" FontStyle="Italic" FontFamily="Segoe WP SemiLight" />
 
     </Grid>

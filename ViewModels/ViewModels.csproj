@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityDetailsViewModel.cs" />
-    <Compile Include="DistributeCaloriesViewModel.cs" />
     <Compile Include="FoodDetailsViewModel.cs" />
     <Compile Include="ProfileViewModel.cs" />
     <Compile Include="SearchViewModel.cs" />
@@ -79,6 +78,10 @@
     <Compile Include="WaterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Controls\Controls.csproj">
+      <Project>{5FA3A250-F247-4EA1-A76C-ACB853C30A62}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{FA5D4569-7758-4739-8BA4-E24929B46F4F}</Project>
       <Name>Core</Name>

@@ -9,6 +9,8 @@ namespace Shared
     {
         public const int GlassGramms = 200;
         public const int PortionGramms = 350;
+        public const float CaloriesInGrammLose = 7.7f;
+        public const float CaloriesInGrammPutOn = 11.0f;
 
         public struct Languages
         {
@@ -36,9 +38,14 @@ namespace Shared
 
         public struct Pages
         {
-            public const string FristStartUserData = "/Views/FirstStart/UserDataPage.xaml";
-            public const string FristStartGoal = "/Views/FirstStart/GoalPage.xaml";
+            public const string FristStartUserData = "/Views/DietPlan/UserDataPage.xaml";
+            public const string FristStartGoal = "/Views/DietPlan/GoalPage.xaml";
+            public const string DesiredWeight = "/Views/DietPlan/DesiredWeight.xaml";
+            public const string FoodPlan = "/Views/DietPlan/FoodPlan.xaml";
+            public const string LoseWeightPlan = "/Views/DietPlan/LoseWeightPlan.xaml";
+            public const string TrainingsPlan = "/Views/DietPlan/TrainingsPlan.xaml";
             public const string Home = "/Views/Home/HomePage.xaml";
+            public const string HomePanorama = "/Views/Home/HomePanoramaPage.xaml";
             public const string EatenPage = "/Views/Food/EatenPage.xaml";
             public const string Search = "/Views/SearchPage.xaml";
             public const string FoodDetails = "/Views/Food/FoodDetailsPage.xaml";

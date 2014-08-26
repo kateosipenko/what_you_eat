@@ -6,6 +6,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     xmlns:navigation="clr-namespace:System.Windows.Navigation;assembly=Microsoft.Phone"
+    xmlns:converters="clr-namespace:Core.Converters;assembly=Core"
     xmlns:viewModels="clr-namespace:ViewModels;assembly=ViewModels"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
@@ -17,14 +18,16 @@
             <helpers:EnumToTextConverter x:Key ="EnumToTextConverter" />
             <helpers:CourseToTextConverter x:Key="CourseToTextConverter" />
             <helpers:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <resources:LocalizationManager x:Key="LocalizationManager" />
 
             <navigation:UriMapper x:Key="Mapper">
-                <navigation:UriMapping MappedUri="/Views/Home/HomePage.xaml"  Uri="/Start" />
+                <navigation:UriMapping MappedUri="/Views/Home/HomePanoramaPage.xaml"  Uri="/Start" />
             </navigation:UriMapper>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/GlobalStyles.xaml" />
+                <ResourceDictionary Source="Styles/OverriddenPhoneStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

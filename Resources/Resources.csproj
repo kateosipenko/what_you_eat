@@ -75,6 +75,11 @@
       <DependentUpon>ErrorsStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="LocalizationManager.cs" />
+    <Compile Include="Pages\HomePanorama\HomePanoramaStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomePanoramaStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +98,7 @@
     <EmbeddedResource Include="Common\CommonStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\CommonStrings.ru-RU.resx" />
     <EmbeddedResource Include="Enums\EnumsStrings.resx">
@@ -104,6 +110,10 @@
     <EmbeddedResource Include="Errors\ErrorsStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorsStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\HomePanorama\HomePanoramaStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomePanoramaStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

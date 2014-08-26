@@ -15,6 +15,7 @@ using Microsoft.Phone.Shell;
 using ViewModels.Helpers;
 using Shared;
 using Models;
+using DataAccess;
 
 namespace WhatYouEatWP7
 {
@@ -124,8 +125,7 @@ namespace WhatYouEatWP7
             SynchronizationContextProvider.Initialize();
             TranslationManager.Instance.Initialize();
             SettingsManager.Instance.Initialize();
-            CacheManager.Instance.Initialize();
-
+            DietManager.Instance.Initialize();
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();
@@ -135,7 +135,8 @@ namespace WhatYouEatWP7
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
             var mapper = this.Resources["Mapper"] as UriMapper;
             RootFrame.UriMapper = mapper;
-            if (CacheManager.Instance.IsFirstStart())
+            //RootFrame.Background = Resources["MainBackground"] as Brush;
+            if (DietManager.Instance.IsFirstStart())
             {
                 ((UriMapper)this.RootFrame.UriMapper).UriMappings[0].MappedUri = new Uri(Constants.Pages.FristStartUserData, UriKind.Relative);
             }

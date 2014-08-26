@@ -5,6 +5,7 @@ using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using ViewModels.Helpers;
+using DataAccess;
 
 namespace ViewModels
 {
@@ -34,6 +35,11 @@ namespace ViewModels
 
         #region Properties
 
+        protected DietManager Diet
+        {
+            get { return DietManager.Instance; }
+        }
+        
         /// <summary>
         /// Gets or sets a value that indicates count of current executing process or requests.
         /// </summary>

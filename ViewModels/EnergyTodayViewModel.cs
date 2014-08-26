@@ -43,10 +43,10 @@ namespace ViewModels
                 switch (energyType)
                 {
                     case EnergyType.Food:
-                        energyForToday = CacheManager.Instance.GetEatenToday().Cast<RaisableObject>().ToList();
+                        energyForToday = Diet.GetEatenToday().Cast<RaisableObject>().ToList();
                         break;
                     case EnergyType.Activity:
-                        energyForToday = CacheManager.Instance.GetSpentToday().Cast<RaisableObject>().ToList();
+                        energyForToday = Diet.GetSpentToday().Cast<RaisableObject>().ToList();
                         break;
                 }
 
@@ -114,10 +114,10 @@ namespace ViewModels
             switch (energyType)
             {
                 case EnergyType.Food:
-                    newEnergy = CacheManager.Instance.EatFood((Food)energy);
+                    newEnergy = Diet.EatFood((Food)energy);
                     break;
                 case EnergyType.Activity:
-                    newEnergy = CacheManager.Instance.SpentEnergy((PhysicalActivity)energy);
+                    newEnergy = Diet.SpentEnergy((PhysicalActivity)energy);
                     break;
             }
 
@@ -136,10 +136,10 @@ namespace ViewModels
                 switch (energyType)
                 {
                     case EnergyType.Activity:
-                        CacheManager.Instance.DeleteActivity((PhysicalActivity)energy);
+                        Diet.DeleteActivity((PhysicalActivity)energy);
                         break;
                     case EnergyType.Food:
-                        CacheManager.Instance.DeleteEatenFood((Food)energy);
+                        Diet.DeleteEatenFood((Food)energy);
                         break;
                 }
 

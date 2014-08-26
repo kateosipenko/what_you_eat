@@ -27,12 +27,12 @@ namespace ViewModels
         protected override void InitializeExecute()
         {
             base.InitializeExecute();
-            TotalEaten = CacheManager.Instance.GetEatenToday().Sum(item => item.AmountOfCalories);
-            TotalActivity = CacheManager.Instance.GetSpentToday().Sum(item => item.SpentEnergy);
-            MustEat = CacheManager.Instance.Plan.DailyCalories;
-            MustSpent = (int) (CacheManager.Instance.Plan.PlanForExersizes * CacheManager.Instance.Plan.ThrowOffPerDay);
-            MustDrink = CacheManager.Instance.Plan.Water;
-            WaterToday = CacheManager.Instance.WaterToday;
+            TotalEaten = Diet.GetEatenToday().Sum(item => item.AmountOfCalories);
+            TotalActivity = Diet.GetSpentToday().Sum(item => item.SpentEnergy);
+            MustEat = Diet.Plan.FoodPerDay.DailyCalories;
+            // TODO: implement must spent
+            MustDrink = Diet.Plan.WaterPlan.Amount;
+            WaterToday = Diet.WaterToday;
         }
 
         #region Food

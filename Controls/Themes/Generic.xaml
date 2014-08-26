@@ -8,15 +8,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ProgressRound">
-                    <Grid>
-                        <Canvas x:Name="MainCanvas"
-                                RenderTransformOrigin="0.5, 0.5">
-                            <Canvas.RenderTransform>
-                                <RotateTransform Angle="-90"/>
-                            </Canvas.RenderTransform>
-                        </Canvas>
-                        <Ellipse Margin="10" Fill="White"/>
-                    </Grid>
+                    <controls:RingSlice x:Name="ringSlice"
+                                        StartAngle="0"
+                                        InnerRadius="170"
+                                        Radius="200"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -30,13 +25,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ExtendedSlider">
-                    <Grid Background="Transparent">                        
+                    <Grid Background="Transparent">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
@@ -55,13 +50,13 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        
+
                         <TextBlock Text="{TemplateBinding Header}"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Bottom" Margin="0,0,0,-10"
                                    Foreground="{StaticResource PhoneForegroundBrush}"
                                    FontSize="24" Grid.Row="0" />
-                        
+
                         <Grid x:Name="HorizontalTemplate" Grid.Row="1"
                               Margin="{StaticResource PhoneHorizontalMargin}">
                             <Grid.ColumnDefinitions>
@@ -83,14 +78,14 @@
                                 </Thumb.Template>
                             </Thumb>
                         </Grid>
-                        
+
                         <Grid Grid.Row="2" Margin="0,-30,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <TextBlock Grid.Column="0" x:Name="minimumText"
                                        FontSize="{TemplateBinding FontSize}" HorizontalAlignment="Left"
                                        Foreground="{StaticResource PhoneForegroundBrush}" />
@@ -104,10 +99,73 @@
                                        FontSize="{TemplateBinding FontSize}"
                                        Foreground="{StaticResource PhoneForegroundBrush}" />
 
-                        </Grid>                        
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="controls:ConfirmationBox">
+        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource PhoneBackgroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ConfirmationBox">
+                    <Border VerticalAlignment="Top" 
+                            Background="{TemplateBinding Background}" 
+                            BorderThickness="1" 
+                            BorderBrush="{TemplateBinding Foreground}">
+
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="150"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" FontSize="20"
+                                       FontWeight="Bold"
+                                       Text="{TemplateBinding Title}" 
+                                       Margin="20,-10,-25,0" 
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="{TemplateBinding Message}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap" FontSize="28"
+                                       FontFamily="Segoe WP SemiLight"
+                                       Margin="0,-10,-25,0" 
+                                       Grid.Row="1" />
+                            <Grid Grid.Row="2"
+                                  HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Button Content="yes" 
+                                        x:Name="yesButton" 
+                                        HorizontalAlignment="Left"
+                                        BorderBrush="{TemplateBinding Foreground}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Width="200"
+                                        Grid.Column="0"/>
+
+                                <Button Content="no"
+                                        x:Name="noButton" 
+                                        BorderBrush="{TemplateBinding Foreground}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        HorizontalAlignment="Right"
+                                        Width="200"
+                                        Grid.Column="1"/>
+
+                            </Grid>
+                        </Grid>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

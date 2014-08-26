@@ -9,181 +9,128 @@ namespace Models
     [DataContract]
     public class DietPlan : RaisableObject
     {
-        #region Metabolism
+        #region FoodPlan
 
-        private int metabolism;
+        private FoodPlan foodPerDay = new FoodPlan();
+
+        public FoodPlan FoodPerDay
+        {
+            get { return foodPerDay; }
+            set
+            {
+                foodPerDay = value;
+                RaisePropertyChanged("FoodPerDay");
+            }
+        }
+
+        #endregion FoodPlan
+
+        #region TrainigsPlan
+
+        private List<Training> trainings = new List<Training>();
+
+        [DataMember]
+        public List<Training> Trainigs
+        {
+            get { return trainings; }
+            set
+            {
+                trainings = value;
+                RaisePropertyChanged("Trainigs");
+            }
+        }
+
+        #endregion TrainigsPlan
+
+        #region ThrowOffPerWeek
+
+        private int throwOffPerWeek;
 
         /// <summary>
-        /// Calories that required for metabolism per day.
+        /// Amount of gramms that user has to throw off per week for losing weight by the plan
         /// </summary>
         [DataMember]
-        public int Metabolism
+        public int ThrowOffPerWeek
         {
-            get { return metabolism; }
+            get { return throwOffPerWeek; }
             set
             {
-                metabolism = value;
-                RaisePropertyChanged("Metabolism");
+                throwOffPerWeek = value;
+                RaisePropertyChanged("ThrowOffPerWeek");
             }
         }
 
-        #endregion Metabolism
+        #endregion ThrowOffPerWeek
 
-        #region NormalPerDay
+        #region PutOnPerWeek
 
-        private int normalPerDay;
+        private int putOnPerWeek;
 
         /// <summary>
-        /// Amount of calories per day for keeping current weight
+        /// Amount of gramms that user has to eat per week for put on weight by the plan
         /// </summary>
         [DataMember]
-        public int NormalPerDay
+        public int PutOnPerWeek
         {
-            get { return normalPerDay; }
+            get { return putOnPerWeek; }
             set
             {
-                normalPerDay = value;
-                RaisePropertyChanged("NormalPerDay");
+                putOnPerWeek = value;
+                RaisePropertyChanged("PutOnPerWeek");
             }
         }
 
-        #endregion NormalPerDay
+        #endregion PutOnPerWeek
 
-        #region CriticalMinimum
+        #region WaterPlan
 
-        private int criticalMinimum;
-
-        /// <summary>
-        /// Critical minimum of calories per day which is safe for health
-        /// </summary>
-        [DataMember]
-        public int CriticalMinimum
-        {
-            get { return criticalMinimum; }
-            set
-            {
-                criticalMinimum = value;
-                RaisePropertyChanged("CriticalMinimum");
-            }
-        }
-
-        #endregion CriticalMinimum
-
-        #region ThrowOffPerDay
-
-        private int throwOffPerDay;
-
-        /// <summary>
-        /// Amount of calories that user has to throw off per day for losing weight by the plan
-        /// </summary>
-        [DataMember]
-        public int ThrowOffPerDay
-        {
-            get { return throwOffPerDay; }
-            set
-            {
-                throwOffPerDay = value;
-                RaisePropertyChanged("ThrowOffPerDay");
-            }
-        }
-
-        #endregion ThrowOffPerDay
-
-        #region PutOnPerDay
-
-        private int putOnPerDay;
-
-        /// <summary>
-        /// Amount of calories that user has to eat per day for put on weight by the plan
-        /// </summary>
-        [DataMember]
-        public int PutOnPerDay
-        {
-            get { return putOnPerDay; }
-            set
-            {
-                putOnPerDay = value;
-                RaisePropertyChanged("PutOnPerDay");
-            }
-        }
-
-        #endregion PutOnPerDay
-
-        #region DailyCalories
-
-        private int dailyCalories;
+        private WaterPlan waterPlan = new WaterPlan();
 
         [DataMember]
-        public int DailyCalories
+        public WaterPlan WaterPlan
         {
-            get { return dailyCalories; }
+            get { return waterPlan; }
             set
             {
-                dailyCalories = value;
-                RaisePropertyChanged("DailyCalories");
+                waterPlan = value;
+                RaisePropertyChanged("WaterPlan");
             }
         }
 
-        #endregion DailyCalories
+        #endregion WaterPlan
 
-        #region PlanForFood
+        #region ProcentForFood
 
-        private float planForFood;
+        private int procentForFood = 0;
 
-        /// <summary>
-        /// Procent from daily ThrowOffPerDay value.
-        /// </summary>
         [DataMember]
-        public float PlanForFood
+        public int ProcentForFood
         {
-            get { return planForFood; }
+            get { return procentForFood; }
             set
             {
-                planForFood = value;
-                RaisePropertyChanged("PlanForFood");
+                procentForFood = value;
+                RaisePropertyChanged("ProcentForFood");
             }
         }
 
-        #endregion PlanForFood
+        #endregion ProcentForFood
 
-        #region PlanForExersizes
+        #region ProcentForTrainings
 
-        private float planForExersizes;
+        private int procentForTrainings = 0;
 
-        /// <summary>
-        /// Procent from ThrowOffPerDay value for exersizes
-        /// </summary>
         [DataMember]
-        public float PlanForExersizes
+        public int ProcentForTrainings
         {
-            get { return planForExersizes; }
+            get { return procentForTrainings; }
             set
             {
-                planForExersizes = value;
-                RaisePropertyChanged("PlanForExersizes");
+                procentForTrainings = value;
+                RaisePropertyChanged("ProcentForTrainings");
             }
         }
 
-        #endregion PlanForExersizes
-
-        #region Water
-
-        private int water = 0;
-
-        /// <summary>
-        /// Amount of water in milliliters that user has to drink per day.
-        /// </summary>
-        [DataMember]
-        public int Water
-        {
-            get { return water; }
-            set
-            {
-                water = value;
-                RaisePropertyChanged("Water");
-            }
-        }
-
-        #endregion Water
+        #endregion ProcentForTrainings
     }
 }

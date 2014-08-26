@@ -133,7 +133,7 @@
     <value>eat food</value>
   </data>
   <data name="Height" xml:space="preserve">
-    <value>height</value>
+    <value>height (cm)</value>
   </data>
   <data name="InputYourData" xml:space="preserve">
     <value>Please, input your data.</value>
@@ -166,7 +166,7 @@
     <value>weeks</value>
   </data>
   <data name="Weight" xml:space="preserve">
-    <value>weight</value>
+    <value>weight(kg)</value>
   </data>
   <data name="HowMuchEaten" xml:space="preserve">
     <value>how much were eaten</value>
@@ -196,10 +196,10 @@
     <value>my plan</value>
   </data>
   <data name="PutOn" xml:space="preserve">
-    <value>to put on {0} kkal per day</value>
+    <value>to put on {0} gramm per week</value>
   </data>
   <data name="RedOf" xml:space="preserve">
-    <value>to read of {0} kkal per day</value>
+    <value>to read of {0} gramm per week</value>
   </data>
   <data name="KeepWeight" xml:space="preserve">
     <value>to keep weight</value>
@@ -230,5 +230,26 @@
   </data>
   <data name="DrunkToday" xml:space="preserve">
     <value>drunk today</value>
+  </data>
+  <data name="SetupPlanNow" xml:space="preserve">
+    <value>Do you want to set up your diet plan now or later?</value>
+  </data>
+  <data name="WantToWeight" xml:space="preserve">
+    <value>I want to weight</value>
+  </data>
+  <data name="Kg" xml:space="preserve">
+    <value>kg</value>
+  </data>
+  <data name="DuringSpecifiedPeriod" xml:space="preserve">
+    <value>during specified period</value>
+  </data>
+  <data name="InOptimalTime" xml:space="preserve">
+    <value>in optimal time</value>
+  </data>
+  <data name="ToSpecifyiedDate" xml:space="preserve">
+    <value>to specifyied date</value>
+  </data>
+  <data name="DistributeWeight" xml:space="preserve">
+    <value>distribute useless weight</value>
   </data>
 </root>

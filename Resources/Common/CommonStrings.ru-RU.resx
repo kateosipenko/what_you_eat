@@ -133,7 +133,7 @@
     <value>съесть еду</value>
   </data>
   <data name="Height" xml:space="preserve">
-    <value>рост</value>
+    <value>рост (см)</value>
   </data>
   <data name="InputYourData" xml:space="preserve">
     <value>Пожалуйста, введите свои данные.</value>
@@ -166,7 +166,7 @@
     <value>недель</value>
   </data>
   <data name="Weight" xml:space="preserve">
-    <value>вес</value>
+    <value>вес (кг)</value>
   </data>
   <data name="HowMuchEaten" xml:space="preserve">
     <value>сколько было съедено</value>
@@ -230,5 +230,26 @@
   </data>
   <data name="DrunkToday" xml:space="preserve">
     <value>выпито сегодня</value>
+  </data>
+  <data name="SetupPlanNow" xml:space="preserve">
+    <value>Вы хотите настроить план диеты сейчас или позже?</value>
+  </data>
+  <data name="WantToWeight" xml:space="preserve">
+    <value>я хочу весить</value>
+  </data>
+  <data name="Kg" xml:space="preserve">
+    <value>кг</value>
+  </data>
+  <data name="DuringSpecifiedPeriod" xml:space="preserve">
+    <value>за указанный период</value>
+  </data>
+  <data name="InOptimalTime" xml:space="preserve">
+    <value>за оптимальное время</value>
+  </data>
+  <data name="ToSpecifyiedDate" xml:space="preserve">
+    <value>к определенной дате</value>
+  </data>
+  <data name="DistributeWeight" xml:space="preserve">
+    <value>распределить лишний вес</value>
   </data>
 </root>

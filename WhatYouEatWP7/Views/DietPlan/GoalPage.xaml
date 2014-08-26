@@ -1,0 +1,72 @@
+﻿<views:BasePage
+    x:Class="WhatYouEatWP7.Views.FirstStart.GoalPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:views="clr-namespace:WhatYouEatWP7.Views"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
+    xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    DataContext="{Binding Goal, Source={StaticResource Locator}}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <i:Interaction.Behaviors>
+        <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
+                                              CleanupCommand="{Binding CleanupCommand}"/>
+    </i:Interaction.Behaviors>
+
+    <Grid Style="{StaticResource ContainerStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}" Margin="-24,0"
+                                        Grid.Row="0" />
+
+        <TextBlock Text="{Binding Common.MyGoal, Source={StaticResource LocalizationManager}}"
+                   Style="{StaticResource PageTitleStyle}"
+                   Grid.Row="1" />
+        
+        <TextBlock Text="{Binding Common.WantTo, Source={StaticResource LocalizationManager}}"
+                   Grid.Row="2" />
+        
+        <StackPanel Orientation="Vertical" Grid.Row="3">
+            <RadioButton Content="{Binding Enums.KeepWeight, Source={StaticResource LocalizationManager}}"
+                         Command="{Binding SetCourseCommand}"
+                         CommandParameter="KeepWeight"/>
+            <RadioButton Content="{Binding Enums.PutOnWeight, Source={StaticResource LocalizationManager}}" 
+                         Command="{Binding SetCourseCommand}"
+                         CommandParameter="PutOnWeight"/>
+            <RadioButton Content="{Binding Enums.LoseWeight, Source={StaticResource LocalizationManager}}" 
+                         Command="{Binding SetCourseCommand}"
+                         CommandParameter="LoseWeight"/>
+            <RadioButton Content="{Binding Enums.UserPlan, Source={StaticResource LocalizationManager}}" 
+                         Command="{Binding SetCourseCommand}"
+                         CommandParameter="UserPlan"/>
+        </StackPanel>
+        
+    </Grid>
+    
+    <binBar:Bindable.ApplicationBar>
+        <binBar:BindableApplicationBar>
+            <binBar:BindableApplicationBarButton IconUri="/Icons/next.png"
+                                                 Text="{Binding Buttons.Next, Source={StaticResource LocalizationManager}}"
+                                                 Command="{Binding SetCourseCommand}" 
+                                                 CommandParameter="next"/>
+        </binBar:BindableApplicationBar>
+    </binBar:Bindable.ApplicationBar>
+
+</views:BasePage>

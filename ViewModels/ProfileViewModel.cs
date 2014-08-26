@@ -76,7 +76,7 @@ namespace ViewModels
 
         private void SaveExecute()
         {
-            CacheManager.Instance.UpdateBodyState(BodyState, activityType);
+            Diet.UpdateBodyState(BodyState, activityType);
             if (NavigationProvider.CanGoBack())
                 NavigationProvider.GoBack();
         }
@@ -86,8 +86,8 @@ namespace ViewModels
         protected override void InitializeExecute()
         {
             base.InitializeExecute();
-            BodyState = CacheManager.Instance.User.BodyState;
-            ActivityType = AllTypes.SingleOrDefault(item => item.Value == CacheManager.Instance.User.ActivityType.Value);
+            BodyState = Diet.User.BodyState;
+            ActivityType = AllTypes.SingleOrDefault(item => item.Value == Diet.User.ActivityType.Value);
         }
 
         public override void Cleanup()

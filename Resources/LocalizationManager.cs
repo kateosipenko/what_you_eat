@@ -3,6 +3,7 @@ using Resources.Citation;
 using Resources.Common;
 using Resources.Enums;
 using Resources.Errors;
+using Resources.Pages.HomePanorama;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace Resources
         private CitationStrings citationStrings = new CitationStrings();
         private EnumsStrings enumsStrings = new EnumsStrings();
         private ErrorsStrings errorsStrings = new ErrorsStrings();
+        private HomePanoramaStrings homePanoramaStrings = new HomePanoramaStrings();
 
         #endregion Fields
 
@@ -51,6 +53,11 @@ namespace Resources
             get { return errorsStrings; }
         }
 
+        public HomePanoramaStrings HomePanorama
+        {
+            get { return homePanoramaStrings; }
+        }
+
         #endregion Properties
 
         public void RefreshLanguage()
@@ -60,6 +67,7 @@ namespace Resources
             ButtonsStrings.Culture = Thread.CurrentThread.CurrentUICulture;
             EnumsStrings.Culture = Thread.CurrentThread.CurrentUICulture;
             ErrorsStrings.Culture = Thread.CurrentThread.CurrentUICulture;
+            HomePanoramaStrings.Culture = Thread.CurrentThread.CurrentUICulture;
 
             RaiseLocalizationChanged();
         }
@@ -83,6 +91,7 @@ namespace Resources
             RaisePropertyChanged("Citations");
             RaisePropertyChanged("Enums");
             RaisePropertyChanged("Errors");
+            RaisePropertyChanged("HomePanorama");
         }
 
         #endregion INotifyPropertyChanged

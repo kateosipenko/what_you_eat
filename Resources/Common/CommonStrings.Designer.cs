@@ -115,11 +115,29 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to distribute useless weight.
+        /// </summary>
+        public static string DistributeWeight {
+            get {
+                return ResourceManager.GetString("DistributeWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to drunk today.
         /// </summary>
         public static string DrunkToday {
             get {
                 return ResourceManager.GetString("DrunkToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to during specified period.
+        /// </summary>
+        public static string DuringSpecifiedPeriod {
+            get {
+                return ResourceManager.GetString("DuringSpecifiedPeriod", resourceCulture);
             }
         }
         
@@ -187,7 +205,7 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to height.
+        ///   Looks up a localized string similar to height (cm).
         /// </summary>
         public static string Height {
             get {
@@ -201,6 +219,15 @@ namespace Resources.Common {
         public static string HowMuchEaten {
             get {
                 return ResourceManager.GetString("HowMuchEaten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in optimal time.
+        /// </summary>
+        public static string InOptimalTime {
+            get {
+                return ResourceManager.GetString("InOptimalTime", resourceCulture);
             }
         }
         
@@ -219,6 +246,15 @@ namespace Resources.Common {
         public static string KeepWeight {
             get {
                 return ResourceManager.GetString("KeepWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to kg.
+        /// </summary>
+        public static string Kg {
+            get {
+                return ResourceManager.GetString("Kg", resourceCulture);
             }
         }
         
@@ -277,7 +313,7 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to to put on {0} kkal per day.
+        ///   Looks up a localized string similar to to put on {0} gramm per week.
         /// </summary>
         public static string PutOn {
             get {
@@ -286,7 +322,7 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to to read of {0} kkal per day.
+        ///   Looks up a localized string similar to to read of {0} gramm per week.
         /// </summary>
         public static string RedOf {
             get {
@@ -300,6 +336,15 @@ namespace Resources.Common {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to set up your diet plan now or later?.
+        /// </summary>
+        public static string SetupPlanNow {
+            get {
+                return ResourceManager.GetString("SetupPlanNow", resourceCulture);
             }
         }
         
@@ -349,6 +394,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to to specifyied date.
+        /// </summary>
+        public static string ToSpecifyiedDate {
+            get {
+                return ResourceManager.GetString("ToSpecifyiedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to total eaten.
         /// </summary>
         public static string TotalEaten {
@@ -376,6 +430,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I want to weight.
+        /// </summary>
+        public static string WantToWeight {
+            get {
+                return ResourceManager.GetString("WantToWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to water.
         /// </summary>
         public static string Water {
@@ -394,7 +457,7 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to weight.
+        ///   Looks up a localized string similar to weight(kg).
         /// </summary>
         public static string Weight {
             get {

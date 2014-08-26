@@ -47,8 +47,8 @@ namespace ViewModels
                 int.TryParse(prompt.Value, out result);
                 if (result > 0)
                 {
-                    CacheManager.Instance.DrinkWater(result);
-                    InvokeInUIThread(() => WaterToday = CacheManager.Instance.WaterToday);
+                    Diet.DrinkWater(result);
+                    InvokeInUIThread(() => WaterToday = Diet.WaterToday);
                 }
             };
 
@@ -60,7 +60,7 @@ namespace ViewModels
         protected override void InitializeExecute()
         {
             base.InitializeExecute();
-            WaterToday = CacheManager.Instance.WaterToday;
+            WaterToday = Diet.WaterToday;
         }
     }
 }
