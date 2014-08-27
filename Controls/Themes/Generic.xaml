@@ -5,13 +5,22 @@
     xmlns:controls="clr-namespace:Controls">
 
     <Style TargetType="controls:ProgressRound">
+        <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ProgressRound">
-                    <controls:RingSlice x:Name="ringSlice"
-                                        StartAngle="0"
-                                        InnerRadius="170"
-                                        Radius="200"/>
+                    <Grid>
+                        <controls:RingSlice x:Name="ringSlice"
+                                            Radius="{TemplateBinding Radius}"
+                                            InnerRadius="{TemplateBinding InnerRadius}"
+                                            Fill="{TemplateBinding Background}"
+                                            EndAngle="{TemplateBinding AnimatedPercent}"
+                                            StartAngle="0"/>
+                        <ContentPresenter x:Name="contentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"/>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -51,7 +51,6 @@ namespace Shared
             public const string FoodDetails = "/Views/Food/FoodDetailsPage.xaml";
             public const string TodayActivity = "/Views/Activity/TodayActivityPage.xaml";
             public const string ActivityDetails = "/Views/Activity/ActivityDetailsPage.xaml";
-            public const string DistributeCalories = "/Views/DietPlan/DistributeCalories.xaml";
             public const string Settings = "/Views/SettingsPage.xaml";
             public const string Profile = "/Views/Profile/ProfilePage.xaml";
             public const string Water = "/Views/Water/WaterPage.xaml";
@@ -64,6 +63,7 @@ namespace Shared
             public const string EnergyType = "energy_type";
             public const string FromGoal = "from_goal";
             public const string FromHome = "from_home";
+            public const string CanEdit = "can_edit";
         }
     }
 }

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ActivityDetailsViewModel.cs" />
     <Compile Include="FoodDetailsViewModel.cs" />
+    <Compile Include="FoodPlanViewModel.cs" />
     <Compile Include="ProfileViewModel.cs" />
     <Compile Include="SearchViewModel.cs" />
     <Compile Include="GoalViewModel.cs" />

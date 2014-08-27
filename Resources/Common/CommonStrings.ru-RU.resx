@@ -252,4 +252,19 @@
   <data name="DistributeWeight" xml:space="preserve">
     <value>распределить лишний вес</value>
   </data>
+  <data name="MustEatPerDay" xml:space="preserve">
+    <value>я должен съедать каждый день</value>
+  </data>
+  <data name="Carbohydrates" xml:space="preserve">
+    <value>углеводов</value>
+  </data>
+  <data name="Fats" xml:space="preserve">
+    <value>жиров</value>
+  </data>
+  <data name="Proteins" xml:space="preserve">
+    <value>белков</value>
+  </data>
+  <data name="Meals" xml:space="preserve">
+    <value>количество приемов пищи</value>
+  </data>
 </root>

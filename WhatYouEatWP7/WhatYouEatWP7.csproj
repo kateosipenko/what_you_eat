@@ -85,9 +85,6 @@
       <DependentUpon>TodayActivityPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BasePage.cs" />
-    <Compile Include="Views\DietPlan\DistributeCalories.xaml.cs">
-      <DependentUpon>DistributeCalories.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DietPlan\FoodPlan.xaml.cs">
       <DependentUpon>FoodPlan.xaml</DependentUpon>
     </Compile>
@@ -155,10 +152,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Activity\TodayActivityPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DietPlan\DistributeCalories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

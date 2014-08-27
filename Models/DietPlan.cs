@@ -132,5 +132,22 @@ namespace Models
         }
 
         #endregion ProcentForTrainings
+
+        #region MustSpentPerWeek
+
+        private int mustSpentPerWeek;
+
+        [DataMember]
+        public int MustSpentPerWeek
+        {
+            get { return mustSpentPerWeek; }
+            set
+            {
+                mustSpentPerWeek = value;
+                RaisePropertyChanged("MustSpentPerWeek");
+            }
+        }
+
+        #endregion MustSpentPerWeek
     }
 }

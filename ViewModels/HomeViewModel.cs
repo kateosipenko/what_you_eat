@@ -30,7 +30,7 @@ namespace ViewModels
             TotalEaten = Diet.GetEatenToday().Sum(item => item.AmountOfCalories);
             TotalActivity = Diet.GetSpentToday().Sum(item => item.SpentEnergy);
             MustEat = Diet.Plan.FoodPerDay.DailyCalories;
-            // TODO: implement must spent
+            MustSpent = Diet.GetMustSpentToday();
             MustDrink = Diet.Plan.WaterPlan.Amount;
             WaterToday = Diet.WaterToday;
         }
@@ -144,7 +144,7 @@ namespace ViewModels
 
         private void NavigateToPlanExecute()
         {
-            NavigationProvider.Navigate(Constants.Pages.DistributeCalories);
+            NavigationProvider.Navigate(Constants.Pages.FristStartGoal);
         }
 
         #endregion NavigateToPlanCommand

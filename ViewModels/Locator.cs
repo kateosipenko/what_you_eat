@@ -315,5 +315,29 @@ namespace ViewModels
         }
 
         #endregion Water
+
+        #region FoodPlan
+
+        private static FoodPlanViewModel foodPlan;
+
+        public static FoodPlanViewModel FoodPlanStatic
+        {
+            get
+            {
+                if (foodPlan == null)
+                {
+                    foodPlan = new FoodPlanViewModel();
+                }
+
+                return foodPlan;
+            }
+        }
+
+        public FoodPlanViewModel FoodPlan
+        {
+            get { return FoodPlanStatic; }
+        }
+
+        #endregion FoodPlan
     }
 }

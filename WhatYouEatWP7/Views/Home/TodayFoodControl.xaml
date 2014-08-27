@@ -9,10 +9,30 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
-    
+
     <Grid x:Name="LayoutRoot">
-        <controls:ProgressRound Percent="77"
-                                Width="200"
-                                Height="200"/>
+        <controls:ProgressRound x:Name="round"
+                                Percent="77"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Center"
+                                Radius="200"
+                                InnerRadius="150">
+            <controls:ProgressRound.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock FontSize="50"
+                                   FontWeight="Bold"
+                                   Margin="150"
+                                   Foreground="{StaticResource PhoneAccentBrush}"
+                                   Text="{Binding AnimatedPercent, ElementName=round, StringFormat='{0:0} %'}"/>
+                    </Grid>
+                </DataTemplate>
+            </controls:ProgressRound.ContentTemplate>
+        </controls:ProgressRound>
     </Grid>
 </UserControl>

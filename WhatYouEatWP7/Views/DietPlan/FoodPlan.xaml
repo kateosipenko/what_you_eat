@@ -1,35 +1,115 @@
-﻿<phone:PhoneApplicationPage
+﻿<views:BasePage
     x:Class="WhatYouEatWP7.Views.DietPlan.FoodPlan"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:views="clr-namespace:WhatYouEatWP7.Views"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding FoodPlan, Source={StaticResource Locator}}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+    
+    <i:Interaction.Behaviors>
+        <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
+                                              CleanupCommand="{Binding CleanupCommand}" />
+    </i:Interaction.Behaviors>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <views:BasePage.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="InputScope" Value="Number" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Margin" Value="-10,0" />
+            <Setter Property="Padding" Value="10,0" />
+        </Style>
+    </views:BasePage.Resources>
+    
+    <Grid Style="{StaticResource ContainerStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}"
+                                        Grid.ColumnSpan="2"
+                                        Grid.Row="0" />
+        
+        <TextBlock Text="{Binding Common.MustEatPerDay, Source={StaticResource LocalizationManager}}"
+                   Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap"
+                   Style="{StaticResource PageTitleStyle}" />
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <TextBox Text="{Binding CaloriesPerDay, Mode=TwoWay}"
+                 IsEnabled="{Binding CanEdit}"
+                 Grid.Row="2" />
+        
+        <TextBlock Text="kkal" Grid.Row="2" Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource FieldStyle}" />
+        <TextBox Text="{Binding Protein, Mode=TwoWay}"
+                 IsEnabled="{Binding CanEdit}"
+                 Grid.Row="3" />
 
-        </Grid>
+        <TextBlock Text="{Binding Common.Proteins, Source={StaticResource LocalizationManager}, StringFormat='% {0}'}"
+                   Grid.Row="3" Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource FieldStyle}" />
+
+        <TextBox Text="{Binding Fats, Mode=TwoWay}"
+                 IsEnabled="{Binding CanEdit}"
+                 Grid.Row="4" />
+
+        <TextBlock Text="{Binding Common.Fats, Source={StaticResource LocalizationManager}, StringFormat='% {0}'}"
+                   Grid.Row="4" Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource FieldStyle}" />
+
+        <TextBox Text="{Binding Carbohydrates, Mode=TwoWay}"
+                 IsEnabled="{Binding CanEdit}"
+                 Grid.Row="5" />
+
+        <TextBlock Text="{Binding Common.Carbohydrates, Source={StaticResource LocalizationManager}, StringFormat='% {0}'}"
+                   Grid.Row="5" Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource FieldStyle}" />
+
+        <TextBox Text="{Binding MealsCount, Mode=TwoWay}"
+                 IsEnabled="{Binding CanEdit}"
+                 Grid.Row="6" />
+
+        <TextBlock Text="{Binding Common.Meals, Source={StaticResource LocalizationManager}}"
+                   Grid.Row="6" Grid.Column="1" TextWrapping="Wrap"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource FieldStyle}" />
+
     </Grid>
 
-</phone:PhoneApplicationPage>
+    <binBar:Bindable.ApplicationBar>
+        <binBar:BindableApplicationBar>
+            <binBar:BindableApplicationBarButton IconUri="/Icons/back.png"
+                                                 Text="{Binding Buttons.Back, Source={StaticResource LocalizationManager}}"
+                                                 Command="{Binding GoBackCommand}"/>
+            <binBar:BindableApplicationBarButton IconUri="/Icons/next.png"
+                                                 Text="{Binding Buttons.Next, Source={StaticResource LocalizationManager}}"
+                                                 Command="{Binding SaveCommand}"/>
+        </binBar:BindableApplicationBar>
+    </binBar:Bindable.ApplicationBar>
+
+</views:BasePage>

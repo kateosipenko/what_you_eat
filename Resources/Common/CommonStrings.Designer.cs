@@ -106,6 +106,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to carbohydrates.
+        /// </summary>
+        public static string Carbohydrates {
+            get {
+                return ResourceManager.GetString("Carbohydrates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to current language.
         /// </summary>
         public static string CurrentLanguage {
@@ -196,6 +205,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to fats.
+        /// </summary>
+        public static string Fats {
+            get {
+                return ResourceManager.GetString("Fats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to have to eat per day.
         /// </summary>
         public static string FoodPerDay {
@@ -268,6 +286,24 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to meals number.
+        /// </summary>
+        public static string Meals {
+            get {
+                return ResourceManager.GetString("Meals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I have to eat every day.
+        /// </summary>
+        public static string MustEatPerDay {
+            get {
+                return ResourceManager.GetString("MustEatPerDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to my goal.
         /// </summary>
         public static string MyGoal {
@@ -309,6 +345,15 @@ namespace Resources.Common {
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to proteins.
+        /// </summary>
+        public static string Proteins {
+            get {
+                return ResourceManager.GetString("Proteins", resourceCulture);
             }
         }
         

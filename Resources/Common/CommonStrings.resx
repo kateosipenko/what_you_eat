@@ -252,4 +252,19 @@
   <data name="DistributeWeight" xml:space="preserve">
     <value>distribute useless weight</value>
   </data>
+  <data name="MustEatPerDay" xml:space="preserve">
+    <value>I have to eat every day</value>
+  </data>
+  <data name="Carbohydrates" xml:space="preserve">
+    <value>carbohydrates</value>
+  </data>
+  <data name="Fats" xml:space="preserve">
+    <value>fats</value>
+  </data>
+  <data name="Proteins" xml:space="preserve">
+    <value>proteins</value>
+  </data>
+  <data name="Meals" xml:space="preserve">
+    <value>meals number</value>
+  </data>
 </root>

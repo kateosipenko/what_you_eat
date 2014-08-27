@@ -193,7 +193,7 @@ namespace DataAccess
             if (goal.Course != Course.LoseWeight)
             {
                 int totalSpent = spentToday.Sum(item => item.SpentEnergy);
-                plan.FoodPerDay.DailyCalories = plan.FoodPerDay.NormalPerDay + plan.PutOnPerWeek + totalSpent;
+                plan.FoodPerDay.DailyCalories = plan.FoodPerDay.NormalPerDay + plan.FoodPerDay.ExtraCaloriesPerDay + totalSpent;
             }
 
             return newActivity;
@@ -206,6 +206,17 @@ namespace DataAccess
                 spentToday.Remove(activity);
                 IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
             }
+        }
+
+        public int GetMustSpentToday()
+        {
+            int result = 0;
+            if (plan != null)
+            {
+                result = plan.Trainigs.Where(item => item.DayOfWeek == DateTime.Now.DayOfWeek).Select(el => el.CaloriesMustBurned).Sum();
+            }
+
+            return result;
         }
 
         #endregion Spent
@@ -309,35 +320,46 @@ namespace DataAccess
                 // 999 * weight(kg) + 6.25 * height(sm) - 4/92 * age (-161 for men) (+5 for women)
                 plan.FoodPerDay.Metabolism = (int)(9.99 * user.BodyState.Weight + 6.25 * user.BodyState.Height - 4.92 * user.Age + ratio);
                 plan.FoodPerDay.NormalPerDay = (int)(plan.FoodPerDay.Metabolism * user.ActivityType.Value);
-                int totalSpent = spentToday.Sum(item => item.SpentEnergy);
-                plan.FoodPerDay.DailyCalories = plan.FoodPerDay.NormalPerDay;
-                if (goal.Course != Course.KeepWeight)
-                {
-                    // weight difference in gramms
-                    float weightDif = Math.Abs((user.BodyState.Weight - goal.DesiredWeight) * 1000);
-                    float weightPerWeek = (weightDif / goal.DesiredWeeksCount);
-                    plan.ThrowOffPerWeek = (int) weightPerWeek;
-                    //if (goal.Course == Course.LoseWeight)
-                    //{
-                    //    // 1gramm = 7.7 calories (for loosing weight)
-                    //    plan.ThrowOffPerWeek = weightPerWeek != 0 ? (int)(weightPerWeek * 7.7) : 0;
-                    //}
-                    //else
-                    //{
-                    //    // 1gramm = 11 calories (for put on weight)
-                    //    plan.PutOnPerWeek = weightDif != 0 ? (int)weightPerWeek * 11 : 0;
-                    //}
-                }
-                else
-                {
-                    plan.FoodPerDay.DailyCalories += totalSpent;
-                }
-
+                plan.FoodPerDay.MealsCount = 4;
+                CalculateFoodAndTrainingPlan();
                 // water in milliliters
                 plan.WaterPlan.Amount = (int)((user.BodyState.Weight * 0.03) * 1000);
             }
 
             IsolatedStorage.WriteValue(Constants.CacheKeys.DietPlan, plan);
+        }
+
+        private void CalculateFoodAndTrainingPlan()
+        {
+            plan.FoodPerDay.DailyCalories = plan.FoodPerDay.NormalPerDay;
+            float weightDif = Math.Abs((user.BodyState.Weight - goal.DesiredWeight) * 1000);
+            float weightPerWeek = (weightDif / goal.DesiredWeeksCount);
+            switch (goal.Course)
+            {
+                case Course.KeepWeight:
+                case Course.UserPlan:
+                    plan.FoodPerDay.Carbohydrates = 64;
+                    plan.FoodPerDay.Protein = 20;
+                    plan.FoodPerDay.Fats = 16;
+                    break;
+                case Course.LoseWeight:
+                    plan.ThrowOffPerWeek = (int)weightPerWeek;
+                    plan.FoodPerDay.UselessCaloriesPerDay = (int)(((plan.ThrowOffPerWeek * plan.ProcentForFood) / 100 / 7) * Constants.CaloriesInGrammLose);
+                    plan.FoodPerDay.DailyCalories = plan.FoodPerDay.DailyCalories - plan.FoodPerDay.UselessCaloriesPerDay;
+                    plan.MustSpentPerWeek = (int)(((plan.ThrowOffPerWeek * plan.ProcentForTrainings / 100) / 7) * Constants.CaloriesInGrammLose);
+                    plan.FoodPerDay.Carbohydrates = 45;
+                    plan.FoodPerDay.Protein = 35;
+                    plan.FoodPerDay.Fats = 20;
+                    break;
+                case Course.PutOnWeight:
+                    plan.PutOnPerWeek = (int)weightPerWeek;
+                    plan.FoodPerDay.ExtraCaloriesPerDay = (int)((plan.PutOnPerWeek / 7) * Constants.CaloriesInGrammPutOn);
+                    plan.FoodPerDay.DailyCalories = plan.FoodPerDay.DailyCalories + plan.FoodPerDay.ExtraCaloriesPerDay;
+                    plan.FoodPerDay.Carbohydrates = 50;
+                    plan.FoodPerDay.Protein = 30;
+                    plan.FoodPerDay.Fats = 20;
+                    break;
+            }
         }
 
         public void UpdateDietPlan(DietPlan plan)

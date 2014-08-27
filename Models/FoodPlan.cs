@@ -88,10 +88,13 @@ namespace Models
 
         #region Proteins
 
-        private float protein;
+        private int protein;
 
+        /// <summary>
+        /// Amount of proteins in percent per day
+        /// </summary>
         [DataMember]
-        public float Protein
+        public int Protein
         {
             get { return protein; }
             set
@@ -105,10 +108,13 @@ namespace Models
 
         #region Fats
 
-        private float fats;
+        private int fats;
 
+        /// <summary>
+        /// Amount of fats in percent per day.
+        /// </summary>
         [DataMember]
-        public float Fats
+        public int Fats
         {
             get { return fats; }
             set
@@ -122,10 +128,13 @@ namespace Models
 
         #region Carbohydrates
 
-        private float carbohydrates;
+        private int carbohydrates;
 
+        /// <summary>
+        /// Amount of carbohydrates in percent per day.
+        /// </summary>
         [DataMember]
-        public float Carbohydrates
+        public int Carbohydrates
         {
             get { return carbohydrates; }
             set
@@ -153,5 +162,39 @@ namespace Models
         }
 
         #endregion MealsCount
+
+        #region ExtraCaloriesPerDay
+
+        private int extraCaloriesPerDay;
+
+        [DataMember]
+        public int ExtraCaloriesPerDay
+        {
+            get { return extraCaloriesPerDay; }
+            set
+            {
+                extraCaloriesPerDay = value;
+                RaisePropertyChanged("ExtraCaloriesPerDay");
+            }
+        }
+
+        #endregion ExtraCaloriesPerDay
+
+        #region UselessCaloriesPerDay
+
+        private int uselessCaloriesPerDay;
+
+        [DataMember]
+        public int UselessCaloriesPerDay
+        {
+            get { return uselessCaloriesPerDay; }
+            set
+            {
+                uselessCaloriesPerDay = value;
+                RaisePropertyChanged("UselessCaloriesPerDay");
+            }
+        }
+
+        #endregion UselessCaloriesPerDay
     }
 }

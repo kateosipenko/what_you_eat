@@ -95,7 +95,15 @@ namespace ViewModels
                 if (goal.Course == Course.LoseWeight || goal.Course == Course.PutOnWeight)
                     NavigationProvider.Navigate(Constants.Pages.DesiredWeight);
                 else
-                    NavigationProvider.Navigate(Constants.Pages.FoodPlan);
+                {
+                    Diet.SaveGoal(goal);
+                    Diet.UpdateDietPlan();
+                    string navigationUrl = Constants.Pages.FoodPlan;
+                    if (goal.Course == Course.UserPlan)
+                        navigationUrl = navigationUrl.AddPageParameter(Constants.NavigationParameters.CanEdit, true);
+
+                    NavigationProvider.Navigate(navigationUrl);
+                }
             }
             else if (!string.IsNullOrEmpty(course))
             {
@@ -153,7 +161,7 @@ namespace ViewModels
         {
             Diet.Plan.ProcentForFood = ForFood;
             Diet.Plan.ProcentForTrainings = ForExrcises;
-            Diet.UpdateDietPlan(Diet.Plan);
+            Diet.UpdateDietPlan();
             NavigationProvider.Navigate(Constants.Pages.FoodPlan);
         }
          
