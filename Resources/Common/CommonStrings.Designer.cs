@@ -124,6 +124,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to day of week.
+        /// </summary>
+        public static string DayOfWeek {
+            get {
+                return ResourceManager.GetString("DayOfWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to distribute useless weight.
         /// </summary>
         public static string DistributeWeight {
@@ -138,6 +147,15 @@ namespace Resources.Common {
         public static string DrunkToday {
             get {
                 return ResourceManager.GetString("DrunkToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to duration (minutes).
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
             }
         }
         
@@ -295,11 +313,29 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to must burn (kkal).
+        /// </summary>
+        public static string MustBurn {
+            get {
+                return ResourceManager.GetString("MustBurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I have to eat every day.
         /// </summary>
         public static string MustEatPerDay {
             get {
                 return ResourceManager.GetString("MustEatPerDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to must spent.
+        /// </summary>
+        public static string MustSpent {
+            get {
+                return ResourceManager.GetString("MustSpent", resourceCulture);
             }
         }
         
@@ -318,6 +354,24 @@ namespace Resources.Common {
         public static string MyPlan {
             get {
                 return ResourceManager.GetString("MyPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to my trainings.
+        /// </summary>
+        public static string MyTrainings {
+            get {
+                return ResourceManager.GetString("MyTrainings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new training.
+        /// </summary>
+        public static string NewTraining {
+            get {
+                return ResourceManager.GetString("NewTraining", resourceCulture);
             }
         }
         

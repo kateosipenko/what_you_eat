@@ -346,7 +346,7 @@ namespace DataAccess
                     plan.ThrowOffPerWeek = (int)weightPerWeek;
                     plan.FoodPerDay.UselessCaloriesPerDay = (int)(((plan.ThrowOffPerWeek * plan.ProcentForFood) / 100 / 7) * Constants.CaloriesInGrammLose);
                     plan.FoodPerDay.DailyCalories = plan.FoodPerDay.DailyCalories - plan.FoodPerDay.UselessCaloriesPerDay;
-                    plan.MustSpentPerWeek = (int)(((plan.ThrowOffPerWeek * plan.ProcentForTrainings / 100) / 7) * Constants.CaloriesInGrammLose);
+                    plan.MustSpentPerWeek = (int)((plan.ThrowOffPerWeek * plan.ProcentForTrainings / 100) * Constants.CaloriesInGrammLose);
                     plan.FoodPerDay.Carbohydrates = 45;
                     plan.FoodPerDay.Protein = 35;
                     plan.FoodPerDay.Fats = 20;
@@ -362,9 +362,8 @@ namespace DataAccess
             }
         }
 
-        public void UpdateDietPlan(DietPlan plan)
+        public void SaveDietPlan()
         {
-            this.plan = plan;
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (sender, args) =>
             {

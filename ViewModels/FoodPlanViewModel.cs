@@ -133,7 +133,7 @@ namespace ViewModels
             plan.FoodPerDay.Carbohydrates = Carbohydrates;
             plan.FoodPerDay.Protein = Protein;
             plan.FoodPerDay.MealsCount = MealsCount;
-            Diet.UpdateDietPlan(plan);
+            Diet.SaveDietPlan();
             NavigationProvider.Navigate(Constants.Pages.TrainingsPlan);
         }
 

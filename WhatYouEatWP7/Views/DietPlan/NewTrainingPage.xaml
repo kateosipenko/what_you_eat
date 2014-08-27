@@ -1,0 +1,91 @@
+﻿<views:BasePage
+    x:Class="WhatYouEatWP7.Views.DietPlan.NewTrainingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:views="clr-namespace:WhatYouEatWP7.Views"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
+    xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    DataContext="{Binding TrainingDetails, Source={StaticResource Locator}}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    
+    <i:Interaction.Behaviors>
+        <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
+                                              CleanupCommand="{Binding CleanupCommand}" />
+    </i:Interaction.Behaviors>
+
+    <Grid Style="{StaticResource ContainerStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        
+        <toolkit:PerformanceProgressBar Grid.ColumnSpan="2"
+                                        IsIndeterminate="{Binding IsBusy}" Grid.Row="0" />
+        
+        <TextBlock Text="{Binding Common.NewTraining, Source={StaticResource LocalizationManager}}"
+                   Grid.Row="1" Grid.ColumnSpan="2"
+                   Style="{StaticResource PageTitleStyle}" />
+        
+        <TextBlock Text="{Binding Common.DayOfWeek, Source={StaticResource LocalizationManager}}"
+                   Style="{StaticResource FieldStyle}" Grid.ColumnSpan="2"
+                   Grid.Row="2" />
+
+        <toolkit:ListPicker Grid.Row="3" Grid.ColumnSpan="2">
+            <i:Interaction.Behaviors>
+                <helpers:EnumPickerBehavior EnumType="{Binding DayType}"
+                                            SelectedItem="{Binding Training.DayOfWeek, Mode=TwoWay}" />
+            </i:Interaction.Behaviors>
+            <toolkit:ListPicker.FullModeItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource EnumToTextConverter}}"
+                               FontSize="32"
+                               Margin="24,10" />
+                </DataTemplate>
+            </toolkit:ListPicker.FullModeItemTemplate>
+        </toolkit:ListPicker>
+
+        <TextBlock Text="{Binding Common.Duration, Source={StaticResource LocalizationManager}}"
+                   Style="{StaticResource FieldStyle}" 
+                   Grid.Row="4" />
+
+        <TextBox Text="{Binding Training.Duration, Mode=TwoWay}"
+                   Grid.Row="4"  Grid.Column="1" />
+
+        <TextBlock Text="{Binding Common.MustBurn, Source={StaticResource LocalizationManager}}"
+                   Style="{StaticResource FieldStyle}" 
+                   Grid.Row="5" />
+
+        <TextBox Text="{Binding Training.CaloriesMustBurned, Mode=TwoWay}"
+                   Grid.Row="5"  Grid.Column="1" />
+
+    </Grid>
+    
+    <binBar:Bindable.ApplicationBar>
+        <binBar:BindableApplicationBar>
+            <binBar:BindableApplicationBarButton IconUri="/Icons/ok.png"
+                                                 Text="{Binding Buttons.Save, Source={StaticResource LocalizationManager}}"
+                                                 Command="{Binding AddTrainingCommand}" />
+        </binBar:BindableApplicationBar>
+    </binBar:Bindable.ApplicationBar>
+
+</views:BasePage>

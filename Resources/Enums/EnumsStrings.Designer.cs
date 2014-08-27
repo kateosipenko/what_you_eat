@@ -79,6 +79,15 @@ namespace Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to friday.
+        /// </summary>
+        public static string Friday {
+            get {
+                return ResourceManager.GetString("Friday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to glass.
         /// </summary>
         public static string Glass {
@@ -160,6 +169,15 @@ namespace Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to monday.
+        /// </summary>
+        public static string Monday {
+            get {
+                return ResourceManager.GetString("Monday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to portion.
         /// </summary>
         public static string Portion {
@@ -178,11 +196,47 @@ namespace Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to saturday.
+        /// </summary>
+        public static string Saturday {
+            get {
+                return ResourceManager.GetString("Saturday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sitting (without training).
         /// </summary>
         public static string Sitting {
             get {
                 return ResourceManager.GetString("Sitting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sunday.
+        /// </summary>
+        public static string Sunday {
+            get {
+                return ResourceManager.GetString("Sunday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thursday.
+        /// </summary>
+        public static string Thursday {
+            get {
+                return ResourceManager.GetString("Thursday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tuesday.
+        /// </summary>
+        public static string Tuesday {
+            get {
+                return ResourceManager.GetString("Tuesday", resourceCulture);
             }
         }
         
@@ -201,6 +255,15 @@ namespace Resources.Enums {
         public static string UserPlan {
             get {
                 return ResourceManager.GetString("UserPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wednesday.
+        /// </summary>
+        public static string Wednesday {
+            get {
+                return ResourceManager.GetString("Wednesday", resourceCulture);
             }
         }
     }

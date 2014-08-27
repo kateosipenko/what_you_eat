@@ -54,6 +54,8 @@ namespace Shared
             public const string Settings = "/Views/SettingsPage.xaml";
             public const string Profile = "/Views/Profile/ProfilePage.xaml";
             public const string Water = "/Views/Water/WaterPage.xaml";
+            public const string NewTrainingPage = "/Views/DietPlan/NewTrainingPage.xaml";
+            public const string WaterPlan = "/Views/DietPlan/WaterPlan.xaml";
         }
 
         public struct NavigationParameters

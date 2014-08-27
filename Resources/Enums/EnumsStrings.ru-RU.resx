@@ -123,6 +123,9 @@
   <data name="Female" xml:space="preserve">
     <value>женский</value>
   </data>
+  <data name="Friday" xml:space="preserve">
+    <value>пятница</value>
+  </data>
   <data name="Glass" xml:space="preserve">
     <value>стакан</value>
   </data>
@@ -150,19 +153,37 @@
   <data name="Medium" xml:space="preserve">
     <value>средняя (тренировки 3-5 раз в неделю)</value>
   </data>
+  <data name="Monday" xml:space="preserve">
+    <value>понедельник</value>
+  </data>
   <data name="Portion" xml:space="preserve">
     <value>порция</value>
   </data>
   <data name="PutOnWeight" xml:space="preserve">
     <value>набрать вес</value>
   </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>суббота</value>
+  </data>
   <data name="Sitting" xml:space="preserve">
     <value>сидячая (без тренировок)</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>воскресенье</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>четверг</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>вторник</value>
   </data>
   <data name="Until" xml:space="preserve">
     <value>до</value>
   </data>
   <data name="UserPlan" xml:space="preserve">
     <value>следовать собственному плану</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>среда</value>
   </data>
 </root>

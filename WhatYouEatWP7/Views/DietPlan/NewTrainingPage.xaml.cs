@@ -10,9 +10,9 @@ using Microsoft.Phone.Shell;
 
 namespace WhatYouEatWP7.Views.DietPlan
 {
-    public partial class TrainingsPlan : BasePage
+    public partial class NewTrainingPage : BasePage
     {
-        public TrainingsPlan()
+        public NewTrainingPage()
         {
             InitializeComponent();
         }

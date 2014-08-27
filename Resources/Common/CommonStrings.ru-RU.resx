@@ -267,4 +267,22 @@
   <data name="Meals" xml:space="preserve">
     <value>количество приемов пищи</value>
   </data>
+  <data name="MustSpent" xml:space="preserve">
+    <value>должен потратить</value>
+  </data>
+  <data name="MyTrainings" xml:space="preserve">
+    <value>мои тренировки</value>
+  </data>
+  <data name="NewTraining" xml:space="preserve">
+    <value>новая тренировка</value>
+  </data>
+  <data name="DayOfWeek" xml:space="preserve">
+    <value>день недели</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>длительность (мин)</value>
+  </data>
+  <data name="MustBurn" xml:space="preserve">
+    <value>нужно сжечь (ккал)</value>
+  </data>
 </root>

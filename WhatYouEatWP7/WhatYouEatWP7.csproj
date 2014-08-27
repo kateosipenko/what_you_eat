@@ -91,11 +91,17 @@
     <Compile Include="Views\DietPlan\LoseWeightPlan.xaml.cs">
       <DependentUpon>LoseWeightPlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DietPlan\NewTrainingPage.xaml.cs">
+      <DependentUpon>NewTrainingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DietPlan\TrainingsPlan.xaml.cs">
       <DependentUpon>TrainingsPlan.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DietPlan\DesiredWeight.xaml.cs">
       <DependentUpon>DesiredWeight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DietPlan\WaterPlan.xaml.cs">
+      <DependentUpon>WaterPlan.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Food\EatenPage.xaml.cs">
       <DependentUpon>EatenPage.xaml</DependentUpon>
@@ -163,11 +169,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DietPlan\NewTrainingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DietPlan\TrainingsPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DietPlan\DesiredWeight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DietPlan\WaterPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

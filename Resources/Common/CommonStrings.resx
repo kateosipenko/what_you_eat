@@ -267,4 +267,22 @@
   <data name="Meals" xml:space="preserve">
     <value>meals number</value>
   </data>
+  <data name="MustSpent" xml:space="preserve">
+    <value>must spent</value>
+  </data>
+  <data name="MyTrainings" xml:space="preserve">
+    <value>my trainings</value>
+  </data>
+  <data name="NewTraining" xml:space="preserve">
+    <value>new training</value>
+  </data>
+  <data name="DayOfWeek" xml:space="preserve">
+    <value>day of week</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>duration (minutes)</value>
+  </data>
+  <data name="MustBurn" xml:space="preserve">
+    <value>must burn (kkal)</value>
+  </data>
 </root>

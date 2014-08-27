@@ -339,5 +339,53 @@ namespace ViewModels
         }
 
         #endregion FoodPlan
+
+        #region TrainingsPlan
+
+        private static TrainingsPlanViewModel trainingsPlan;
+
+        public static TrainingsPlanViewModel TrainingsPlanStatic
+        {
+            get
+            {
+                if (trainingsPlan == null)
+                {
+                    trainingsPlan = new TrainingsPlanViewModel();
+                }
+
+                return trainingsPlan;
+            }
+        }
+
+        public TrainingsPlanViewModel TrainingsPlan
+        {
+            get { return TrainingsPlanStatic; }
+        }
+
+        #endregion TrainingsPlan
+
+        #region TrainingDetails
+
+        private static TrainingDetailsViewModel trainingDetails;
+
+        public static TrainingDetailsViewModel TrainingDetailsStatic
+        {
+            get
+            {
+                if (trainingDetails == null)
+                {
+                    trainingDetails = new TrainingDetailsViewModel();
+                }
+
+                return trainingDetails;
+            }
+        }
+
+        public TrainingDetailsViewModel TrainingDetails
+        {
+            get { return TrainingDetailsStatic; }
+        }
+
+        #endregion TrainingDetails
     }
 }

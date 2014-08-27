@@ -70,6 +70,15 @@ namespace Resources.Buttons {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add training.
+        /// </summary>
+        public static string AddTraining {
+            get {
+                return ResourceManager.GetString("AddTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to back.
         /// </summary>
         public static string Back {

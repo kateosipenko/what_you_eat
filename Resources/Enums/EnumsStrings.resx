@@ -123,6 +123,9 @@
   <data name="Female" xml:space="preserve">
     <value>female</value>
   </data>
+  <data name="Friday" xml:space="preserve">
+    <value>friday</value>
+  </data>
   <data name="Glass" xml:space="preserve">
     <value>glass</value>
   </data>
@@ -150,19 +153,37 @@
   <data name="Medium" xml:space="preserve">
     <value>medium (training 3-5 times per week)</value>
   </data>
+  <data name="Monday" xml:space="preserve">
+    <value>monday</value>
+  </data>
   <data name="Portion" xml:space="preserve">
     <value>portion</value>
   </data>
   <data name="PutOnWeight" xml:space="preserve">
     <value>to put on weight</value>
   </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>saturday</value>
+  </data>
   <data name="Sitting" xml:space="preserve">
     <value>sitting (without training)</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>tuesday</value>
   </data>
   <data name="Until" xml:space="preserve">
     <value>until</value>
   </data>
   <data name="UserPlan" xml:space="preserve">
     <value>to follow my own plan</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>wednesday</value>
   </data>
 </root>
