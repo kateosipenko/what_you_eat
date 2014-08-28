@@ -61,11 +61,11 @@
     <Compile Include="BindableApplicationBar.cs" />
     <Compile Include="BindableApplicationBarButton.cs" />
     <Compile Include="BindableApplicationBarMenuItem.cs" />
+    <Compile Include="DataContextChangedHelper.cs" />
+    <Compile Include="FlexibleDataContextChangedHelper.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Settings.StyleCop" />
+    <Compile Include="UIElementExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">

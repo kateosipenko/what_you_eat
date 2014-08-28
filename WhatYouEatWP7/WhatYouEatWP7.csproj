@@ -114,8 +114,17 @@
     <Compile Include="Views\Home\HomePanoramaPage.xaml.cs">
       <DependentUpon>HomePanoramaPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Home\ProfileControl.xaml.cs">
+      <DependentUpon>ProfileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\TodayActivityControl.xaml.cs">
+      <DependentUpon>TodayActivityControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home\TodayFoodControl.xaml.cs">
       <DependentUpon>TodayFoodControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\TodayWaterControl.xaml.cs">
+      <DependentUpon>TodayWaterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -200,7 +209,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Home\ProfileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\TodayActivityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Home\TodayFoodControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\TodayWaterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,6 +276,7 @@
     <EmbeddedResource Include="FoodDb.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Icons\edit.png" />
     <Content Include="Icons\back.png" />
     <Content Include="Icons\next.png" />
     <Content Include="Icons\BackgroundImage.jpg" />

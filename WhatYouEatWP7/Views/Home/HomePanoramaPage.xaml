@@ -9,6 +9,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:WhatYouEatWP7.Views"
     xmlns:viewsHome="clr-namespace:WhatYouEatWP7.Views.Home"
+    xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    DataContext="{Binding Home, Source={StaticResource Locator}}"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -16,20 +18,53 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
+    <views:BasePage.Resources>
+        <DataTemplate x:Key="PanaramaHeader">
+            <TextBlock Text="{Binding}"                       
+                       TextWrapping="Wrap"
+                       FontSize="46" />
+        </DataTemplate>
+        <DataTemplate x:Key="TitleTemplate">
+            <TextBlock Text="{Binding}" FontFamily="Segoe WP Bold"
+                       Margin="12,80,0,0"
+                       FontSize="96" />
+        </DataTemplate>
+        
+    </views:BasePage.Resources>
+    
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama Title="{Binding HomePanorama.Title, Source={StaticResource LocalizationManager}}">
+        <controls:Panorama Title="{Binding HomePanorama.Title, Source={StaticResource LocalizationManager}}"
+                           TitleTemplate="{StaticResource TitleTemplate}"
+                           HeaderTemplate="{StaticResource PanaramaHeader}">
 
-            <!--Panorama item one-->
-            <controls:PanoramaItem Header="item1">
+            <controls:PanoramaItem Header="{Binding Common.EatenForToday, Source={StaticResource LocalizationManager}}">
                 <viewsHome:TodayFoodControl/>
             </controls:PanoramaItem>
 
-            <!--Panorama item two-->
-            <controls:PanoramaItem Header="item2">
-                <Grid/>
+            <controls:PanoramaItem Header="{Binding Common.Exersizes, Source={StaticResource LocalizationManager}}">
+                <viewsHome:TodayActivityControl />
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding Common.Water, Source={StaticResource LocalizationManager}}">
+                <viewsHome:TodayWaterControl />
+            </controls:PanoramaItem>
+            <controls:PanoramaItem Header="{Binding Common.Profile, Source={StaticResource LocalizationManager}}">
+                <viewsHome:ProfileControl />
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
 
+    <binBar:Bindable.ApplicationBar>
+        <binBar:BindableApplicationBar>
+            <binBar:BindableApplicationBarButton IconUri="/Icons/edit.png"
+                                                 Command="{Binding NavigateToPlanCommand}"
+                                                 Text="{Binding Buttons.UpdatePlan, Source={StaticResource LocalizationManager}}" />
+            <binBar:BindableApplicationBar.MenuItems>
+                <binBar:BindableApplicationBarMenuItem Command="{Binding NavigateToSettingsCommand}"
+                                                       Text="{Binding Common.Settings, Source={StaticResource LocalizationManager}}" />
+            </binBar:BindableApplicationBar.MenuItems>
+        </binBar:BindableApplicationBar>
+    </binBar:Bindable.ApplicationBar>
+    
 </views:BasePage>

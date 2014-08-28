@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WhatYouEatWP7.Views.Home.TodayFoodControl"
+﻿<UserControl x:Class="WhatYouEatWP7.Views.Home.TodayActivityControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <controls:ProgressRound x:Name="round"
                                 Percent="77"
                                 VerticalAlignment="Top"
@@ -39,10 +39,10 @@
                 </DataTemplate>
             </controls:ProgressRound.ContentTemplate>
         </controls:ProgressRound>
-        
+
         <Button Grid.Row="1"
-                Content="{Binding Common.Eaten, Source={StaticResource LocalizationManager}}"
-                Command="{Binding NavigateToEatenCommand}"/>
-        
+                Content="{Binding Common.Spent, Source={StaticResource LocalizationManager}}"
+                Command="{Binding NavigateToSpentCommand}"/>
+
     </Grid>
 </UserControl>
