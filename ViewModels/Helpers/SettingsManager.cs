@@ -101,24 +101,24 @@ namespace ViewModels.Helpers
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (sender, args) =>
             {
-                currentLanguage = CacheManager.Instance.GetCurrentLanguage();
-                if (currentLanguage == null)
+                Language language = CacheManager.Instance.GetCurrentLanguage();
+                if (language == null)
                 {
                     var deviceLanguage = allLanguages.FirstOrDefault(item => item.CultureCode == currentCultureCode);
                     if (deviceLanguage != null)
                     {
-                        currentLanguage = deviceLanguage;
+                        language = deviceLanguage;
                     }
                     else
                     {
                         // TODO: propose to select the language from the list
-                        currentLanguage = allLanguages.First();
+                        language = allLanguages.First();
                     }
                 }
 
                 syncContext.Post((item) =>
                 {
-                    SetCurrentLanguage(currentLanguage);
+                    SetCurrentLanguage(language);
                 }, null);
             };
             worker.RunWorkerAsync();

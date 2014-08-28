@@ -23,7 +23,7 @@
         <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
                                               CleanupCommand="{Binding CleanupCommand}" />
     </i:Interaction.Behaviors>
-    
+
     <Grid Style="{StaticResource ContainerStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -33,13 +33,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}" Grid.Row="0" />
-        
+
         <TextBlock Text="{Binding Common.MyTrainings, Source={StaticResource LocalizationManager}}"
                    Grid.Row="1"
                    Style="{StaticResource PageTitleStyle}" />
-        
+
         <StackPanel Grid.Row="2"
                     Visibility="{Binding MustSpentPerWeek, Converter={StaticResource NullableToVisibilityConverter}}"
                     Orientation="Horizontal">
@@ -59,41 +59,48 @@
                 HorizontalAlignment="Left"
                 Content="{Binding Buttons.AddTraining, Source={StaticResource LocalizationManager}}"
                 Command="{Binding AddTrainingCommand}"/>
-        
+
         <ItemsControl Style="{StaticResource ScrolledItemsControl}"
                       Grid.Row="5"
                       ItemsSource="{Binding Trainings}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="0,10,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="50" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding DayOfWeek, Converter={StaticResource EnumToTextConverter}}"
-                                   Grid.Row="0"
-                                   FontSize="24" />
-                        <TextBlock Text="{Binding Duration, StringFormat=' {0} min'}"
-                                   Grid.Row="1"
-                                   FontSize="18" />
-                        <Button Grid.RowSpan="2" Grid.Column="1"
-                                Command="{Binding TrainingsPlan.RemoveTrainingCommand, Source={StaticResource Locator}}"
-                                CommandParameter="{Binding}">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Image Height="50" Width="50" Source="/Toolkit.Content/ApplicationBar.Cancel.png" />
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </Grid>
+                    <Button Command="{Binding TrainingsPlan.EditTrainingCommand, Source={StaticResource Locator}}"
+                            CommandParameter="{Binding}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid Margin="10,10,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding DayOfWeek, Converter={StaticResource EnumToTextConverter}}"
+                                               Grid.Row="0"
+                                               FontSize="24" />
+                                    <TextBlock Text="{Binding Duration, StringFormat=' {0} min'}"
+                                               Grid.Row="1"
+                                               FontSize="18" />
+                                    <Button Grid.RowSpan="2" Grid.Column="1"
+                                            Command="{Binding TrainingsPlan.RemoveTrainingCommand, Source={StaticResource Locator}}"
+                                            CommandParameter="{Binding}">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Image Height="50" Width="50" Source="/Toolkit.Content/ApplicationBar.Cancel.png" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        
+
     </Grid>
 
     <binBar:Bindable.ApplicationBar>

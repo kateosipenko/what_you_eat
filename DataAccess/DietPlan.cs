@@ -162,8 +162,6 @@ namespace Models
             ThrowOffPerWeek = 0;
             PutOnPerWeek = 0;
             WaterPlan = new WaterPlan();
-            ProcentForFood = 0;
-            ProcentForTrainings = 0;
             MustSpentPerWeek = 0;
         }
     }

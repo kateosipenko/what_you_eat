@@ -18,6 +18,7 @@ namespace ViewModels
             AddTrainingCommand = new RelayCommand(AddTrainingExecute);
             GoBackCommand = new RelayCommand(GoBackExecute);
             SaveCommand = new RelayCommand(SaveExecute);
+            EditTrainingCommand = new RelayCommand<Training>(EditTrainingExecute);
         }
 
         #region Trainings
@@ -85,7 +86,7 @@ namespace ViewModels
 
         private void AddTrainingExecute()
         {
-            NavigationProvider.Navigate(Constants.Pages.NewTrainingPage);
+            NavigationProvider.Navigate(Constants.Pages.TrainingPage);
         }
 
         public void AddTraining(Training training)
@@ -102,6 +103,16 @@ namespace ViewModels
 
         #endregion AddTrainingCommand
 
+        #region EditTrainingCommand
+
+        public RelayCommand<Training> EditTrainingCommand { get; private set; }
+
+        private void EditTrainingExecute(Training training)
+        {
+            NavigationProvider.Navigate(Constants.Pages.TrainingPage.AddPageParameter(Constants.NavigationParameters.TrainingId, training.Id));
+        }
+
+        #endregion EditTrainingCommand
 
         #region GoBackCommand
 

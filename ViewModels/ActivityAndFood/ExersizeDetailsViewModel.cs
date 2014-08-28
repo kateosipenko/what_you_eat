@@ -11,6 +11,8 @@ namespace ViewModels
 {
     public class ExersizeDetailsViewModel : ViewModel
     {
+        private bool fromPlan = false;
+
         #region CurrentExersize
 
         private Exersize currentExersize;
@@ -37,13 +39,18 @@ namespace ViewModels
         protected override void InitializeExecute()
         {
             base.InitializeExecute();
-            BusyCount++;
+            CurrentExersize = new Exersize();
             var parameters = NavigationProvider.GetNavigationParameters();
+            fromPlan = parameters.ContainsKey(Constants.NavigationParameters.FromPlan);
             if (parameters.ContainsKey(Constants.NavigationParameters.ActivityId))
             {
                 int id;
                 int.TryParse(parameters[Constants.NavigationParameters.ActivityId], out id);
-                CurrentExersize.ActivityId = id;
+                using (var repo = new PhysicalActivityRepository())
+                {
+                    CurrentExersize.ActivityId = id;
+                    CurrentExersize.Activity = repo.GetById(id);
+                }
             }
         }
 
@@ -55,7 +62,14 @@ namespace ViewModels
 
         private void SpentEnergyExecute()
         {
-            Locator.EnergyTodayStatic.AddEnergy(CurrentExersize);
+            if (fromPlan)
+            {
+                Locator.TrainingDetailsStatic.AddExersize(CurrentExersize);
+            }
+            else
+            {
+                Locator.EnergyTodayStatic.AddEnergy(CurrentExersize);
+            }
             if (NavigationProvider.CanGoBack())
                 NavigationProvider.GoBack();
         }
@@ -66,8 +80,9 @@ namespace ViewModels
 
         public override void Cleanup()
         {
-            base.Cleanup();
+            fromPlan = false;
             this.CurrentExersize = null;
+            base.Cleanup();            
         }
 
         #endregion Cleanup

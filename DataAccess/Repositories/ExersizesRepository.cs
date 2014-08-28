@@ -74,6 +74,7 @@ namespace DataAccess.Repositories
             Exersize newExersize = exersize.CreateCopy();
             if (newExersize.Date == null)
                 newExersize.Date = DateTime.Now;
+
             try
             {
                 DbContext.Exersizes.InsertOnSubmit(newExersize);

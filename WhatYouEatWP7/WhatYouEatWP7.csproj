@@ -90,8 +90,8 @@
     <Compile Include="Views\DietPlan\LoseWeightPlan.xaml.cs">
       <DependentUpon>LoseWeightPlan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DietPlan\NewTrainingPage.xaml.cs">
-      <DependentUpon>NewTrainingPage.xaml</DependentUpon>
+    <Compile Include="Views\DietPlan\TrainingPage.xaml.cs">
+      <DependentUpon>TrainingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DietPlan\TrainingsPlan.xaml.cs">
       <DependentUpon>TrainingsPlan.xaml</DependentUpon>
@@ -168,7 +168,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DietPlan\NewTrainingPage.xaml">
+    <Page Include="Views\DietPlan\TrainingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -252,6 +252,9 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="FoodDb.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Icons\back.png" />
     <Content Include="Icons\next.png" />
     <Content Include="Icons\BackgroundImage.jpg" />

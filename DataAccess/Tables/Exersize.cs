@@ -120,6 +120,38 @@ namespace DataAccess.Tables
 
         #endregion TrainingId
 
+        #region Activity
+
+        private PhysicalActivity activity;
+
+        public PhysicalActivity Activity
+        {
+            get { return activity; }
+            set
+            {
+                activity = value;
+                RaisePropertyChanged("Activity");
+            }
+        }
+
+        #endregion Activity
+
+        #region Training
+
+        private Training training;
+
+        public Training Training
+        {
+            get { return training; }
+            set
+            {
+                training = value;
+                RaisePropertyChanged("Training");
+            }
+        }
+
+        #endregion Training
+
         #endregion Columns
 
         public Exersize CreateCopy()
@@ -129,7 +161,9 @@ namespace DataAccess.Tables
                 Duration = this.Duration,
                 CaloriesSpent = this.CaloriesSpent,
                 ActivityId = this.ActivityId,
-                TrainingId = this.TrainingId
+                TrainingId = this.TrainingId,
+                Training = this.Training,
+                Activity = this.Activity
             };
         }
     }

@@ -120,6 +120,9 @@
   <data name="AddActivity" xml:space="preserve">
     <value>add activity</value>
   </data>
+  <data name="AddExersize" xml:space="preserve">
+    <value>add exersize</value>
+  </data>
   <data name="AddTraining" xml:space="preserve">
     <value>add training</value>
   </data>

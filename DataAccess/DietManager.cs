@@ -73,9 +73,7 @@ namespace DataAccess
 
         public bool IsFirstStart()
         {
-            //TODO: remove fake
-            return true;
-            //return user == null;
+            return user == null;
         }
 
         public void SaveUser(User user)

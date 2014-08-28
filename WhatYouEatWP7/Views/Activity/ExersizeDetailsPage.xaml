@@ -45,7 +45,7 @@
         <TextBlock Grid.Row="1"
                    Grid.ColumnSpan="2"
                    Style="{StaticResource PageTitleStyle}"
-                   Text="{Binding CurrentActivity.StringId, Converter={StaticResource TranslationConverter}}" />
+                   Text="{Binding CurrentExersize.Activity.StringId, Converter={StaticResource TranslationConverter}}" />
 
         <TextBlock Grid.Row="2" Grid.ColumnSpan="2"
                    Text="{Binding Common.SpentTime, Source={StaticResource LocalizationManager}}"
@@ -55,10 +55,12 @@
                  Grid.Row="3" />
 
         <TextBlock Grid.Row="3" Grid.Column="1"
-                   Text="min"
+                   Text="min" VerticalAlignment="Center"
+                   Margin="5,0,0,0"
                    Style="{StaticResource FieldStyle}" />
 
         <Button Grid.Row="5" Content="{Binding Buttons.AddActivity, Source={StaticResource LocalizationManager}}"
+                Grid.ColumnSpan="2"
                 Command="{Binding SpentEnergyCommend}" />
         
     </Grid>

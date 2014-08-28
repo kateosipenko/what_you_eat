@@ -14,6 +14,8 @@ namespace ViewModels
 {
     public class SearchViewModel : ViewModel
     {
+        private bool fromPlan = false;
+
         #region Fields
 
         private ObservableCollection<RaisableObject> searchResults = new ObservableCollection<RaisableObject>();
@@ -33,6 +35,7 @@ namespace ViewModels
         {
             base.InitializeExecute();
             var parameters = NavigationProvider.GetNavigationParameters();
+            fromPlan = parameters.ContainsKey(Constants.NavigationParameters.FromPlan);
             if (parameters.ContainsKey(Constants.NavigationParameters.EnergyType))
             {
                 searchType = (EnergyType) Enum.Parse(typeof(EnergyType), parameters[Constants.NavigationParameters.EnergyType], true);
@@ -94,6 +97,9 @@ namespace ViewModels
                     navigationString = Constants.Pages.ExersizeDetails.AddPageParameter(Constants.NavigationParameters.ActivityId, ((PhysicalActivity)energy).Id);
                     break;
             }
+
+            if (fromPlan)
+                navigationString = navigationString.AddPageParameter(Constants.NavigationParameters.FromPlan, true);
 
             if (!string.IsNullOrEmpty(navigationString))
             {

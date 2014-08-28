@@ -53,7 +53,7 @@ namespace Shared
             public const string Settings = "/Views/SettingsPage.xaml";
             public const string Profile = "/Views/Profile/ProfilePage.xaml";
             public const string Water = "/Views/Water/WaterPage.xaml";
-            public const string NewTrainingPage = "/Views/DietPlan/NewTrainingPage.xaml";
+            public const string TrainingPage = "/Views/DietPlan/TrainingPage.xaml";
             public const string WaterPlan = "/Views/DietPlan/WaterPlan.xaml";
         }
 
@@ -65,6 +65,8 @@ namespace Shared
             public const string FromGoal = "from_goal";
             public const string FromHome = "from_home";
             public const string CanEdit = "can_edit";
+            public const string TrainingId = "training_id";
+            public const string FromPlan = "from_plan";
         }
     }
 }

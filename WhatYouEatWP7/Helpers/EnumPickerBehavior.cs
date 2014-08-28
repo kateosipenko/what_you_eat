@@ -43,7 +43,13 @@ namespace WhatYouEatWP7.Helpers
             "SelectedItem",
             typeof(object),
             typeof(EnumPickerBehavior),
-            new PropertyMetadata(null));
+            new PropertyMetadata(OnSelectedItemChanged));
+
+        private static void OnSelectedItemChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var assosiatedObject = ((EnumPickerBehavior)sender).AssociatedObject;
+            assosiatedObject.UpdateSummary(assosiatedObject.SelectedItems);
+        }
 
         public object SelectedItem
         {
