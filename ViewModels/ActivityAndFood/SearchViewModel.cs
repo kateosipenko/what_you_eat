@@ -91,7 +91,7 @@ namespace ViewModels
                     navigationString = Constants.Pages.FoodDetails.AddPageParameter(Constants.NavigationParameters.FoodId, ((Food)energy).Id);
                     break;
                 case EnergyType.Activity:
-                    navigationString = Constants.Pages.ActivityDetails.AddPageParameter(Constants.NavigationParameters.ActivityId, ((PhysicalActivity)energy).Id);
+                    navigationString = Constants.Pages.ExersizeDetails.AddPageParameter(Constants.NavigationParameters.ActivityId, ((PhysicalActivity)energy).Id);
                     break;
             }
 

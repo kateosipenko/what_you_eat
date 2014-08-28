@@ -77,6 +77,16 @@ namespace DataAccess
             get { return GetTable<BodyState>(); }
         }
 
+        public Table<Exersize> Exersizes
+        {
+            get { return GetTable<Exersize>(); }
+        }
+
+        public Table<Training> Trainings
+        {
+            get { return GetTable<Training>(); }
+        }
+
         #endregion Tables
     }
 }

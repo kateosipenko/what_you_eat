@@ -199,38 +199,38 @@ namespace ViewModels
 
         #endregion EnergyToday
 
-        #region ActivityDetails
+        #region ExersizeDetails
 
-        private static ActivityDetailsViewModel acitivityDetails = new ActivityDetailsViewModel();
+        private static ExersizeDetailsViewModel exersizeDetails = new ExersizeDetailsViewModel();
 
-        public static ActivityDetailsViewModel ActivityDetailsStatic
+        public static ExersizeDetailsViewModel ExersizeDetailsStatic
         {
             get
             {
-                if (acitivityDetails == null)
+                if (exersizeDetails == null)
                 {
-                    acitivityDetails = new ActivityDetailsViewModel();
+                    exersizeDetails = new ExersizeDetailsViewModel();
                 }
 
-                return acitivityDetails;
+                return exersizeDetails;
             }
         }
 
-        public ActivityDetailsViewModel ActivityDetails
+        public ExersizeDetailsViewModel ExersizeDetails
         {
-            get { return ActivityDetailsStatic; }
+            get { return ExersizeDetailsStatic; }
         }
 
-        public static void CleanActivityDetails()
+        public static void CleanExersizeDetails()
         {
-            if (acitivityDetails != null)
+            if (exersizeDetails != null)
             {
-                acitivityDetails.Dispose();
-                acitivityDetails = null;
+                exersizeDetails.Dispose();
+                exersizeDetails = null;
             }
         }
 
-        #endregion ActivityDetails
+        #endregion ExersizeDetails
 
         #region Settings
 

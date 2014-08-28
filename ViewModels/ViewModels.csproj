@@ -57,7 +57,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityAndFood\ActivityDetailsViewModel.cs" />
+    <Compile Include="ActivityAndFood\ExersizeDetailsViewModel.cs" />
     <Compile Include="ActivityAndFood\FoodDetailsViewModel.cs" />
     <Compile Include="DietPlan\FoodPlanViewModel.cs" />
     <Compile Include="DietPlan\TrainingDetailsViewModel.cs" />

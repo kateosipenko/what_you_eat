@@ -11,12 +11,13 @@ namespace DataAccess.Repositories
     {
         public List<BodyState> GetAllStates()
         {
-            return DbContext.BodyStates.ToList();
+            return (from states in DbContext.BodyStates
+                   select states).ToList();
         }
 
         public BodyState GetLastState()
         {
-            return DbContext.BodyStates.OrderByDescending(item => item.Date).FirstOrDefault();
+            return GetAllStates().OrderByDescending(item => item.Date).FirstOrDefault();
         }
 
         public BodyState Add(BodyState state)

@@ -80,7 +80,7 @@ namespace ViewModels
             switch (energyType)
             {
                 case EnergyType.Activity:
-                    TotalEnergy = TodayItems.Sum(item => ((PhysicalActivity)item).SpentEnergy);
+                    TotalEnergy = TodayItems.Sum(item => ((Exersize)item).CaloriesSpent);
                     break;
                 case EnergyType.Food:
                     TotalEnergy = TodayItems.Sum(item => ((Food)item).AmountOfCalories);
@@ -117,7 +117,7 @@ namespace ViewModels
                     newEnergy = Diet.EatFood((Food)energy);
                     break;
                 case EnergyType.Activity:
-                    newEnergy = Diet.SpentEnergy((PhysicalActivity)energy);
+                    newEnergy = Diet.DoExersize((Exersize)energy);
                     break;
             }
 
@@ -136,7 +136,7 @@ namespace ViewModels
                 switch (energyType)
                 {
                     case EnergyType.Activity:
-                        Diet.DeleteActivity((PhysicalActivity)energy);
+                        Diet.DeleteExersize((Exersize)energy);
                         break;
                     case EnergyType.Food:
                         Diet.DeleteEatenFood((Food)energy);

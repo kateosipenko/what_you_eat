@@ -77,8 +77,8 @@
     <Compile Include="Helpers\NullableToVisibilityConverter.cs" />
     <Compile Include="Helpers\TranslationConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Activity\ActivityDetailsPage.xaml.cs">
-      <DependentUpon>ActivityDetailsPage.xaml</DependentUpon>
+    <Compile Include="Views\Activity\ExersizeDetailsPage.xaml.cs">
+      <DependentUpon>ExersizeDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Activity\TodayActivityPage.xaml.cs">
       <DependentUpon>TodayActivityPage.xaml</DependentUpon>
@@ -152,7 +152,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Activity\ActivityDetailsPage.xaml">
+    <Page Include="Views\Activity\ExersizeDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,9 +251,6 @@
     </Content>
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="FoodDb.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\back.png" />
     <Content Include="Icons\next.png" />

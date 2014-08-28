@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DataAccess.Tables;
+using GalaSoft.MvvmLight.Command;
 using Models;
 using System;
 using System.Collections.Generic;

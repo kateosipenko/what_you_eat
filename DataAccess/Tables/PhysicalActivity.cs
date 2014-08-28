@@ -70,44 +70,7 @@ namespace DataAccess.Tables
         #endregion Calories
 
         #endregion Columns
-
-        #region Duration
-
-        private DateTime? duration = new DateTime();
-
-        public DateTime? Duration
-        {
-            get { return duration; }
-            set
-            {
-                duration = value;
-                RaisePropertyChanged("Duration");
-            }
-        }
-
-        public float GetTotalHours()
-        {
-            return Duration == null ? 0 : (Duration.Value.Hour + (float)Duration.Value.Minute / 60);
-        }
-
-        #endregion Duration
-
-        #region SpentEnergy
-
-        private int spentEnery = 0;
-
-        public int SpentEnergy
-        {
-            get { return spentEnery; }
-            set
-            {
-                spentEnery = value;
-                RaisePropertyChanged("SpentEnergy");
-            }
-        }
-
-        #endregion SpentEnergy
-
+        
         public PhysicalActivity CreateCopy()
         {
             return new PhysicalActivity
@@ -115,8 +78,6 @@ namespace DataAccess.Tables
                 StringId = this.StringId,
                 Id = this.Id,
                 Calories = this.Calories,
-                Duration = this.Duration,
-                SpentEnergy = this.SpentEnergy
             };
         }
     }

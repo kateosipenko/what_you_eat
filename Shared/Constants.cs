@@ -29,7 +29,6 @@ namespace Shared
             public const string Goal = "goal";
             public const string CurrentDate = "current_date";
             public const string EatenFood = "eaten_food";
-            public const string SpentToday = "spent_today";
             public const string WaterToday = "water_today";
             public const string User = "user";
             public const string Language = "language";
@@ -50,7 +49,7 @@ namespace Shared
             public const string Search = "/Views/SearchPage.xaml";
             public const string FoodDetails = "/Views/Food/FoodDetailsPage.xaml";
             public const string TodayActivity = "/Views/Activity/TodayActivityPage.xaml";
-            public const string ActivityDetails = "/Views/Activity/ActivityDetailsPage.xaml";
+            public const string ExersizeDetails = "/Views/Activity/ExersizeDetailsPage.xaml";
             public const string Settings = "/Views/SettingsPage.xaml";
             public const string Profile = "/Views/Profile/ProfilePage.xaml";
             public const string Water = "/Views/Water/WaterPage.xaml";

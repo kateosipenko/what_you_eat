@@ -28,7 +28,7 @@ namespace ViewModels
         {
             base.InitializeExecute();
             TotalEaten = Diet.GetEatenToday().Sum(item => item.AmountOfCalories);
-            TotalActivity = Diet.GetSpentToday().Sum(item => item.SpentEnergy);
+            TotalActivity = Diet.GetSpentToday().Sum(item => item.CaloriesSpent);
             MustEat = Diet.Plan.FoodPerDay.DailyCalories;
             MustSpent = Diet.GetMustSpentToday();
             MustDrink = Diet.Plan.WaterPlan.Amount;

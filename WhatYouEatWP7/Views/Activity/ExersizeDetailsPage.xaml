@@ -1,5 +1,5 @@
 ﻿<views:BasePage
-    x:Class="WhatYouEatWP7.Views.Activity.ActivityDetailsPage"
+    x:Class="WhatYouEatWP7.Views.Activity.ExersizeDetailsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:views="clr-namespace:WhatYouEatWP7.Views"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -11,7 +11,7 @@
     xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    DataContext="{Binding ActivityDetails, Source={StaticResource Locator}}"
+    DataContext="{Binding ExersizeDetails, Source={StaticResource Locator}}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -33,20 +33,31 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         
         <toolkit:PerformanceProgressBar IsIndeterminate="{Binding IsBusy}"
+                                        Grid.ColumnSpan="2"
                                         Grid.Row="0" />
         
         <TextBlock Grid.Row="1"
+                   Grid.ColumnSpan="2"
                    Style="{StaticResource PageTitleStyle}"
                    Text="{Binding CurrentActivity.StringId, Converter={StaticResource TranslationConverter}}" />
-        
-        <TextBlock Grid.Row="2"
+
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2"
                    Text="{Binding Common.SpentTime, Source={StaticResource LocalizationManager}}"
                    Style="{StaticResource FieldStyle}" />
         
-        <toolkit:TimePicker Value="{Binding CurrentActivity.Duration, Mode=TwoWay}" Grid.Row="3" />
-        
+        <TextBox Text="{Binding CurrentExersize.Duration, Mode=TwoWay}"
+                 Grid.Row="3" />
+
+        <TextBlock Grid.Row="3" Grid.Column="1"
+                   Text="min"
+                   Style="{StaticResource FieldStyle}" />
+
         <Button Grid.Row="5" Content="{Binding Buttons.AddActivity, Source={StaticResource LocalizationManager}}"
                 Command="{Binding SpentEnergyCommend}" />
         

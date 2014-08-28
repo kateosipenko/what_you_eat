@@ -38,22 +38,24 @@ namespace DataAccess
             {
                 user = IsolatedStorage.ReadValue<User>(Constants.CacheKeys.User);
                 currentDate = IsolatedStorage.ReadValue<DateTime>(Constants.CacheKeys.CurrentDate);
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += (sender, args) =>
+                RunInBackground(() =>
                 {
                     eatenFood = IsolatedStorage.ReadValue<List<Food>>(Constants.CacheKeys.EatenFood);
-                    spentToday = IsolatedStorage.ReadValue<List<PhysicalActivity>>(Constants.CacheKeys.SpentToday);
                     waterToday = IsolatedStorage.ReadValue<int>(Constants.CacheKeys.WaterToday);
                     goal = IsolatedStorage.ReadValue<Goal>(Constants.CacheKeys.Goal);
                     plan = IsolatedStorage.ReadValue<DietPlan>(Constants.CacheKeys.DietPlan);
                     if (eatenFood == null)
                         eatenFood = new List<Food>();
 
-                    if (spentToday == null)
-                        spentToday = new List<PhysicalActivity>();
-                };
+                    using (var exersizeRepo = new ExersizesRepository())
+                    {
+                        spentToday = exersizeRepo.GetForToday();
+                    }
 
-                worker.RunWorkerAsync();
+                    if (spentToday == null)
+                        spentToday = new List<Exersize>();
+                });
+                
                 wasInitialized = true;
             }
         }
@@ -80,8 +82,7 @@ namespace DataAccess
         {
             this.user = user;
             UpdateDietPlan();
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (sender, args) =>
+            RunInBackground(() =>
             {
                 using (var repo = new BodyStateRepository())
                 {
@@ -89,8 +90,7 @@ namespace DataAccess
                 }
 
                 IsolatedStorage.WriteValue(Constants.CacheKeys.User, user);
-            };
-            worker.RunWorkerAsync();
+            });
         }
 
         public void UpdateBodyState(BodyState state, ActivityType type)
@@ -117,8 +117,11 @@ namespace DataAccess
                 waterToday = 0;
                 IsolatedStorage.WriteValue(Constants.CacheKeys.CurrentDate, currentDate);
                 IsolatedStorage.WriteValue(Constants.CacheKeys.EatenFood, eatenFood);
-                IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
                 IsolatedStorage.WriteValue(Constants.CacheKeys.WaterToday, waterToday);
+                using (var repo = new ExersizesRepository())
+                {
+                    repo.DeleteOldExersizes();
+                }
             }
         }
 
@@ -174,37 +177,51 @@ namespace DataAccess
 
         #region Spent
 
-        private List<PhysicalActivity> spentToday = new List<PhysicalActivity>();
+        private List<Exersize> spentToday = new List<Exersize>();
 
-        public List<PhysicalActivity> GetSpentToday()
+        public List<Exersize> GetSpentToday()
         {
             CheckCurrentDay();
             return spentToday;
         }
 
-        public PhysicalActivity SpentEnergy(PhysicalActivity activity)
+        public Exersize DoExersize(Exersize invoked)
         {
-            var newActivity = activity.CreateCopy();
-            // all calories specified for one kilo per hour - 60minutes
-            float caloriesPerBody = (float)user.BodyState.Weight * newActivity.Calories;
-            newActivity.SpentEnergy = (int)(newActivity.GetTotalHours() * caloriesPerBody);
-            spentToday.Add(newActivity);
-            IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
+            Exersize exersize = invoked.CreateCopy();
+            // all calories specified for one kilo per minute
+            float caloriesPerBody = 0;
+            using (var activityRepo = new PhysicalActivityRepository())
+            {
+                var activity = activityRepo.GetById(invoked.ActivityId);
+                caloriesPerBody = (float)(user.BodyState.Weight * activity.Calories) / 60;
+            }
+            
+            exersize.CaloriesSpent = (int)(invoked.Duration * caloriesPerBody);
+            using (var repository = new ExersizesRepository())
+            {
+                exersize = repository.Add(exersize);
+            }
+
+
+            spentToday.Add(exersize);
             if (goal.Course != Course.LoseWeight)
             {
-                int totalSpent = spentToday.Sum(item => item.SpentEnergy);
+                int totalSpent = spentToday.Sum(item => item.CaloriesSpent);
                 plan.FoodPerDay.DailyCalories = plan.FoodPerDay.NormalPerDay + plan.FoodPerDay.ExtraCaloriesPerDay + totalSpent;
             }
 
-            return newActivity;
+            return exersize;
         }
 
-        public void DeleteActivity(PhysicalActivity activity)
+        public void DeleteExersize(Exersize exersize)
         {
-            if (spentToday.Contains(activity))
+            if (spentToday.Contains(exersize))
             {
-                spentToday.Remove(activity);
-                IsolatedStorage.WriteValue(Constants.CacheKeys.SpentToday, spentToday);
+                spentToday.Remove(exersize);
+                using (var repo = new ExersizesRepository())
+                {
+                    repo.Delete(exersize);
+                }
             }
         }
 
@@ -213,7 +230,7 @@ namespace DataAccess
             int result = 0;
             if (plan != null)
             {
-                result = plan.Trainigs.Where(item => item.DayOfWeek == DateTime.Now.DayOfWeek).Select(el => el.CaloriesMustBurned).Sum();
+                result = plan.Trainigs.Where(item => item.DayOfWeek == DateTime.Now.DayOfWeek).Sum(el => el.CaloriesMustBurned);
             }
 
             return result;
@@ -237,25 +254,19 @@ namespace DataAccess
         public void DrinkWater(int amount)
         {
             waterToday += amount;
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (sender, args) =>
+            RunInBackground(() =>
             {
                 IsolatedStorage.WriteValue(Constants.CacheKeys.WaterToday, waterToday);
-            };
-
-            worker.RunWorkerAsync();
+            });
         }
 
         public void RemoveFromWater(int amount)
         {
             waterToday -= amount;
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (sender, args) =>
+            RunInBackground(() =>
             {
                 IsolatedStorage.WriteValue(Constants.CacheKeys.WaterToday, waterToday);
-            };
-
-            worker.RunWorkerAsync();
+            });
         }
 
         #endregion Water
@@ -273,13 +284,10 @@ namespace DataAccess
         {
             this.goal = goal;
             UpdateDietPlan();
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (sender, args) =>
+            RunInBackground(() =>
             {
                 IsolatedStorage.WriteValue(Constants.CacheKeys.Goal, this.goal);
-            };
-
-            worker.RunWorkerAsync();
+            });
         }
 
         #endregion Goal
@@ -360,14 +368,22 @@ namespace DataAccess
 
         public void SaveDietPlan()
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += (sender, args) =>
+            RunInBackground(() =>
             {
                 IsolatedStorage.WriteValue(Constants.CacheKeys.DietPlan, plan);
-            };
-            worker.RunWorkerAsync();
+            });
         }
 
         #endregion DietPlan
+
+        private void RunInBackground(Action action)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (sender, args) =>
+            {
+                action.Invoke();
+            };
+            worker.RunWorkerAsync();
+        }
     }
 }

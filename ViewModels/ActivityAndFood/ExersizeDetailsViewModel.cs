@@ -9,25 +9,25 @@ using System.Text;
 
 namespace ViewModels
 {
-    public class ActivityDetailsViewModel : ViewModel
+    public class ExersizeDetailsViewModel : ViewModel
     {
-        #region CurrentActivity
+        #region CurrentExersize
 
-        private PhysicalActivity currentActivity;
+        private Exersize currentExersize;
 
-        public PhysicalActivity CurrentActivity
+        public Exersize CurrentExersize
         {
-            get { return currentActivity; }
+            get { return currentExersize; }
             set
             {
-                currentActivity = value;
-                RaisePropertyChanged("CurrentActivity");
+                currentExersize = value;
+                RaisePropertyChanged("CurrentExersize");
             }
         }
 
-        #endregion CurrentActivity
+        #endregion CurrentExersize
 
-        public ActivityDetailsViewModel()
+        public ExersizeDetailsViewModel()
         {
             SpentEnergyCommend = new RelayCommand(SpentEnergyExecute);
         }
@@ -41,20 +41,9 @@ namespace ViewModels
             var parameters = NavigationProvider.GetNavigationParameters();
             if (parameters.ContainsKey(Constants.NavigationParameters.ActivityId))
             {
-                RunInBackground(() =>
-                {
-                    int id;
-                    int.TryParse(parameters[Constants.NavigationParameters.ActivityId], out id);
-                    using (var repo = new PhysicalActivityRepository())
-                    {
-                        currentActivity = repo.GetById(id);
-                        InvokeInUIThread(() =>
-                        {
-                            CurrentActivity = currentActivity;
-                            BusyCount--;
-                        });
-                    }
-                });
+                int id;
+                int.TryParse(parameters[Constants.NavigationParameters.ActivityId], out id);
+                CurrentExersize.ActivityId = id;
             }
         }
 
@@ -66,7 +55,7 @@ namespace ViewModels
 
         private void SpentEnergyExecute()
         {
-            Locator.EnergyTodayStatic.AddEnergy(CurrentActivity);
+            Locator.EnergyTodayStatic.AddEnergy(CurrentExersize);
             if (NavigationProvider.CanGoBack())
                 NavigationProvider.GoBack();
         }
@@ -78,7 +67,7 @@ namespace ViewModels
         public override void Cleanup()
         {
             base.Cleanup();
-            this.CurrentActivity = null;
+            this.CurrentExersize = null;
         }
 
         #endregion Cleanup
