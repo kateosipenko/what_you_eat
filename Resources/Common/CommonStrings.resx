@@ -180,9 +180,6 @@
   <data name="TotalSpent" xml:space="preserve">
     <value>total spent</value>
   </data>
-  <data name="AddActivity" xml:space="preserve">
-    <value>add activity</value>
-  </data>
   <data name="SpentTime" xml:space="preserve">
     <value>spent time</value>
   </data>
@@ -194,12 +191,6 @@
   </data>
   <data name="MyPlan" xml:space="preserve">
     <value>my plan</value>
-  </data>
-  <data name="PutOn" xml:space="preserve">
-    <value>to put on {0} gramm per week</value>
-  </data>
-  <data name="RedOf" xml:space="preserve">
-    <value>to read of {0} gramm per week</value>
   </data>
   <data name="KeepWeight" xml:space="preserve">
     <value>to keep weight</value>
@@ -284,5 +275,11 @@
   </data>
   <data name="MustBurn" xml:space="preserve">
     <value>must burn (kkal)</value>
+  </data>
+  <data name="DrinkPerDay" xml:space="preserve">
+    <value>I have to drink every day</value>
+  </data>
+  <data name="IntakesCount" xml:space="preserve">
+    <value>times per day</value>
   </data>
 </root>

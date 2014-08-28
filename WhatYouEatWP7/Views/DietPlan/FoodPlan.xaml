@@ -61,7 +61,7 @@
                  Grid.Row="2" />
         
         <TextBlock Text="kkal" Grid.Row="2" Grid.Column="1"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Center" Margin="5,0,0,0"
                    Style="{StaticResource FieldStyle}" />
         <TextBox Text="{Binding Protein, Mode=TwoWay}"
                  IsEnabled="{Binding CanEdit}"
@@ -69,7 +69,7 @@
 
         <TextBlock Text="{Binding Common.Proteins, Source={StaticResource LocalizationManager}, StringFormat='% {0}'}"
                    Grid.Row="3" Grid.Column="1"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Center" Margin="5,0,0,0"
                    Style="{StaticResource FieldStyle}" />
 
         <TextBox Text="{Binding Fats, Mode=TwoWay}"
@@ -78,7 +78,7 @@
 
         <TextBlock Text="{Binding Common.Fats, Source={StaticResource LocalizationManager}, StringFormat='% {0}'}"
                    Grid.Row="4" Grid.Column="1"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Center" Margin="5,0,0,0"
                    Style="{StaticResource FieldStyle}" />
 
         <TextBox Text="{Binding Carbohydrates, Mode=TwoWay}"
@@ -86,17 +86,16 @@
                  Grid.Row="5" />
 
         <TextBlock Text="{Binding Common.Carbohydrates, Source={StaticResource LocalizationManager}, StringFormat='% {0}'}"
-                   Grid.Row="5" Grid.Column="1"
+                   Grid.Row="5" Grid.Column="1" Margin="5,0,0,0"
                    VerticalAlignment="Center"
                    Style="{StaticResource FieldStyle}" />
 
         <TextBox Text="{Binding MealsCount, Mode=TwoWay}"
-                 IsEnabled="{Binding CanEdit}"
                  Grid.Row="6" />
 
         <TextBlock Text="{Binding Common.Meals, Source={StaticResource LocalizationManager}}"
                    Grid.Row="6" Grid.Column="1" TextWrapping="Wrap"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Center" Margin="5,0,0,0"
                    Style="{StaticResource FieldStyle}" />
 
     </Grid>

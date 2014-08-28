@@ -70,15 +70,6 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add activity.
-        /// </summary>
-        public static string AddActivity {
-            get {
-                return ResourceManager.GetString("AddActivity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please, input amount of water that you had drunk (milliliters).
         /// </summary>
         public static string AmountOfWater {
@@ -138,6 +129,15 @@ namespace Resources.Common {
         public static string DistributeWeight {
             get {
                 return ResourceManager.GetString("DistributeWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I have to drink every day.
+        /// </summary>
+        public static string DrinkPerDay {
+            get {
+                return ResourceManager.GetString("DrinkPerDay", resourceCulture);
             }
         }
         
@@ -277,6 +277,15 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to times per day.
+        /// </summary>
+        public static string IntakesCount {
+            get {
+                return ResourceManager.GetString("IntakesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to keep weight.
         /// </summary>
         public static string KeepWeight {
@@ -408,24 +417,6 @@ namespace Resources.Common {
         public static string Proteins {
             get {
                 return ResourceManager.GetString("Proteins", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to to put on {0} gramm per week.
-        /// </summary>
-        public static string PutOn {
-            get {
-                return ResourceManager.GetString("PutOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to to read of {0} gramm per week.
-        /// </summary>
-        public static string RedOf {
-            get {
-                return ResourceManager.GetString("RedOf", resourceCulture);
             }
         }
         

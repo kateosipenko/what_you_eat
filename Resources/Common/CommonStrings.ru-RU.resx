@@ -138,9 +138,6 @@
   <data name="InputYourData" xml:space="preserve">
     <value>Пожалуйста, введите свои данные.</value>
   </data>
-  <data name="Kilo" xml:space="preserve">
-    <value>кг</value>
-  </data>
   <data name="MyGoal" xml:space="preserve">
     <value>моя цель</value>
   </data>
@@ -180,9 +177,6 @@
   <data name="TotalSpent" xml:space="preserve">
     <value>всего потрачено</value>
   </data>
-  <data name="AddActivity" xml:space="preserve">
-    <value>добавить активность</value>
-  </data>
   <data name="SpentTime" xml:space="preserve">
     <value>затраченное время</value>
   </data>
@@ -197,12 +191,6 @@
   </data>
   <data name="KeepWeight" xml:space="preserve">
     <value>поддержать вес</value>
-  </data>
-  <data name="PutOn" xml:space="preserve">
-    <value>набирать {0} ккал в день</value>
-  </data>
-  <data name="RedOf" xml:space="preserve">
-    <value>избавиться от {0} ккал в день</value>
   </data>
   <data name="ExtraEat" xml:space="preserve">
     <value>ссъесть дополнительно</value>
@@ -284,5 +272,11 @@
   </data>
   <data name="MustBurn" xml:space="preserve">
     <value>нужно сжечь (ккал)</value>
+  </data>
+  <data name="DrinkPerDay" xml:space="preserve">
+    <value>я должен выпивать каждый день</value>
+  </data>
+  <data name="IntakesCount" xml:space="preserve">
+    <value>раз в день</value>
   </data>
 </root>

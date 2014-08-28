@@ -56,7 +56,7 @@
 
         <Button Grid.Row="3"
                 HorizontalAlignment="Left"
-                Content="{Binding Common.AddActivity, Source={StaticResource LocalizationManager}}"
+                Content="{Binding Buttons.AddActivity, Source={StaticResource LocalizationManager}}"
                 Command="{Binding NavigateToSearchCommand}" />
 
         <ItemsControl Grid.Row="5"

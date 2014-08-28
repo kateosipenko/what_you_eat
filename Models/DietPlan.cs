@@ -149,5 +149,21 @@ namespace Models
         }
 
         #endregion MustSpentPerWeek
+
+        public void Clear()
+        {
+            FoodPerDay = new FoodPlan();
+            if (Trainigs != null)
+                Trainigs.Clear();
+            else
+                Trainigs = new List<Training>();
+
+            ThrowOffPerWeek = 0;
+            PutOnPerWeek = 0;
+            WaterPlan = new WaterPlan();
+            ProcentForFood = 0;
+            ProcentForTrainings = 0;
+            MustSpentPerWeek = 0;
+        }
     }
 }

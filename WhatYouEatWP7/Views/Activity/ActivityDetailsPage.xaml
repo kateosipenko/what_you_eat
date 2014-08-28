@@ -47,7 +47,7 @@
         
         <toolkit:TimePicker Value="{Binding CurrentActivity.Duration, Mode=TwoWay}" Grid.Row="3" />
         
-        <Button Grid.Row="5" Content="{Binding Common.AddActivity, Source={StaticResource LocalizationManager}}"
+        <Button Grid.Row="5" Content="{Binding Buttons.AddActivity, Source={StaticResource LocalizationManager}}"
                 Command="{Binding SpentEnergyCommend}" />
         
     </Grid>

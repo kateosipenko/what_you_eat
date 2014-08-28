@@ -85,12 +85,10 @@
                                 CommandParameter="{Binding}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Image Height="50" Width="50" Source="/Icons/ApplicationBar.Cancel.png" />
+                                    <Image Height="50" Width="50" Source="/Toolkit.Content/ApplicationBar.Cancel.png" />
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                                
-                        
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

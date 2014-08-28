@@ -102,7 +102,7 @@
 
         <!--ACTIVITY_TYPE-->
         <TextBlock Style="{StaticResource FieldStyle}" Grid.Row="6" Grid.Column="0"
-                   Text="{Binding Common.ActivityType, Source={StaticResource LocalizationManager}}" />
+                   Text="{Binding Activities.ActivityType, Source={StaticResource LocalizationManager}}" />
 
         <toolkit:ListPicker Grid.Row="7" Grid.ColumnSpan="2">
             <i:Interaction.Behaviors>

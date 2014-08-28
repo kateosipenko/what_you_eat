@@ -58,7 +58,7 @@ namespace DataAccess
             }
         }
 
-        #endregion DietManager        
+        #endregion DietManager
 
         #region User
 
@@ -100,7 +100,7 @@ namespace DataAccess
             SaveUser(user);
         }
 
-        #endregion User        
+        #endregion User
 
         #region CurrentDay
 
@@ -285,7 +285,7 @@ namespace DataAccess
         #endregion Goal
 
         #region DietPlan
-        
+
         private DietPlan plan;
 
         public DietPlan Plan
@@ -302,12 +302,7 @@ namespace DataAccess
 
             if (user != null && user.BodyState != null && goal != null)
             {
-                if (plan.FoodPerDay == null)
-                    plan.FoodPerDay = new FoodPlan();
-                if (plan.Trainigs == null)
-                    plan.Trainigs = new List<Training>();
-                if (plan.WaterPlan == null)
-                    plan.WaterPlan = new WaterPlan();
+                plan.Clear();
 
                 // weight(gramm) / 450 * 8
                 plan.FoodPerDay.CriticalMinimum = (int)((user.BodyState.Weight * 1000) / 450) * 8;
@@ -324,6 +319,7 @@ namespace DataAccess
                 CalculateFoodAndTrainingPlan();
                 // water in milliliters
                 plan.WaterPlan.Amount = (int)((user.BodyState.Weight * 0.03) * 1000);
+                plan.WaterPlan.IntakeCount = 7;
             }
 
             IsolatedStorage.WriteValue(Constants.CacheKeys.DietPlan, plan);

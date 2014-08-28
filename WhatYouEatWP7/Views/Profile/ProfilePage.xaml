@@ -55,7 +55,7 @@
                  Grid.Row="4"
                  InputScope="Number" />
 
-        <TextBlock Text="{Binding Common.ActivityType, Source={StaticResource LocalizationManager}}"
+        <TextBlock Text="{Binding Activities.ActivityType, Source={StaticResource LocalizationManager}}"
                    Grid.Row="5"
                    Style="{StaticResource FieldStyle}" />
 

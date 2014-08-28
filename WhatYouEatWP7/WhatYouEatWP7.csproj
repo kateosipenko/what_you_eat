@@ -71,7 +71,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\CourseToTextConverter.cs" />
     <Compile Include="Helpers\EnumPickerBehavior.cs" />
     <Compile Include="Helpers\EnumToTextConverter.cs" />
     <Compile Include="Helpers\HubTileBehavior.cs" />

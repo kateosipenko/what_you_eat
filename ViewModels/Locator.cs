@@ -387,5 +387,29 @@ namespace ViewModels
         }
 
         #endregion TrainingDetails
+
+        #region WaterPlan
+
+        private static WaterPlanViewModel waterPlan;
+
+        public static WaterPlanViewModel WaterPlanStatic
+        {
+            get
+            {
+                if (waterPlan == null)
+                {
+                    waterPlan = new WaterPlanViewModel();
+                }
+
+                return waterPlan;
+            }
+        }
+
+        public WaterPlanViewModel WaterPlan
+        {
+            get { return WaterPlanStatic; }
+        }
+
+        #endregion WaterPlan
     }
 }
