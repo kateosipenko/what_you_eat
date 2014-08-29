@@ -13,7 +13,7 @@ namespace Models
         #region FoodPlan
 
         private FoodPlan foodPerDay = new FoodPlan();
-
+        [DataMember]
         public FoodPlan FoodPerDay
         {
             get { return foodPerDay; }

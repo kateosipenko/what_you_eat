@@ -33,6 +33,10 @@ namespace Shared
             public const string User = "user";
             public const string Language = "language";
             public const string DietPlan = "diet_plan";
+            public const string UserReminders = "user_reminders";
+            public const string AllovedForFood = "alloved_for_food";
+            public const string AllovedForTrainings = "alloved_for_trainings";
+            public const string AllovedForWater = "alloved_for_water";
         }
 
         public struct Pages

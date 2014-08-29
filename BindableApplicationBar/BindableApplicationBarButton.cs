@@ -3,6 +3,9 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Controls;
+using System.Windows.Media;
+using System.Threading;
 
 namespace BindableApplicationBar
 {
@@ -20,6 +23,17 @@ namespace BindableApplicationBar
     {
         private ApplicationBar applicationBar;
         private ApplicationBarIconButton applicationBarIconButton;
+        private SynchronizationContext syncContext;
+
+        private SynchronizationContext SyncContext
+        {
+            get
+            {
+                if (syncContext == null)
+                    syncContext = SynchronizationContext.Current;
+                return syncContext;
+            }
+        }
 
         #region Text
         /// <summary>
@@ -71,12 +85,28 @@ namespace BindableApplicationBar
         /// <param name="newText">The new Text value.</param>
         protected virtual void OnTextChanged(string oldText, string newText)
         {
-            if (this.applicationBarIconButton != null)
+            if (this.applicationBarIconButton != null && !string.IsNullOrEmpty(newText) && !string.IsNullOrEmpty(newText.Trim()))
             {
                 this.applicationBarIconButton.Text = newText;
             }
         }
         #endregion
+
+        #region Position
+
+        public static readonly DependencyProperty PositionProperty = DependencyProperty.Register(
+            "Position",
+            typeof(int?),
+            typeof(BindableApplicationBarButton),
+            new PropertyMetadata(null));
+
+        public int? Position
+        {
+            get { return (int?)GetValue(PositionProperty); }
+            set { SetValue(PositionProperty, value); }
+        }
+
+        #endregion Position
 
         #region IconUri
         /// <summary>
@@ -114,9 +144,12 @@ namespace BindableApplicationBar
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var target = (BindableApplicationBarButton)d;
-            Uri oldIconUri = (Uri)e.OldValue;
-            Uri newIconUri = target.IconUri;
-            target.OnIconUriChanged(oldIconUri, newIconUri);
+            target.SyncContext.Post((parameter) =>
+            {
+                Uri oldIconUri = (Uri)e.OldValue;
+                Uri newIconUri = target.IconUri;
+                target.OnIconUriChanged(oldIconUri, newIconUri);
+            }, null);
         }
 
         /// <summary>
@@ -128,7 +161,7 @@ namespace BindableApplicationBar
         protected virtual void OnIconUriChanged(
             Uri oldIconUri, Uri newIconUri)
         {
-            if (this.applicationBarIconButton != null)
+            if (this.applicationBarIconButton != null && newIconUri != null)
             {
                 this.applicationBarIconButton.IconUri = this.IconUri;
             }
@@ -141,7 +174,7 @@ namespace BindableApplicationBar
         /// </summary>
         public static readonly DependencyProperty IsEnabledProperty =
             DependencyProperty.Register(
-                "IsEnabled", 
+                "IsEnabled",
                 typeof(bool),
                 typeof(BindableApplicationBarButton),
                 new PropertyMetadata(true, OnIsEnabledChanged));
@@ -250,10 +283,15 @@ namespace BindableApplicationBar
 
             if (newCommand != null)
             {
-                this.IsEnabled =
-                    newCommand.CanExecute(this.CommandParameter);
                 newCommand.CanExecuteChanged +=
                     this.CommandCanExecuteChanged;
+
+                bool isGenericType = newCommand.GetType().IsGenericType;
+
+                if (isGenericType && this.CommandParameter != null || !isGenericType)
+                {
+                    this.IsEnabled = newCommand.CanExecute(this.CommandParameter);
+                }
             }
         }
 
@@ -331,6 +369,61 @@ namespace BindableApplicationBar
         }
         #endregion
 
+        #region ButtonVisibility
+
+        /// <summary>
+        /// ButtonVisibility property.
+        /// </summary>
+        public static readonly DependencyProperty ButtonVisibilityProperty = DependencyProperty.Register(
+            "ButtonVisibility",
+            typeof(Visibility),
+            typeof(BindableApplicationBarButton),
+            new PropertyMetadata(OnButtonVisibilityChanged));
+
+        private static void OnButtonVisibilityChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            ((BindableApplicationBarButton)sender).SetButtonVisibility();
+        }
+
+        /// <summary>
+        /// Gets button viisbility property.
+        /// </summary>
+        public Visibility ButtonVisibility
+        {
+            get { return (Visibility)GetValue(ButtonVisibilityProperty); }
+            set { SetValue(ButtonVisibilityProperty, value); }
+        }
+
+        private void SetButtonVisibility()
+        {
+            switch (ButtonVisibility)
+            {
+                case Visibility.Visible:
+                    if (applicationBar == null)
+                    {
+                        applicationBar = (ApplicationBar)((Application.Current.RootVisual as PhoneApplicationFrame).Content as PhoneApplicationPage).ApplicationBar;
+                    }
+
+                    if (applicationBar.Buttons != null && applicationBar.Buttons.Count == 4)
+                    {
+                        if (this.Position != null)
+                        {
+                            this.applicationBar.Buttons.RemoveAt((int)Position);
+                        }
+                    }
+
+                    if (applicationBar.Buttons != null && !applicationBar.Buttons.Contains(this))
+                        Attach(applicationBar, applicationBar.Buttons.Count);
+                    break;
+                case Visibility.Collapsed:
+                    if (this.applicationBarIconButton != null)
+                        Detach();
+                    break;
+            }
+        }
+
+        #endregion ButtonVisibility
+
         /// <summary>
         /// Creates an associated <see cref="ApplicationBarIconButton"/> and
         /// attaches it to the specified application bar.
@@ -344,13 +437,16 @@ namespace BindableApplicationBar
         /// </param>
         public void Attach(ApplicationBar parentApplicationBar, int i)
         {
-            if (this.applicationBarIconButton != null)
+            if (syncContext == null)
+                syncContext = SynchronizationContext.Current;
+            if (this.applicationBarIconButton != null || this.ButtonVisibility == System.Windows.Visibility.Collapsed)
             {
                 return;
             }
 
             this.applicationBar = parentApplicationBar;
-            this.applicationBarIconButton = 
+
+            this.applicationBarIconButton =
                 new ApplicationBarIconButton(this.IconUri)
                 {
                     Text = string.IsNullOrEmpty(this.Text) ? "." : this.Text,
@@ -362,14 +458,21 @@ namespace BindableApplicationBar
 
             try
             {
-                this.applicationBar.Buttons.Insert(
-                    i, this.applicationBarIconButton);
+                if (this.applicationBarIconButton.IconUri == null)
+                    this.applicationBarIconButton.IconUri = new Uri("/icon/default.png", UriKind.Relative);
+
+                if (Position != null)
+                {
+                    this.applicationBar.Buttons.Insert((int)Position, this.applicationBarIconButton);
+                }
+                else if (i > this.applicationBar.Buttons.Count)
+                    this.applicationBar.Buttons.Add(this.applicationBarIconButton);
+                else
+                    this.applicationBar.Buttons.Insert(
+                        i, this.applicationBarIconButton);
             }
             catch (InvalidOperationException ex)
             {
-                // Up to 4 buttons supported in ApplicationBar.Buttons
-                // at the time of this writing.
-                throw;
             }
         }
 
@@ -383,7 +486,7 @@ namespace BindableApplicationBar
                 this.ApplicationBarIconButtonClick;
             this.applicationBar.Buttons.Remove(
                 this.applicationBarIconButton);
-            this.applicationBar = null;
+
             this.applicationBarIconButton = null;
         }
 

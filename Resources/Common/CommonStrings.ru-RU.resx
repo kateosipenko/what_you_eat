@@ -279,4 +279,13 @@
   <data name="IntakesCount" xml:space="preserve">
     <value>раз в день</value>
   </data>
+  <data name="AllowFoodReminder" xml:space="preserve">
+    <value>разрешить приложению показывать напоминания об еде</value>
+  </data>
+  <data name="AllowTrainingsReminder" xml:space="preserve">
+    <value>разрешить приложению показывать напоминания о тренировках</value>
+  </data>
+  <data name="AllowWaterReminder" xml:space="preserve">
+    <value>разрешить приложению показывать напоминания о воде</value>
+  </data>
 </root>

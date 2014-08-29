@@ -3,15 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
     xmlns:controls="clr-namespace:Controls;assembly=Controls"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    Foreground="{StaticResource PhoneForegroundBrush}">
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -34,7 +35,7 @@
                                    FontWeight="Bold"
                                    Margin="150"
                                    Foreground="{StaticResource PhoneAccentBrush}"
-                                   Text="{Binding AnimatedPercent, ElementName=round, StringFormat='{0:0} %'}"/>
+                                   Text="{Binding AnimatedPercent, ElementName=round, StringFormat=' {0:0} %'}"/>
                     </Grid>
                 </DataTemplate>
             </controls:ProgressRound.ContentTemplate>
@@ -43,6 +44,10 @@
         <Button Grid.Row="1"
                 Content="{Binding Common.Eaten, Source={StaticResource LocalizationManager}}"
                 Command="{Binding NavigateToEatenCommand}"/>
+        <Button Grid.Row="2"
+                Content="{Binding Common.Plan, Source={StaticResource LocalizationManager}}"
+                Command="{Binding NavigateToFoodPlanCommand}"/>
         
     </Grid>
+    
 </UserControl>

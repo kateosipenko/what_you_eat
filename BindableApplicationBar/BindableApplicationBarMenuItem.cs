@@ -107,7 +107,7 @@ namespace BindableApplicationBar
         /// <param name="newText">The new text.</param>
         protected virtual void OnTextChanged(string oldText, string newText)
         {
-            if (this.applicationBarMenuItem != null)
+            if (this.applicationBarMenuItem != null && !string.IsNullOrEmpty(newText))
             {
                 this.applicationBarMenuItem.Text = newText;
             }
@@ -348,6 +348,12 @@ namespace BindableApplicationBar
             {
                 // Up to 50 menu items supported in ApplicationBar.MenuItems
                 // at the time of this writing.
+                if (ex.Message == "Too many items in list" &&
+                    Debugger.IsAttached)
+                {
+                    Debugger.Break();
+                }
+
                 throw;
             }
         }

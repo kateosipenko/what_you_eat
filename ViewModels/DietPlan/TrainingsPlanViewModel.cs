@@ -21,6 +21,21 @@ namespace ViewModels
             EditTrainingCommand = new RelayCommand<Training>(EditTrainingExecute);
         }
 
+        #region IsNextVisible
+
+        private bool isNextVisible = true;
+        public bool IsNextVisible
+        {
+            get { return isNextVisible; }
+            set
+            {
+                isNextVisible = value;
+                RaisePropertyChanged("IsNextVisible");
+            }
+        }
+
+        #endregion IsNextVisible
+
         #region Trainings
 
         private ObservableCollection<Training> trainings = new ObservableCollection<Training>();
@@ -135,7 +150,14 @@ namespace ViewModels
         private void SaveExecute()
         {
             Diet.SaveDietPlan();
-            NavigationProvider.Navigate(Constants.Pages.WaterPlan);
+            if (IsNextVisible)
+            {
+                NavigationProvider.Navigate(Constants.Pages.WaterPlan);
+            }
+            else if (NavigationProvider.CanGoBack())
+            {
+                NavigationProvider.GoBack();
+            }
         }
 
         #endregion SaveCommand
@@ -143,6 +165,8 @@ namespace ViewModels
         protected override void InitializeExecute()
         {
             base.InitializeExecute();
+            var parameters = NavigationProvider.GetNavigationParameters();
+            IsNextVisible = !parameters.ContainsKey(Constants.NavigationParameters.FromHome);
             MustSpentPerWeek = Diet.Plan.MustSpentPerWeek;
             Trainings = new ObservableCollection<Training>(Diet.Plan.Trainigs);
             TotalCalories = Trainings.Sum(item => item.CaloriesMustBurned);

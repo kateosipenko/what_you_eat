@@ -282,4 +282,13 @@
   <data name="IntakesCount" xml:space="preserve">
     <value>times per day</value>
   </data>
+  <data name="AllowFoodReminder" xml:space="preserve">
+    <value>allow application to show reminders about meals</value>
+  </data>
+  <data name="AllowTrainingsReminder" xml:space="preserve">
+    <value>allow application to show reminders about trainings</value>
+  </data>
+  <data name="AllowWaterReminder" xml:space="preserve">
+    <value>allow application to show reminders about water</value>
+  </data>
 </root>

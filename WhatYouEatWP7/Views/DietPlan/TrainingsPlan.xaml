@@ -107,9 +107,15 @@
         <binBar:BindableApplicationBar>
             <binBar:BindableApplicationBarButton IconUri="/Icons/back.png"
                                                  Text="{Binding Buttons.Back, Source={StaticResource LocalizationManager}}"
+                                                 ButtonVisibility="{Binding IsNextVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                                  Command="{Binding GoBackCommand}"/>
             <binBar:BindableApplicationBarButton IconUri="/Icons/next.png"
+                                                 ButtonVisibility="{Binding IsNextVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                                                  Text="{Binding Buttons.Next, Source={StaticResource LocalizationManager}}"
+                                                 Command="{Binding SaveCommand}"/>
+            <binBar:BindableApplicationBarButton IconUri="/Icons/ok.png"
+                                                 ButtonVisibility="{Binding IsNextVisible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter='reverse'}"
+                                                 Text="{Binding Buttons.Save, Source={StaticResource LocalizationManager}}"
                                                  Command="{Binding SaveCommand}"/>
         </binBar:BindableApplicationBar>
     </binBar:Bindable.ApplicationBar>

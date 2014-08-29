@@ -15,6 +15,21 @@ namespace ViewModels
             SaveCommand = new RelayCommand(SaveExecute);
         }
 
+        #region IsNextVisible
+
+        private bool isNextVisible = true;
+        public bool IsNextVisible
+        {
+            get { return isNextVisible; }
+            set
+            {
+                isNextVisible = value;
+                RaisePropertyChanged("IsNextVisible");
+            }
+        }
+
+        #endregion IsNextVisible
+
         #region Amount
 
         private int amount = 0;
@@ -66,7 +81,14 @@ namespace ViewModels
             Diet.Plan.WaterPlan.Amount = Amount;
             Diet.Plan.WaterPlan.IntakeCount = IntakeCount;
             Diet.SaveDietPlan();
-            NavigationProvider.Navigate(Constants.Pages.HomePanorama);
+            if (IsNextVisible)
+            {
+                NavigationProvider.Navigate(Constants.Pages.HomePanorama);
+            }
+            else if (NavigationProvider.CanGoBack())
+            {
+                NavigationProvider.GoBack();
+            }
         }
 
         #endregion SaveCommand
@@ -74,6 +96,8 @@ namespace ViewModels
         protected override void InitializeExecute()
         {
             base.InitializeExecute();
+            var parameters = NavigationProvider.GetNavigationParameters();
+            IsNextVisible = !parameters.ContainsKey(Constants.NavigationParameters.FromHome);
             Amount = Diet.Plan.WaterPlan.Amount;
             IntakeCount = Diet.Plan.WaterPlan.IntakeCount;
         }

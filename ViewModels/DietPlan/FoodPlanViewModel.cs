@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ViewModels.Helpers;
 
 namespace ViewModels
 {
@@ -14,6 +15,36 @@ namespace ViewModels
             this.GoBackCommand = new RelayCommand(GoBackExecute);
             this.SaveCommand = new RelayCommand(SaveExecute);
         }
+
+        #region IsNextVisible
+
+        private bool isNextVisible = true;
+        public bool IsNextVisible
+        {
+            get { return isNextVisible; }
+            set
+            {
+                isNextVisible = value;
+                RaisePropertyChanged("IsNextVisible");
+            }
+        }
+
+        #endregion IsNextVisible
+
+        #region IsFoodRemindersAllowed
+
+        private bool isFoodRemindersAllowed = false;
+        public bool IsFoodRemindersAllowed
+        {
+            get { return isFoodRemindersAllowed; }
+            set
+            {
+                isFoodRemindersAllowed = value;
+                RaisePropertyChanged("IsFoodRemindersAllowed");
+            }
+        }
+
+        #endregion IsFoodRemindersAllowed
 
         #region CanEdit
 
@@ -134,7 +165,14 @@ namespace ViewModels
             plan.FoodPerDay.Protein = Protein;
             plan.FoodPerDay.MealsCount = MealsCount;
             Diet.SaveDietPlan();
-            NavigationProvider.Navigate(Constants.Pages.TrainingsPlan);
+            if (IsNextVisible)
+            {
+                NavigationProvider.Navigate(Constants.Pages.TrainingsPlan);
+            }
+            else if (NavigationProvider.CanGoBack())
+            {
+                NavigationProvider.GoBack();
+            }
         }
 
         #endregion SaveCommand
@@ -144,11 +182,13 @@ namespace ViewModels
             base.InitializeExecute();
             var parameters = NavigationProvider.GetNavigationParameters();
             CanEdit = parameters.ContainsKey(Constants.NavigationParameters.CanEdit);
+            IsNextVisible = !parameters.ContainsKey(Constants.NavigationParameters.FromHome);
             CaloriesPerDay = Diet.Plan.FoodPerDay.DailyCalories;
             Protein = Diet.Plan.FoodPerDay.Protein;
             Fats = Diet.Plan.FoodPerDay.Fats;
             Carbohydrates = Diet.Plan.FoodPerDay.Carbohydrates;
             MealsCount = Diet.Plan.FoodPerDay.MealsCount;
+            IsFoodRemindersAllowed = RemindersManager.Instance.IsFoodOn;
         }
 
         protected override void CleanupExecute()

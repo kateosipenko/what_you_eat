@@ -9,6 +9,7 @@ namespace Models
     {
         None,
         Food,
-        Activity
+        Activity,
+        Water
     }
 }

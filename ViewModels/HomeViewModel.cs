@@ -22,6 +22,9 @@ namespace ViewModels
             NavigateToSettingsCommand = new RelayCommand(NavigateToSettingsExecute);
             NavigateToProfileCommand = new RelayCommand(NavigateToProfileExecute);
             NavigateToWaterCommand = new RelayCommand(NavigateToWater);
+            NavigateToFoodPlanCommand = new RelayCommand(NavigateToFoodPlanExecute);
+            NavigateToTrainingsPlanCommand = new RelayCommand(NavigateToTrainingsPlanExecute);
+            NavigateToWaterPlanCommand = new RelayCommand(NavigateToWaterPlanExecute);
         }
 
         protected override void InitializeExecute()
@@ -181,5 +184,38 @@ namespace ViewModels
         }
 
         #endregion NavigateToWaterCommand
+
+        #region NavigateToFoodPlanCommand
+
+        public RelayCommand NavigateToFoodPlanCommand { get; private set; }
+
+        private void NavigateToFoodPlanExecute()
+        {
+            NavigationProvider.Navigate(Constants.Pages.FoodPlan.AddPageParameter(Constants.NavigationParameters.FromHome, true));
+        }
+
+        #endregion NavigateToFoodPlanCommand
+
+        #region NavigateToTrainingsPlanCommand
+
+        public RelayCommand NavigateToTrainingsPlanCommand { get; private set; }
+
+        private void NavigateToTrainingsPlanExecute()
+        {
+            NavigationProvider.Navigate(Constants.Pages.TrainingsPlan.AddPageParameter(Constants.NavigationParameters.FromHome, true));
+        }
+
+        #endregion NavigateToTrainingsPlanCommand
+
+        #region NavigateToWaterPlanCommand
+
+        public RelayCommand NavigateToWaterPlanCommand { get; private set; }
+
+        private void NavigateToWaterPlanExecute()
+        {
+            NavigationProvider.Navigate(Constants.Pages.WaterPlan.AddPageParameter(Constants.NavigationParameters.FromHome, true));
+        }
+
+        #endregion NavigateToWaterPlanCommand
     }
 }

@@ -70,6 +70,33 @@ namespace Resources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to allow application to show reminders about meals.
+        /// </summary>
+        public static string AllowFoodReminder {
+            get {
+                return ResourceManager.GetString("AllowFoodReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to allow application to show reminders about trainings.
+        /// </summary>
+        public static string AllowTrainingsReminder {
+            get {
+                return ResourceManager.GetString("AllowTrainingsReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to allow application to show reminders about water.
+        /// </summary>
+        public static string AllowWaterReminder {
+            get {
+                return ResourceManager.GetString("AllowWaterReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please, input amount of water that you had drunk (milliliters).
         /// </summary>
         public static string AmountOfWater {

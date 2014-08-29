@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using Microsoft.Phone.Controls;
+using System.Windows.Navigation;
 
 namespace BindableApplicationBar
 {

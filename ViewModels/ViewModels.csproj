@@ -62,6 +62,7 @@
     <Compile Include="DietPlan\FoodPlanViewModel.cs" />
     <Compile Include="DietPlan\TrainingDetailsViewModel.cs" />
     <Compile Include="DietPlan\WaterPlanViewModel.cs" />
+    <Compile Include="Helpers\RemindersManager.cs" />
     <Compile Include="ProfileViewModel.cs" />
     <Compile Include="ActivityAndFood\SearchViewModel.cs" />
     <Compile Include="DietPlan\GoalViewModel.cs" />

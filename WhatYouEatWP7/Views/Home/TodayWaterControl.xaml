@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <controls:ProgressRound x:Name="round"
@@ -44,5 +45,9 @@
                 Content="{Binding Common.Water, Source={StaticResource LocalizationManager}}"
                 Command="{Binding NavigateToWaterCommand}"/>
 
+        <Button Grid.Row="2"
+                Content="{Binding Common.Plan, Source={StaticResource LocalizationManager}}"
+                Command="{Binding NavigateToWaterPlanCommand}"/>
+        
     </Grid>
 </UserControl>

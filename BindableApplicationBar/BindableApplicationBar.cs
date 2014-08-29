@@ -17,6 +17,11 @@ namespace BindableApplicationBar
     /// Serves as a bindable control wrapping the native ApplicationBar
     /// for use in MVVM applications.
     /// </summary>
+    /// <remarks>
+    /// TODO: Find out if bindings can work through ElementName - check for namescope issues.
+    /// TODO: Find out if current/max number of buttons/menu items can be exposed as bindable properties.
+    /// TODO: Figure out the best handling of cases when a button or menu item is added beyond the maximum number allowable.
+    /// </remarks>
     [ContentProperty("Buttons")]
     public class BindableApplicationBar : Control
     {
@@ -148,9 +153,9 @@ namespace BindableApplicationBar
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             BindableApplicationBar target = (BindableApplicationBar)d;
-            DependencyObjectCollection<BindableApplicationBarMenuItem> oldMenuItems = 
+            DependencyObjectCollection<BindableApplicationBarMenuItem> oldMenuItems =
                 (DependencyObjectCollection<BindableApplicationBarMenuItem>)e.OldValue;
-            DependencyObjectCollection<BindableApplicationBarMenuItem> newMenuItems = 
+            DependencyObjectCollection<BindableApplicationBarMenuItem> newMenuItems =
                 target.MenuItems;
             target.OnMenuItemsChanged(oldMenuItems, newMenuItems);
         }
@@ -173,7 +178,7 @@ namespace BindableApplicationBar
 
             if (newMenuItems != null)
             {
-                newMenuItems.CollectionChanged += 
+                newMenuItems.CollectionChanged +=
                     this.MenuItemsCollectionChanged;
             }
         }
@@ -256,7 +261,7 @@ namespace BindableApplicationBar
                 {
                     // Copy item reference to prevent access to modified closure
                     var dataContext = buttonSource;
-                    var button = 
+                    var button =
                         this.buttonsSourceButtons.FirstOrDefault(
                             b => b.DataContext == dataContext);
 
@@ -311,7 +316,7 @@ namespace BindableApplicationBar
                     this.buttonsSourceButtons.Add(button);
                 }
             }
-        } 
+        }
         #endregion
 
         #region GenerateMenuItemsFromSource()
@@ -1071,7 +1076,7 @@ namespace BindableApplicationBar
         public void Attach(PhoneApplicationPage parentPage)
         {
             this.page = parentPage;
-            this.applicationBar = 
+            this.applicationBar =
                 (ApplicationBar)(//parentPage.ApplicationBar ?? 
                 (parentPage.ApplicationBar = new ApplicationBar()));
             this.applicationBar.StateChanged +=
@@ -1090,7 +1095,64 @@ namespace BindableApplicationBar
             this.AttachButtons(this.buttonsSourceButtons);
             this.AttachMenuItems(this.MenuItems);
             this.AttachMenuItems(this.menuItemsSourceMenuItems);
+
+            if (this.Buttons != null && this.Buttons.Count > 0)
+            {
+                this.page.Loaded += this.OnPageLoaded;                
+            }
         }
+
+        private void SetButtonsEnabled()
+        {
+            if (this.enabledStates != null && this.enabledStates.Count > 0)
+            {
+                foreach (var item in enabledStates)
+                {
+                    var selectedButton = this.Buttons.SingleOrDefault(element => element == item.Key);
+                    if (item.Value != null)
+                    {
+                        selectedButton.SetValue(BindableApplicationBarButton.IsEnabledProperty, item.Value);
+                    }
+                    else
+                    {
+                        if (selectedButton.Command != null)
+                        {
+                            selectedButton.IsEnabled = selectedButton.Command.CanExecute(selectedButton.CommandParameter);
+                        }
+                        else
+                        {
+                            selectedButton.IsEnabled = true;
+                        }
+                    }
+                }
+
+                enabledStates = new Dictionary<BindableApplicationBarButton, BindingExpression>();
+            }
+        }
+
+        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        {
+            this.page.NavigationService.Navigating += OnPageNavigating;
+            this.SetButtonsEnabled();
+        }
+
+        private Dictionary<BindableApplicationBarButton, BindingExpression> enabledStates = new Dictionary<BindableApplicationBarButton, BindingExpression>();
+
+        void OnPageNavigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            this.enabledStates = new Dictionary<BindableApplicationBarButton, BindingExpression>();
+            if (!e.Uri.OriginalString.Contains("app://external/") && e.NavigationMode != System.Windows.Navigation.NavigationMode.Back)
+            {
+                foreach (var item in this.Buttons)
+                {
+                    this.enabledStates.Add(item, item.GetBindingExpression(BindableApplicationBarButton.IsEnabledProperty));
+                    item.IsEnabled = false;
+                }
+
+                this.page.NavigationService.Navigating -= this.OnPageNavigating;
+            }
+        }
+
         #endregion
 
         #region SynchronizeProperties()
@@ -1149,7 +1211,7 @@ namespace BindableApplicationBar
             {
                 this.BindableOpacity = this.applicationBar.Opacity;
             }
-        } 
+        }
         #endregion
 
         #region AttachButtons()
@@ -1160,7 +1222,10 @@ namespace BindableApplicationBar
 
             foreach (var button in buttons)
             {
-                button.Attach(this.applicationBar, i++);
+                if (button.Position != null)
+                    button.Attach(this.applicationBar, (int)button.Position);
+                else
+                    button.Attach(this.applicationBar, i++);
 
                 if (button.GetBindingExpression(
                         FrameworkElement.DataContextProperty) == null &&
@@ -1171,7 +1236,7 @@ namespace BindableApplicationBar
                         new Binding("DataContext") { Source = this });
                 }
             }
-        } 
+        }
         #endregion
 
         #region AttachMenuItems()
@@ -1193,7 +1258,7 @@ namespace BindableApplicationBar
                         new Binding("DataContext") { Source = this });
                 }
             }
-        } 
+        }
         #endregion
 
         #region Detach()
@@ -1341,7 +1406,7 @@ namespace BindableApplicationBar
         {
             this.isMenuVisible = e.IsMenuVisible;
             this.IsMenuVisible = this.isMenuVisible;
-        } 
+        }
         #endregion
 
         #region ButtonsCollectionChanged()
@@ -1372,7 +1437,7 @@ namespace BindableApplicationBar
                         e.NewStartingIndex + i++);
                 }
             }
-        } 
+        }
         #endregion
 
         #region MenuItemsCollectionChanged()
@@ -1404,7 +1469,7 @@ namespace BindableApplicationBar
                         e.NewStartingIndex + i++);
                 }
             }
-        } 
+        }
         #endregion
     }
 }
