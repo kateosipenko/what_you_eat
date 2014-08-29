@@ -56,7 +56,7 @@
     </Grid>
 
     <binBar:Bindable.ApplicationBar>
-        <binBar:BindableApplicationBar>
+        <binBar:BindableApplicationBar Mode="Minimized">
             <binBar:BindableApplicationBarButton IconUri="/Icons/edit.png"
                                                  Command="{Binding NavigateToPlanCommand}"
                                                  Text="{Binding Buttons.UpdatePlan, Source={StaticResource LocalizationManager}}" />

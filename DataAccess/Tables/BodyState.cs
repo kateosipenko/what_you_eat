@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace DataAccess.Tables
 {
@@ -17,6 +20,8 @@ namespace DataAccess.Tables
         private float weight;
         private float waist;
         private float hips;
+        private byte[] image;
+        private BitmapImage userImage;
 
         #endregion Fields
 
@@ -26,7 +31,7 @@ namespace DataAccess.Tables
         public DateTime Date
         {
             get { return date; }
-            set 
+            set
             {
                 date = value;
                 RaisePropertyChanged("Date");
@@ -77,16 +82,46 @@ namespace DataAccess.Tables
             }
         }
 
+        [Column(Storage = "Image", DbType = "image")]
+        public byte[] Image
+        {
+            get { return image; }
+            set
+            {
+                image = value;
+                userImage = null;
+                RaisePropertyChanged("Image");
+            }
+        }
+
         #endregion Columns
 
-        public static BodyState CreateCopy(BodyState state)
+        public BitmapImage GetUserImage()
+        {
+            if (userImage != null)
+            {
+                return userImage;
+            }
+
+            if (image != null)
+            {
+                MemoryStream stream = new MemoryStream(image);
+                userImage = new BitmapImage();
+                userImage.SetSource(stream);
+            }
+
+            return userImage;
+        }
+
+        public BodyState CreateCopy()
         {
             return new BodyState
             {
-                height = state.height,
-                hips = state.hips,
-                waist = state.waist,
-                weight = state.weight
+                Height = this.Height,
+                Hips = this.Hips,
+                Waist = this.Waist,
+                Weight = this.Weight,
+                Image = this.Image
             };
         }
     }

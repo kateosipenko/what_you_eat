@@ -6,6 +6,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:WhatYouEatWP7.Helpers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
@@ -33,6 +34,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
         <TextBlock Text="{Binding Common.Profile, Source={StaticResource LocalizationManager}}"
@@ -59,10 +62,11 @@
                    Grid.Row="5"
                    Style="{StaticResource FieldStyle}" />
 
-        <toolkit:ListPicker SelectedItem="{Binding ActivityType, Mode=TwoWay}"
-                            x:Name="activitiesPicker"
-                            ItemsSource="{Binding AllTypes}"
-                            Grid.Row="6">
+        <toolkit:ListPicker Grid.Row="6">
+            <i:Interaction.Behaviors>
+                <helpers:EnumPickerBehavior EnumType="{Binding EnumType}"
+                                            SelectedItem="{Binding ActivityType, Mode=TwoWay}" />                                            
+            </i:Interaction.Behaviors>
             <toolkit:ListPicker.FullModeItemTemplate>
                 <DataTemplate>
                     <TextBlock FontSize="32"
@@ -72,6 +76,14 @@
             </toolkit:ListPicker.FullModeItemTemplate>
         </toolkit:ListPicker>
 
+        <Image Source="{Binding UserImage}"
+               Margin="0,10,0,0" Stretch="UniformToFill"
+               Grid.Row="7" />
+        
+        <Button Content="{Binding Buttons.UpdatePhoto, Source={StaticResource LocalizationManager}}"
+                Command="{Binding UpdatePhotoCommand}"
+                Grid.Row="8" />
+        
     </Grid>
     
     <binBar:Bindable.ApplicationBar>

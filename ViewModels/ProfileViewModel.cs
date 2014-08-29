@@ -1,11 +1,14 @@
 ﻿
 using DataAccess.Tables;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Phone.Tasks;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 using ViewModels.Helpers;
 
 namespace ViewModels
@@ -15,25 +18,14 @@ namespace ViewModels
         public ProfileViewModel()
         {
             SaveCommand = new RelayCommand(SaveExecute);
-            AllTypes.Add(ActivityType.Sitting);
-            AllTypes.Add(ActivityType.Light);
-            AllTypes.Add(ActivityType.Medium);
-            AllTypes.Add(ActivityType.High);
-            AllTypes.Add(ActivityType.Extreme);
+            UpdatePhotoCommand = new RelayCommand(UpdatePhotoExecute);
         }
 
         #region ActivitiesTypes
 
-        private List<ActivityType> allTypes = new List<ActivityType>();
-
-        public List<ActivityType> AllTypes
+        public Type EnumType
         {
-            get { return this.allTypes; }
-            set
-            {
-                this.allTypes = value;
-                RaisePropertyChanged("AllTypes");
-            }
+            get { return typeof(ActivityType); }
         }
 
         #endregion ActivitiesTypes
@@ -83,15 +75,60 @@ namespace ViewModels
 
         #endregion SaveCommand
 
+        #region UserImage
+
+        private ImageSource userImage;
+
+        public ImageSource UserImage
+        {
+            get { return userImage; }
+            set
+            {
+                userImage = value;
+                RaisePropertyChanged("UserImage");
+            }
+        }
+
+        #endregion UserImage
+
+        #region UpdatePhotoCommand
+
+        public RelayCommand UpdatePhotoCommand { get; private set; }
+
+        private void UpdatePhotoExecute()
+        {
+            PhotoChooserTask task = new PhotoChooserTask();
+            task.ShowCamera = true;
+            task.Completed += (sender, args) =>
+            {
+                if (args.TaskResult == TaskResult.OK)
+                {
+                    byte[] buffer = new byte[args.ChosenPhoto.Length];
+                    args.ChosenPhoto.Read(buffer, 0, buffer.Length);
+                    args.ChosenPhoto.Close();
+                    InvokeInUIThread(() =>
+                    {
+                        BodyState.Image = buffer;
+                        UserImage = BodyState.GetUserImage();
+                    });
+                }
+            };
+            task.Show();
+        }
+
+        #endregion UpdatePhotoCommand
+
         protected override void InitializeExecute()
         {
             base.InitializeExecute();
-            BodyState = Diet.User.BodyState;
-            ActivityType = AllTypes.SingleOrDefault(item => item.Value == Diet.User.ActivityType.Value);
+            BodyState = Diet.User.BodyState.CreateCopy();
+            ActivityType = Diet.User.ActivityType;
+            UserImage = BodyState.GetUserImage();
         }
 
         public override void Cleanup()
         {
+            UserImage = null;
             BodyState = null;
             ActivityType = null;
             base.Cleanup();

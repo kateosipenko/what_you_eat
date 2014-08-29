@@ -142,6 +142,15 @@ namespace Resources.Buttons {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to update photo.
+        /// </summary>
+        public static string UpdatePhoto {
+            get {
+                return ResourceManager.GetString("UpdatePhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to update plan.
         /// </summary>
         public static string UpdatePlan {

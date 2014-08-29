@@ -20,20 +20,6 @@ namespace WhatYouEatWP7.Views.Profile
         public ProfilePage()
         {
             InitializeComponent();
-            Loaded += OnLoaded;
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            activitiesPicker.SummaryForSelectedItemsDelegate = new Func<IList, string>(OnSummaryChanged);
-        }
-
-        private string OnSummaryChanged(IList items)
-        {
-            if (items == null || items.Count == 0)
-                return string.Empty;
-
-            return EnumsStrings.ResourceManager.GetString(((ActivityType)items[0]).Key);
         }
     }
 }

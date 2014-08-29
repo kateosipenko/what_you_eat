@@ -47,8 +47,33 @@ namespace WhatYouEatWP7.Helpers
 
         private static void OnSelectedItemChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var assosiatedObject = ((EnumPickerBehavior)sender).AssociatedObject;
-            assosiatedObject.UpdateSummary(assosiatedObject.SelectedItems);
+            ((EnumPickerBehavior)sender).OnSeletedItemChanged();
+        }
+
+        private void OnSeletedItemChanged()
+        {
+            if (this.AssociatedObject.SelectedItem == null && SelectedItem != null && items != null && items.Count > 0)
+            {
+                if (EnumType == typeof(ActivityType) && SelectedItem is ActivityType)
+                {
+                    foreach (var item in items)
+                    {
+
+                        if (((ActivityType)item).Key == ((ActivityType)SelectedItem).Key)
+                        {
+                            SelectedItem = item;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    SelectedItem = this.items.SingleOrDefault(item => item == SelectedItem);
+                }
+
+                AssociatedObject.SelectedItem = this.SelectedItem;
+                AssociatedObject.OnSelectedItemChanged(null, SelectedItem);
+            }
         }
 
         public object SelectedItem

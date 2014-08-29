@@ -144,6 +144,9 @@
   <data name="SetupNow" xml:space="preserve">
     <value>сейчас</value>
   </data>
+  <data name="UpdatePhoto" xml:space="preserve">
+    <value>обновить фото</value>
+  </data>
   <data name="UpdatePlan" xml:space="preserve">
     <value>изменить план</value>
   </data>

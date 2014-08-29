@@ -83,7 +83,7 @@ namespace ViewModels
             Diet.SaveDietPlan();
             if (IsNextVisible)
             {
-                NavigationProvider.Navigate(Constants.Pages.HomePanorama);
+                NavigationProvider.NavigateAndRemoveBackEntries(Constants.Pages.HomePanorama);
             }
             else if (NavigationProvider.CanGoBack())
             {

@@ -22,7 +22,7 @@ namespace DataAccess.Repositories
 
         public BodyState Add(BodyState state)
         {
-            var newState = BodyState.CreateCopy(state);
+            var newState = state.CreateCopy();
             newState.Date = DateTime.Now;
             try
             {
