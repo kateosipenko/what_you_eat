@@ -49,7 +49,7 @@
             <controls:PanoramaItem Header="{Binding Common.Water, Source={StaticResource LocalizationManager}}">
                 <viewsHome:TodayWaterControl />
             </controls:PanoramaItem>
-            <controls:PanoramaItem Header="{Binding Common.Profile, Source={StaticResource LocalizationManager}}">
+            <controls:PanoramaItem Header="{Binding Profile.Profile, Source={StaticResource LocalizationManager}}">
                 <viewsHome:ProfileControl />
             </controls:PanoramaItem>
         </controls:Panorama>

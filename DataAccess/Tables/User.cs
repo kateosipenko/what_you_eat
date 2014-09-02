@@ -55,6 +55,7 @@ namespace DataAccess.Tables
             set
             {
                 bodyState = value;
+                bodyType = BodyType.None;
                 RaisePropertyChanged("BodyState");
             }
         }
@@ -65,6 +66,44 @@ namespace DataAccess.Tables
         }
 
         #endregion BodyState
+
+        #region BodyType
+
+        private BodyType bodyType;
+
+        public BodyType GetBodyType()
+        {
+            if (bodyType == BodyType.None && bodyState != null)
+            {
+                switch (sex)
+                {
+                    case Models.Sex.Female:
+                        if (bodyState.Wrist < 15)
+                            bodyType = BodyType.Asthenic;
+                        else if (bodyState.Wrist >= 15 && bodyState.Wrist < 17)
+                            bodyType = BodyType.Normal;
+                        else
+                            bodyType = BodyType.Hypersthenic;
+
+                        break;
+                    case Models.Sex.Male:
+                        if (bodyState.Wrist < 18)
+                            bodyType = BodyType.Asthenic;
+                        else if (bodyState.Wrist >= 18 && bodyState.Wrist < 20)
+                            bodyType = BodyType.Normal;
+                        else
+                            bodyType = BodyType.Hypersthenic;
+
+                        break;
+                }
+
+
+            }
+
+            return bodyType;
+        }
+
+        #endregion BodyType
 
         #region ActivityType
 

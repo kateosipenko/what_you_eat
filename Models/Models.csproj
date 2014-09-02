@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityType.cs" />
+    <Compile Include="BodyType.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="EnergyType.cs" />
     <Compile Include="FoodMeasure.cs" />

@@ -61,15 +61,6 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to activity type.
-        /// </summary>
-        public static string ActivityType {
-            get {
-                return ResourceManager.GetString("ActivityType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to allow application to show reminders about meals.
         /// </summary>
         public static string AllowFoodReminder {
@@ -268,15 +259,6 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to height (cm).
-        /// </summary>
-        public static string Height {
-            get {
-                return ResourceManager.GetString("Height", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to how much were eaten.
         /// </summary>
         public static string HowMuchEaten {
@@ -430,15 +412,6 @@ namespace Resources.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to profile.
-        /// </summary>
-        public static string Profile {
-            get {
-                return ResourceManager.GetString("Profile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to proteins.
         /// </summary>
         public static string Proteins {
@@ -570,15 +543,6 @@ namespace Resources.Common {
         public static string Weeks {
             get {
                 return ResourceManager.GetString("Weeks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to weight(kg).
-        /// </summary>
-        public static string Weight {
-            get {
-                return ResourceManager.GetString("Weight", resourceCulture);
             }
         }
     }

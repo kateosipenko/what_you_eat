@@ -58,6 +58,9 @@ namespace ViewModels
         {
             base.InitializeExecute();
             this.User.PropertyChanged += OnUserDataChanged;
+            if (this.User.BodyState == null)
+                this.User.BodyState = new BodyState();
+            this.User.BodyState.PropertyChanged += OnUserDataChanged;
         }
 
         private void OnUserDataChanged(object sender, PropertyChangedEventArgs e)

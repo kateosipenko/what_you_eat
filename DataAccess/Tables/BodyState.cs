@@ -20,6 +20,9 @@ namespace DataAccess.Tables
         private float weight;
         private float waist;
         private float hips;
+        private float chest;
+        private float wrist;
+        private float neck;
         private byte[] image;
         private BitmapImage userImage;
 
@@ -82,6 +85,39 @@ namespace DataAccess.Tables
             }
         }
 
+        [Column(Storage = "Chest", DbType = "Float")]
+        public float Chest
+        {
+            get { return chest; }
+            set
+            {
+                chest = value;
+                RaisePropertyChanged("Chest");
+            }
+        }
+
+        [Column(Storage = "Wrist", DbType = "Float")]
+        public float Wrist
+        {
+            get { return wrist; }
+            set
+            {
+                wrist = value;
+                RaisePropertyChanged("Wrist");
+            }
+        }
+
+        [Column(Storage = "Neck", DbType = "Float")]
+        public float Neck
+        {
+            get { return neck; }
+            set
+            {
+                neck = value;
+                RaisePropertyChanged("Neck");
+            }
+        }
+
         [Column(Storage = "Image", DbType = "image")]
         public byte[] Image
         {
@@ -121,7 +157,10 @@ namespace DataAccess.Tables
                 Hips = this.Hips,
                 Waist = this.Waist,
                 Weight = this.Weight,
-                Image = this.Image
+                Image = this.Image,
+                Neck = this.Neck,
+                Wrist = this.Wrist,
+                Chest = this.Chest
             };
         }
     }

@@ -10,7 +10,7 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <Button Content="{Binding Common.Profile, Source={StaticResource LocalizationManager}}"
+        <Button Content="{Binding Profile.Profile, Source={StaticResource LocalizationManager}}"
                 Command="{Binding NavigateToProfileCommand}"/>
     </Grid>
 </UserControl>

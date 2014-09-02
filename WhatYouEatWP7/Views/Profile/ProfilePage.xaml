@@ -11,6 +11,8 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:msControls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:profileControls="clr-namespace:WhatYouEatWP7.Views.Profile"
     xmlns:behaviors="clr-namespace:Core.Behaviors;assembly=Core"
     DataContext="{Binding Profile, Source={StaticResource Locator}}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -24,68 +26,21 @@
         <behaviors:PageInitializationBehavior InitializeCommand="{Binding InitializeCommand}"
                                               CleanupCommand="{Binding CleanupCommand}" />
     </i:Interaction.Behaviors>
+
     
-    <Grid Style="{StaticResource ContainerStyle}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <TextBlock Text="{Binding Common.Profile, Source={StaticResource LocalizationManager}}"
-                   Style="{StaticResource PageTitleStyle}"
-                   Grid.Row="0" />
-        
-        <TextBlock Text="{Binding Common.Height, Source={StaticResource LocalizationManager}}"
-                   Grid.Row="1"
-                   Style="{StaticResource FieldStyle}" />
-        
-        <TextBox Text="{Binding BodyState.Height, Mode=TwoWay}"
-                 Grid.Row="2"
-                 InputScope="Number" />
-
-        <TextBlock Text="{Binding Common.Weight, Source={StaticResource LocalizationManager}}"
-                   Grid.Row="3"
-                   Style="{StaticResource FieldStyle}" />
-
-        <TextBox Text="{Binding BodyState.Weight, Mode=TwoWay}"
-                 Grid.Row="4"
-                 InputScope="Number" />
-
-        <TextBlock Text="{Binding Activities.ActivityType, Source={StaticResource LocalizationManager}}"
-                   Grid.Row="5"
-                   Style="{StaticResource FieldStyle}" />
-
-        <toolkit:ListPicker Grid.Row="6">
-            <i:Interaction.Behaviors>
-                <helpers:EnumPickerBehavior EnumType="{Binding EnumType}"
-                                            SelectedItem="{Binding ActivityType, Mode=TwoWay}" />                                            
-            </i:Interaction.Behaviors>
-            <toolkit:ListPicker.FullModeItemTemplate>
-                <DataTemplate>
-                    <TextBlock FontSize="32"
-                               Margin="0,10"
-                               Text="{Binding Converter={StaticResource EnumToTextConverter}}" />
-                </DataTemplate>
-            </toolkit:ListPicker.FullModeItemTemplate>
-        </toolkit:ListPicker>
-
-        <Image Source="{Binding UserImage}"
-               Margin="0,10,0,0" Stretch="UniformToFill"
-               Grid.Row="7" />
-        
-        <Button Content="{Binding Buttons.UpdatePhoto, Source={StaticResource LocalizationManager}}"
-                Command="{Binding UpdatePhotoCommand}"
-                Grid.Row="8" />
-        
+    <Grid>
+        <msControls:Pivot>
+            <msControls:PivotItem Header="{Binding Profile.Profile, Source={StaticResource LocalizationManager}}">
+                <profileControls:BodyStateControl />
+            </msControls:PivotItem>
+            <msControls:PivotItem Header="{Binding Profile.Parameters, Source={StaticResource LocalizationManager}}">
+            </msControls:PivotItem>
+            <msControls:PivotItem Header="{Binding Profile.Progress, Source={StaticResource LocalizationManager}}">
+            </msControls:PivotItem>
+        </msControls:Pivot>
     </Grid>
     
+
     <binBar:Bindable.ApplicationBar>
         <binBar:BindableApplicationBar>
             <binBar:BindableApplicationBarButton IconUri="/Icons/ok.png"

@@ -26,7 +26,6 @@
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/GlobalStyles.xaml" />
-                <ResourceDictionary Source="Styles/OverriddenPhoneStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

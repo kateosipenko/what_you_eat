@@ -126,6 +126,9 @@
     <Compile Include="Views\Home\TodayWaterControl.xaml.cs">
       <DependentUpon>TodayWaterControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Profile\BodyStateControl.xaml.cs">
+      <DependentUpon>BodyStateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Profile\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Home\TodayWaterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profile\BodyStateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

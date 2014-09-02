@@ -140,7 +140,11 @@ namespace ViewModels.Helpers
             switch (type)
             {
                 case EnergyType.Activity:
-                    var activityKeys = activityTranslations.Where(item => item.Value.ToLower().StartsWith(query)).Select(item => item.Key);
+                    var activityKeys = activityTranslations.Where(item => 
+                    {
+                        var lower = item.Value.ToLower();
+                        return lower.StartsWith(query) || lower.Contains(query);
+                    }).Select(item => item.Key);
                     using (var repo = new PhysicalActivityRepository())
                     {
                         result = repo.Search(activityKeys).Cast<RaisableObject>().ToList();
@@ -148,7 +152,11 @@ namespace ViewModels.Helpers
 
                     break;
                 case EnergyType.Food:
-                    var foodKeys = this.foodTranslations.Where(item => item.Value.ToLower().StartsWith(query)).Select(item => item.Key);
+                    var foodKeys = this.foodTranslations.Where(item =>
+                    {
+                        var lower = item.Value.ToLower();
+                        return lower.StartsWith(query) || lower.Contains(query);
+                    }).Select(item => item.Key);
                     using (var repo = new FoodRepository())
                     {
                         result = repo.Search(foodKeys).Cast<RaisableObject>().ToList();

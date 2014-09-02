@@ -4,6 +4,7 @@ using Resources.Common;
 using Resources.Enums;
 using Resources.Errors;
 using Resources.Pages.HomePanorama;
+using Resources.Pages.Profile;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace Resources
         private EnumsStrings enumsStrings = new EnumsStrings();
         private ErrorsStrings errorsStrings = new ErrorsStrings();
         private HomePanoramaStrings homePanoramaStrings = new HomePanoramaStrings();
+        private ProfileStrings profileStrings = new ProfileStrings();
 
         #endregion Fields
 
@@ -58,6 +60,11 @@ namespace Resources
             get { return homePanoramaStrings; }
         }
 
+        public ProfileStrings Profile
+        {
+            get { return profileStrings; }
+        }
+
         #endregion Properties
 
         public void RefreshLanguage()
@@ -68,6 +75,7 @@ namespace Resources
             EnumsStrings.Culture = Thread.CurrentThread.CurrentUICulture;
             ErrorsStrings.Culture = Thread.CurrentThread.CurrentUICulture;
             HomePanoramaStrings.Culture = Thread.CurrentThread.CurrentUICulture;
+            ProfileStrings.Culture = Thread.CurrentThread.CurrentUICulture;
 
             RaiseLocalizationChanged();
         }
@@ -92,6 +100,7 @@ namespace Resources
             RaisePropertyChanged("Enums");
             RaisePropertyChanged("Errors");
             RaisePropertyChanged("HomePanorama");
+            RaisePropertyChanged("Profile");
         }
 
         #endregion INotifyPropertyChanged
