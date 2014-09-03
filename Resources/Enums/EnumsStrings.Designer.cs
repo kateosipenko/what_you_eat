@@ -61,6 +61,15 @@ namespace Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to chest.
+        /// </summary>
+        public static string Chest {
+            get {
+                return ResourceManager.GetString("Chest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to training 2 time per day, physical work.
         /// </summary>
         public static string Extreme {
@@ -111,6 +120,15 @@ namespace Resources.Enums {
         public static string High {
             get {
                 return ResourceManager.GetString("High", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hips.
+        /// </summary>
+        public static string Hips {
+            get {
+                return ResourceManager.GetString("Hips", resourceCulture);
             }
         }
         
@@ -174,6 +192,15 @@ namespace Resources.Enums {
         public static string Monday {
             get {
                 return ResourceManager.GetString("Monday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to photo.
+        /// </summary>
+        public static string Photo {
+            get {
+                return ResourceManager.GetString("Photo", resourceCulture);
             }
         }
         
@@ -259,11 +286,29 @@ namespace Resources.Enums {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to waist.
+        /// </summary>
+        public static string Waist {
+            get {
+                return ResourceManager.GetString("Waist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to wednesday.
         /// </summary>
         public static string Wednesday {
             get {
                 return ResourceManager.GetString("Wednesday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weight.
+        /// </summary>
+        public static string Weight {
+            get {
+                return ResourceManager.GetString("Weight", resourceCulture);
             }
         }
     }

@@ -7,6 +7,139 @@ namespace ViewModels
 {
     public class Locator
     {
+        #region GoalPlan
+
+        #region Goal
+
+        private static GoalViewModel goal;
+
+        public static GoalViewModel GoalStatic
+        {
+            get
+            {
+                if (goal == null)
+                {
+                    goal = new GoalViewModel();
+                }
+
+                return goal;
+            }
+        }
+
+        public GoalViewModel Goal
+        {
+            get { return GoalStatic; }
+        }
+
+        public void CleanGoal()
+        {
+            if (goal != null)
+            {
+                goal.Dispose();
+                goal = null;
+            }
+        }
+
+        #endregion Goal
+
+        #region FoodPlan
+
+        private static FoodPlanViewModel foodPlan;
+
+        public static FoodPlanViewModel FoodPlanStatic
+        {
+            get
+            {
+                if (foodPlan == null)
+                {
+                    foodPlan = new FoodPlanViewModel();
+                }
+
+                return foodPlan;
+            }
+        }
+
+        public FoodPlanViewModel FoodPlan
+        {
+            get { return FoodPlanStatic; }
+        }
+
+        #endregion FoodPlan
+
+        #region TrainingsPlan
+
+        private static TrainingsPlanViewModel trainingsPlan;
+
+        public static TrainingsPlanViewModel TrainingsPlanStatic
+        {
+            get
+            {
+                if (trainingsPlan == null)
+                {
+                    trainingsPlan = new TrainingsPlanViewModel();
+                }
+
+                return trainingsPlan;
+            }
+        }
+
+        public TrainingsPlanViewModel TrainingsPlan
+        {
+            get { return TrainingsPlanStatic; }
+        }
+
+        #endregion TrainingsPlan
+
+        #region TrainingDetails
+
+        private static TrainingDetailsViewModel trainingDetails;
+
+        public static TrainingDetailsViewModel TrainingDetailsStatic
+        {
+            get
+            {
+                if (trainingDetails == null)
+                {
+                    trainingDetails = new TrainingDetailsViewModel();
+                }
+
+                return trainingDetails;
+            }
+        }
+
+        public TrainingDetailsViewModel TrainingDetails
+        {
+            get { return TrainingDetailsStatic; }
+        }
+
+        #endregion TrainingDetails
+
+        #region WaterPlan
+
+        private static WaterPlanViewModel waterPlan;
+
+        public static WaterPlanViewModel WaterPlanStatic
+        {
+            get
+            {
+                if (waterPlan == null)
+                {
+                    waterPlan = new WaterPlanViewModel();
+                }
+
+                return waterPlan;
+            }
+        }
+
+        public WaterPlanViewModel WaterPlan
+        {
+            get { return WaterPlanStatic; }
+        }
+
+        #endregion WaterPlan
+
+        #endregion GoalPlan
+
         #region Home
 
         private static HomeViewModel home;
@@ -75,39 +208,6 @@ namespace ViewModels
         }
 
         #endregion UserData
-
-        #region Goal
-
-        private static GoalViewModel goal;
-
-        public static GoalViewModel GoalStatic
-        {
-            get
-            {
-                if (goal == null)
-                {
-                    goal = new GoalViewModel();
-                }
-
-                return goal;
-            }
-        }
-
-        public GoalViewModel Goal
-        {
-            get { return GoalStatic; }
-        }
-
-        public void CleanGoal()
-        {
-            if (goal != null)
-            {
-                goal.Dispose();
-                goal = null;
-            }
-        }
-
-        #endregion Goal
         
         #region FoodSearch
 
@@ -262,6 +362,8 @@ namespace ViewModels
 
         #endregion Settings
 
+        #region ProfileData
+
         #region Profile
 
         private static ProfileViewModel profile;
@@ -282,6 +384,30 @@ namespace ViewModels
         }
 
         #endregion Profile
+
+        #region Progress
+
+        private static ProgressViewModel progress;
+
+        public static ProgressViewModel ProgressStatic
+        {
+            get
+            {
+                if (progress == null)
+                    progress = new ProgressViewModel();
+
+                return progress;
+            }
+        }
+
+        public ProgressViewModel Progress
+        {
+            get { return ProgressStatic; }
+        }
+
+        #endregion Progress
+
+        #endregion ProfileData
 
         #region Water
 
@@ -316,100 +442,5 @@ namespace ViewModels
 
         #endregion Water
 
-        #region FoodPlan
-
-        private static FoodPlanViewModel foodPlan;
-
-        public static FoodPlanViewModel FoodPlanStatic
-        {
-            get
-            {
-                if (foodPlan == null)
-                {
-                    foodPlan = new FoodPlanViewModel();
-                }
-
-                return foodPlan;
-            }
-        }
-
-        public FoodPlanViewModel FoodPlan
-        {
-            get { return FoodPlanStatic; }
-        }
-
-        #endregion FoodPlan
-
-        #region TrainingsPlan
-
-        private static TrainingsPlanViewModel trainingsPlan;
-
-        public static TrainingsPlanViewModel TrainingsPlanStatic
-        {
-            get
-            {
-                if (trainingsPlan == null)
-                {
-                    trainingsPlan = new TrainingsPlanViewModel();
-                }
-
-                return trainingsPlan;
-            }
-        }
-
-        public TrainingsPlanViewModel TrainingsPlan
-        {
-            get { return TrainingsPlanStatic; }
-        }
-
-        #endregion TrainingsPlan
-
-        #region TrainingDetails
-
-        private static TrainingDetailsViewModel trainingDetails;
-
-        public static TrainingDetailsViewModel TrainingDetailsStatic
-        {
-            get
-            {
-                if (trainingDetails == null)
-                {
-                    trainingDetails = new TrainingDetailsViewModel();
-                }
-
-                return trainingDetails;
-            }
-        }
-
-        public TrainingDetailsViewModel TrainingDetails
-        {
-            get { return TrainingDetailsStatic; }
-        }
-
-        #endregion TrainingDetails
-
-        #region WaterPlan
-
-        private static WaterPlanViewModel waterPlan;
-
-        public static WaterPlanViewModel WaterPlanStatic
-        {
-            get
-            {
-                if (waterPlan == null)
-                {
-                    waterPlan = new WaterPlanViewModel();
-                }
-
-                return waterPlan;
-            }
-        }
-
-        public WaterPlanViewModel WaterPlan
-        {
-            get { return WaterPlanStatic; }
-        }
-
-        #endregion WaterPlan
     }
 }

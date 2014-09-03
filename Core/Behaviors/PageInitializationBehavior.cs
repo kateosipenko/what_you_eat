@@ -1,13 +1,14 @@
 ﻿using Microsoft.Phone.Controls;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 using System.Windows.Navigation;
 
 namespace Core.Behaviors
 {
-    public class PageInitializationBehavior : Behavior<PhoneApplicationPage>
+    public class PageInitializationBehavior : Behavior<UserControl>
     {
         private bool isPageLoaded;
 
@@ -174,9 +175,9 @@ namespace Core.Behaviors
 
             if (this.InitializeCommand != null)
             {
-                if (this.AssociatedObject.NavigationContext != null)
+                if (this.AssociatedObject is PhoneApplicationPage && ((PhoneApplicationPage) this.AssociatedObject).NavigationContext != null)
                 {
-                    this.InitializeCommand.Execute(this.AssociatedObject.NavigationContext.QueryString);
+                    this.InitializeCommand.Execute(((PhoneApplicationPage)this.AssociatedObject).NavigationContext.QueryString);
                 }
                 else
                 {

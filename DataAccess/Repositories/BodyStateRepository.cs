@@ -37,5 +37,27 @@ namespace DataAccess.Repositories
 
             return newState;
         }
+
+        public List<BodyState> GetListForProgress(int amount)
+        {
+            List<BodyState> result = new List<BodyState>();
+
+            int count = DbContext.BodyStates.Count();
+            if (count <= amount)
+            {
+                result = GetAllStates();
+            }
+            else
+            {
+                int ratio = (int) count / amount + 1;
+                var allStates = GetAllStates();
+                for (int i = 0; i < count; i += ratio)
+                {
+                    result.Add(allStates[i]);
+                }
+            }
+
+            return result;
+        }
     }
 }

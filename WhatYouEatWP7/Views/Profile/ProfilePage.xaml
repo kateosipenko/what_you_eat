@@ -36,6 +36,7 @@
             <msControls:PivotItem Header="{Binding Profile.Parameters, Source={StaticResource LocalizationManager}}">
             </msControls:PivotItem>
             <msControls:PivotItem Header="{Binding Profile.Progress, Source={StaticResource LocalizationManager}}">
+                <profileControls:ProgressControl />
             </msControls:PivotItem>
         </msControls:Pivot>
     </Grid>

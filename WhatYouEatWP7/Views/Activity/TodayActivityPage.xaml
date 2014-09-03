@@ -75,14 +75,14 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding StringId, Converter={StaticResource TranslationConverter}}"
+                        <TextBlock Text="{Binding Activity.StringId, Converter={StaticResource TranslationConverter}}"
                                    Grid.Row="0" Grid.Column="0"
                                    FontSize="24" />
 
                         <StackPanel Grid.Row="1"
                                      Grid.Column="0"
                                      Orientation="Horizontal">
-                            <TextBlock Text="{Binding SpentEnergy}"
+                            <TextBlock Text="{Binding CaloriesSpent}"
                                        Foreground="{StaticResource PhoneSubtleBrush}"
                                        FontSize="20" />
                             <TextBlock Text="kkal"

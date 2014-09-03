@@ -132,6 +132,9 @@
     <Compile Include="Views\Profile\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Profile\ProgressControl.xaml.cs">
+      <DependentUpon>ProgressControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Profile\ProgressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,6 +303,10 @@
     <ProjectReference Include="..\BindableApplicationBar\BindableApplicationBar.csproj">
       <Project>{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}</Project>
       <Name>BindableApplicationBar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Controls.DataVisualization.Toolkit\Controls.DataVisualization.Toolkit.csproj">
+      <Project>{4584BD51-2E85-448F-B0C9-8F16EA8216FE}</Project>
+      <Name>Controls.DataVisualization.Toolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\Controls\Controls.csproj">
       <Project>{5FA3A250-F247-4EA1-A76C-ACB853C30A62}</Project>

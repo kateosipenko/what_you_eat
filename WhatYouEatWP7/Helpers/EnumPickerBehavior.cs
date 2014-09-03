@@ -52,6 +52,9 @@ namespace WhatYouEatWP7.Helpers
 
         private void OnSeletedItemChanged()
         {
+            if (this.AssociatedObject == null)
+                return;
+
             if (this.AssociatedObject.SelectedItem == null && SelectedItem != null && items != null && items.Count > 0)
             {
                 if (EnumType == typeof(ActivityType) && SelectedItem is ActivityType)
@@ -88,6 +91,7 @@ namespace WhatYouEatWP7.Helpers
         {
             base.OnAttached();
             OnEnumTypeChanged();
+            OnSeletedItemChanged();
         }
 
         protected override void OnDetaching()
@@ -101,7 +105,7 @@ namespace WhatYouEatWP7.Helpers
 
         private void OnEnumTypeChanged()
         {
-            if (this.EnumType != null)
+            if (this.EnumType != null && this.AssociatedObject != null)
             {
                 var fields = EnumType.GetFields();
                 if (fields.Length > 1)
